@@ -32,3 +32,16 @@ check kube-system namespace:
 kubectl get pods -n kube-system
 ```
 create a new namespace:
+```
+kubectl create namespace Lumada
+```
+now developers can deploy apps to the namespace you created:  
+
+delete namespace:
+```
+kubectl delete namespace Lumada
+```
+then you would check to make sure everything has been deleted:
+```
+kubectl get pods --all-namespaces
+```
