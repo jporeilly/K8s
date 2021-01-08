@@ -1,24 +1,34 @@
 ## <font color='red'> 1.1 K8s Cluster </font>
+By default, kubectl gets configured to access the kubernetes cluster control plane inside minikube when the minikube start command is executed.
 
-> Adapted from the [Kubernetes Tutorials](https://kubernetes.io/docs/tutorials/)  
-
-fire up minikube:
+kubectl version:
 ```
-minikube start
+kubectl version
 ```
-
-check minikube status:
+check nodes:
 ```
-minikube status
+kubectl get nodes
 ```
-view addons:
+check everything (PODs & Services):
 ```
-minikube addons list
+kubectl get all
 ```
-
-in a new terminal access dashboard:
+check just PODs:
 ```
-minikube dashboard
+kubectl get pods
 ```
 
 ---
+
+## <font color='red'> 1.2 K8s Namespace </font>
+Kubernetes supports multiple virtual clusters backed by the same physical cluster. These virtual clusters are called namespaces.  
+
+check namespaces:
+```
+kubectl get namespace
+```
+check kube-system namespace:
+```
+kubectl get pods -n kube-system
+```
+create a new namespace:
