@@ -33,7 +33,7 @@ kubectl port-forward [POD] [ports]
 expose a port for deployment:
 ```
 kubectl expose
-``
+```
 create a resource:
 ```
 kubectl create [resource]
@@ -41,7 +41,7 @@ kubectl create [resource]
 create or modify resource:
 ```
 kubectl apply [resource]
-``
+```
 
 For kubectl commands: https://kubernetes.io/docs/reference/kubectl/cheatsheet/
 
