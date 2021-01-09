@@ -21,6 +21,7 @@ kubectl get pods
 For kubectl commands: https://kubernetes.io/docs/reference/kubectl/cheatsheet/
 
 [Document] : (Labs\01 Kubernetes\02 kubectl commands\K8s Commands.docx)
+
 ---
 
 ## <font color='red'> 1.2 K8s Namespace </font>
