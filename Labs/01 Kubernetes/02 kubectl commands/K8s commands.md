@@ -19,6 +19,7 @@ kubectl get pods
 ```
 
 For kubectl commands: https://kubernetes.io/docs/reference/kubectl/cheatsheet/
+
 ---
 
 ## <font color='red'> 1.2 K8s Namespace </font>
