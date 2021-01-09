@@ -37,7 +37,7 @@ kubectl expose
 create a resource:
 ```
 kubectl create [resource]
-``
+```
 create or modify resource:
 ```
 kubectl apply [resource]
