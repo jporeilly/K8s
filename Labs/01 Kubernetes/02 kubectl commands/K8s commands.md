@@ -1,51 +1,69 @@
 ## <font color='red'> 1.1 K8s Cluster </font>
+
 By default, kubectl gets configured to access the kubernetes cluster control plane inside minikube when the minikube start command is executed.
 
 kubectl version:
+
 ```
 kubectl version
 ```
+
 check nodes:
+
 ```
 kubectl get nodes
 ```
+
 check everything (PODs & Services):
+
 ```
 kubectl get all
 ```
+
 check just PODs:
+
 ```
 kubectl get pods
 ```
 
 For kubectl commands: https://kubernetes.io/docs/reference/kubectl/cheatsheet/
 
-[Document] : (Labs\01 Kubernetes\02 kubectl commands\K8s Commands.docx)
+[K8s Commands](file://)
 
 ---
 
 ## <font color='red'> 1.2 K8s Namespace </font>
-Kubernetes supports multiple virtual clusters backed by the same physical cluster. These virtual clusters are called namespaces.  
+
+Kubernetes supports multiple virtual clusters backed by the same physical cluster. These virtual clusters are called namespaces.
 
 check namespaces:
+
 ```
 kubectl get namespace
 ```
+
 check kube-system namespace:
+
 ```
 kubectl get pods -n kube-system
 ```
+
 create a new namespace:
+
 ```
 kubectl create namespace Lumada
 ```
-now developers can deploy apps to the namespace you created:  
+
+now developers can deploy apps to the namespace you created:
 
 delete namespace:
+
 ```
 kubectl delete namespace Lumada
 ```
+
 then you would check to make sure everything has been deleted:
+
 ```
 kubectl get pods --all-namespaces
 ```
