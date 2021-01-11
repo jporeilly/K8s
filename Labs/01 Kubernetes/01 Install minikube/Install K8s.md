@@ -22,7 +22,7 @@ in a new terminal access dashboard:
 ```
 minikube dashboard
 ```
-
+> For further information: https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/
 --- 
 
 additional minikube commands.  
