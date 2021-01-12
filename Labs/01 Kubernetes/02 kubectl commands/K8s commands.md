@@ -6,6 +6,10 @@ kubectl version:
 ```
 kubectl version
 ```
+list kubectl commands:
+```
+kubectl help
+```
 view cluster info:
 ```
 kubectl cluster-info
