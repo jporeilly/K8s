@@ -8,7 +8,7 @@ kubectl version
 ```
 list kubectl commands:
 ```
-kubectl help
+kubectl
 ```
 view cluster info:
 ```
