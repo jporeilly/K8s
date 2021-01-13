@@ -44,16 +44,10 @@ check whats running:
 ```
 kubectl get all
 ```
-> Notice POD is Terminating
+> Notice POD is Terminating  
 
+set a Watch:
+```
+kubectl get pods --watch
+```
 ---
-
-### <font color='red'> 1.1.1 Create  a Deployment </font>
-check whats running on Kubernetes:
-```
-kubectl get all
-```
-deploy a Pod / Container:
-```
-kubectl create deployment hello-node --image=k8s.gcr.io/echoserver:1.4
-```
