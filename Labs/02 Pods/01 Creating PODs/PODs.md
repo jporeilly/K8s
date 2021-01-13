@@ -1,4 +1,4 @@
-## <font color='red'> 1.1 K8s Cluster </font>
+## <font color='red'> 2.1 Creating PODs </font>
 
 ensure minikube is up and running:
 ```
