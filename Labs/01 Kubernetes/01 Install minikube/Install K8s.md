@@ -23,6 +23,9 @@ in a new terminal access dashboard:
 minikube dashboard
 ```
 > For further information: https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/
+
+> Blog: https://www.replex.io/blog/how-to-install-access-and-add-heapster-metrics-to-the-kubernetes-dashboard
+
 --- 
 
 additional minikube commands.  
