@@ -2,9 +2,9 @@
 
 minikube is local Kubernetes, focusing on making it easy to learn and develop for Kubernetes.
 
-### <font color='red'>IMPORTANT:</font> Please ensure you start with a clean environment. 
-
-           If you have previously run minikube, you will need to delete the existing instance.
+#### <font color='red'>IMPORTANT:</font> 
+<strong>Please ensure you start with a clean environment. 
+If you have previously run minikube, you will need to delete the existing instance.</strong>
 
 to delete  minikube:
 ```
@@ -47,8 +47,6 @@ stop your local cluster:
 ```
 minikube stop
 ```
-delete your local cluster:
-```
-minikube delete
-```
+> Minikube commands: https://minikube.sigs.k8s.io/docs/commands/
+
 ---
