@@ -19,7 +19,7 @@ check whats running:
 ```
 kubectl get all
 ```
-> Notice Deployment & Replicaset  
+> Notice: Deployment & Replicaset  
 
 check PODs:
 ```
@@ -52,7 +52,7 @@ check PODs:
 ```
 kubectl get pods
 ```
-> Notice new POD was created
+> Notice: new POD was created
 
 to delete a POD:
 ```
@@ -62,7 +62,7 @@ check whats running:
 ```
 kubectl get all
 ```
-> Notice POD is Terminating  
+> Notice: POD is Terminating  
 
 set a Watch:
 ```
