@@ -64,5 +64,6 @@ can also use:
 ```
 kubectl delete -f 01_nginx.pod.yaml
 ```
-
+or
+kubectl delete -f 01_nginx.pod.yaml
 ---
