@@ -41,7 +41,9 @@ check PODs:
 kubectl get pods
 ```
 
+---
 
+#### <font color='red'> 2.1.2 Deleting POD </font>
 delete [pod-name]:
 ```
 kubectl delete pod nginx
