@@ -3,7 +3,7 @@
 In this lab we're going to:
 * Deploy an application
 * Run through some common kubectl commands
-
+* Delete POD
 ---
 
 #### <font color='red'> 2.1.1 Creating POD </font>
