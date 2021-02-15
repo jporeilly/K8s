@@ -52,21 +52,5 @@ check PODs:
 ```
 kubectl get pods
 ```
-> Notice: new POD was created
-
-to delete a POD:
-```
-kubectl delete deployment nginx
-```
-check whats running:
-```
-kubectl get all
-```
-> Notice: POD is Terminating  
-
-set a Watch:
-```
-kubectl get pods --watch
-```
 
 ---
