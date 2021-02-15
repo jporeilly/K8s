@@ -4,13 +4,16 @@ In this lab we're going to:
 * Deploy an application
 * Run through some common kubectl commands
 
+---
+
+#### <font color='red'> 2.1.1 Creating POD </font>
 check whats running:
 ```
 kubectl get all
 ```
-install my-nginx:
+install nginx:
 ```
-kubectl run my-nginx --image=nginx:alpine
+kubectl run nginx --image=nginx:alpine
 ```
 check whats running:
 ```
@@ -18,31 +21,40 @@ kubectl get all
 ```
 > Notice Deployment & Replicaset  
 
-delete [pod-name]:
-```
-kubectl delete pod [pod-name]
-```
 check PODs:
 ```
 kubectl get pods
 ```
-> Notice new POD created
-
 for port-forward:
 ```
-kubectl port-forward [pod-name] 8000:80
+kubectl port-forward nginx 9000:80
+```
+
+> check in browser: http://localhost:9000
+
+lets stop the port forwarding:
+```
+Ctrl+C
 ```
 check PODs:
 ```
 kubectl get pods
 ```
-check whats running:
+
+
+delete [pod-name]:
 ```
-kubectl get all
+kubectl delete pod nginx
 ```
+check PODs:
+```
+kubectl get pods
+```
+> Notice new POD was created
+
 to delete a POD:
 ```
-kubectl delete deployment my-nginx
+kubectl delete deployment nginx
 ```
 check whats running:
 ```
