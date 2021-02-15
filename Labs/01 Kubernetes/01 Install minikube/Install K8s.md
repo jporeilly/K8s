@@ -1,17 +1,24 @@
 ## <font color='red'> 1.1 K8s Cluster </font>
-
 minikube is local Kubernetes, focusing on making it easy to learn and develop for Kubernetes.
+
+In this lab we're going to:
+* Start minikube
+* Tour of VS extensions
+
 
 #### <font color='red'>IMPORTANT:</font> 
 <strong>Please ensure you start with a clean environment. 
 If you have previously run minikube, you will need to delete the existing instance.</strong>
 
+to stop  minikube:
+```
+minikube stop
+```
 to delete  minikube:
 ```
 minikube delete
 ```
-
-fire up minikube:
+start minikube:
 ```
 minikube start
 ```

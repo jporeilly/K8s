@@ -49,6 +49,6 @@ kubectl apply [resource]
 
 For kubectl commands: https://kubernetes.io/docs/reference/kubectl/cheatsheet/
 
-Document: <a href="./K8s Commands.docx" target="_top">K8s Commands</a>
+Document: <a href="./K8s Commands.pdf" target="_top">K8s Commands</a>
 
 ---
