@@ -12,7 +12,7 @@ check whats running:
 ```
 kubectl get all
 ```
-try a trial run and validate YAML:
+test run and validate YAML:
 ```
 kubectl create -f 01_nginx.pod.yaml --dry-run='client' --validate='true'
 ```
@@ -41,17 +41,8 @@ kubectl edit -f 01_nginx.pod.yaml -o yaml
 
 ---
 
-#### <font color='red'> 2.2.2 Access Container </font>
-access the Container:
 
-
-
-
-#### <font color='red'> 2.2.3 YAML & PODs </font>
-
----
-
-#### <font color='red'> 2.2.1 Creating POD </font>
+#### <font color='red'> 2.2.2 Deleting PODs </font>
 to delete the POD:
 ```
 kubectl delete pod nginx
@@ -65,7 +56,7 @@ kubectl delete -f 01_nginx.pod.yaml
 
 ---
 
-#### <font color='red'> 2.1.4 Deployment YAML & PODs </font>
+#### <font color='red'> 2.1.3 Deployment YAML & PODs </font>
 check whats running:
 ```
 kubectl get all
@@ -86,18 +77,30 @@ kubectl apply -f 01_nginx.deployment.yaml
 ```
 Notice: Declarative as state is applied to resource.  If doesnt exist then created.
 
+---
+
+#### <font color='red'> 2.1.4 Delete Deployment YAML & PODs </font>
+check whats running:
+```
+kubectl get all
+```
+
 to delete the POD:
 ```
 kubectl delete pod nginx-xxxxx
 ```
+Notice: the 
+
 can also use:
 ```
 kubectl delete -f 01_nginx.pod.yaml
-```  
+``` 
+or 
 
-
+```
+kubectl delete deployment 
+```
 
 > YAML spec: https://yaml.org/spec/1.2/spec.html
-
 
 ---
