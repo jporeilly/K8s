@@ -64,5 +64,5 @@ kubectl delete 01_nginx.pod.yaml
 Kubectl delete –f nginx.pod.yaml
 ```
 
-
+> YAML spec: https://yaml.org/spec/1.2/spec.html
 ---

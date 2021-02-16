@@ -19,12 +19,6 @@ check whats running:
 ```
 kubectl get all
 ```
-> Notice: Deployment & Replicaset  
-
-check PODs:
-```
-kubectl get pods
-```
 for port-forward:
 ```
 kubectl port-forward nginx 9000:80
