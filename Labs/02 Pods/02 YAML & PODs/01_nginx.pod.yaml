@@ -1,14 +1,14 @@
-apiVersion: v1
-kind: Pod
+apiVersion: v1
+kind: Pod
 metadata:
-  name: nginx
-  labels:
-    app: nginx
-    rel: stable
+  name: nginx
+  labels:
+    app: nginx
+    rel: stable
 spec:
-  containers:
-  - name: nginx
-    image: nginx:alpine
-    ports:
-    - containerPort: 80
-    resources: {}
+  containers:
+  - name: nginx
+    image: nginx:alpine
+    ports:
+    - containerPort: 80
+    resources: {}
