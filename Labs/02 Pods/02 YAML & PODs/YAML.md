@@ -71,6 +71,14 @@ kubectl apply -f 01_nginx.deployment.yaml
 ```
 Notice: Declarative as state is applied to resource.  If doesnt exist then created.
 
+to delete the POD:
+```
+kubectl delete pod nginx-xxxxx
+```
+can also use:
+```
+kubectl delete -f 01_nginx.pod.yaml
+```  
 
 
 
