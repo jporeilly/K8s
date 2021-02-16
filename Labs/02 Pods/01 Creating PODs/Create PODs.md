@@ -38,7 +38,7 @@ kubectl get pods
 
 ---
 
-#### <font color='red'> 2.1.2 Deleting POD </font>
+#### <font color='red'> 2.1.2 Shell into POD </font>
 to shell into the Container:
 ```
 kubectl exec nginx -it sh
@@ -55,7 +55,10 @@ then:
 ```
 ls -l
 ```
-
+to exit:
+```
+exit
+```
 ---
 
 
