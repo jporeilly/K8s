@@ -1,4 +1,4 @@
-## <font color='red'> 2.1 YAML & PODs </font>
+## <font color='red'> 2.2 YAML & PODs </font>
 
 In this lab we're going to:
 * Deploy an application using YAML  create/apply
@@ -7,7 +7,7 @@ In this lab we're going to:
 
 ---
 
-#### <font color='red'> 2.1.1 YAML & PODs </font>
+#### <font color='red'> 2.2.1 YAML & PODs </font>
 check whats running:
 ```
 kubectl get all
@@ -39,10 +39,22 @@ can use edit / patch for non-disruptive changes
 kubectl edit -f nginx.pod.yaml -o yaml
 ```
 
+---
+
+#### <font color='red'> 2.2.2 Access Container </font>
+access the Container:
+
+
+
+
+#### <font color='red'> 2.2.3 YAML & PODs </font>
+
 to delete the POD:
 ```
 kubectl delete pod nginx
 ```
+Note: the reason why you can delete the POD is that kind: POD not Deployment.
+
 can also use:
 ```
 kubectl delete -f 01_nginx.pod.yaml
@@ -50,7 +62,7 @@ kubectl delete -f 01_nginx.pod.yaml
 
 ---
 
-#### <font color='red'> 2.1.2 Deployment YAML & PODs </font>
+#### <font color='red'> 2.1.4 Deployment YAML & PODs </font>
 check whats running:
 ```
 kubectl get all

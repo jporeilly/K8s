@@ -3,6 +3,7 @@
 In this lab we're going to:
 * Deploy an application
 * Run through some common kubectl commands
+* Shell into the Container
 * Delete POD
 ---
 
@@ -38,6 +39,27 @@ kubectl get pods
 ---
 
 #### <font color='red'> 2.1.2 Deleting POD </font>
+to shell into the Container:
+```
+kubectl exec nginx -it sh
+```
+once inside:
+```
+ls -l
+```
+find the homepage:
+```
+cd usr/shre/nginx/html
+```
+then:
+```
+ls -l
+```
+
+---
+
+
+#### <font color='red'> 2.1.3 Deleting POD </font>
 delete [pod-name]:
 ```
 kubectl delete pod nginx
