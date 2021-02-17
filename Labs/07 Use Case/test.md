@@ -1,5 +1,10 @@
 ## <font color='red'> Multi container PODs </font>
+Pre-req: ensure cert-manager is installed
 
+install cert-manager:
+```
+kubectl apply -f https://github.com/jetstack/cert-manager/releases/download/v1.2.0/cert-manager.yaml
+```
 check whats running:
 ```
 kubectl get all
