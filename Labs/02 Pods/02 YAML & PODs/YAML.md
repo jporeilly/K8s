@@ -24,19 +24,17 @@ Notice: stores the configuration in annotations
 
 check the YAML:
 ```
-kubectl get pod nginx-deployment-xxxxx -o yaml
+kubectl get pod nginx -o yaml
 ```
 Notice: annotations    
-
-use apply command:
-```
-kubectl apply -f 01_nginx.pod.yaml
-```
-Notice: Declarative as state is applied to resource.  If doesnt exist then created.
 
 can use edit / patch for non-disruptive changes
 ```
 kubectl edit -f 01_nginx.pod.yaml -o yaml
+```
+use apply command:
+```
+kubectl apply -f 01_nginx.pod.yaml
 ```
 
 ---

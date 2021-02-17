@@ -41,7 +41,7 @@ kubectl get pods
 #### <font color='red'> 2.1.2 Shell into POD </font>
 to shell into the Container:
 ```
-kubectl exec nginx -it sh
+kubectl exec nginx -it -- sh
 ```
 once inside:
 ```
@@ -49,7 +49,7 @@ ls -l
 ```
 find the homepage:
 ```
-cd usr/shre/nginx/html
+cd usr/share/nginx/html
 ```
 then:
 ```
