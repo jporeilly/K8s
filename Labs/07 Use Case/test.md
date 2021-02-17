@@ -92,3 +92,9 @@ curl:
 curl  -- curl -k https://elasticsearch:9200 
 ```
 Note: The -k version is necessary for self-signed TLS certificates. In a production environment, you'd want to use a trusted certificate.
+
+try again with uncrypted request:
+```
+curl  -- curl http://elasticsearch:9200 
+```
+check the logs:
