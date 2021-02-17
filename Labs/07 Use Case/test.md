@@ -17,6 +17,8 @@ kubectl get all
 ```
 > Note: This may take a little time  
 
+---
+
 deploy sleep:
 ```
 kubectl create -f sleep.yml
@@ -54,21 +56,39 @@ the output should be something like:
   },
   "tagline" : "You Know, for Search"
 }
+```
+---
 
 zero-trust security model and you'd like to encrypt all traffic on the network.
+
+take a look at the slide deck..
+
+** delete existing exlasticsearch POD
 ```
-to delete a POD:
+kubectl delete -f es-deployment.yml
 ```
-kubectl delete deployment my-nginx
-```
-check whats running:
+check everything:
 ```
 kubectl get all
 ```
-> Notice POD is Terminating  
 
-set a Watch:
-```
-kubectl get pods --watch
-```
 ---
+
+add nginx proxy:
+```
+kubectl create -f es-deployment-secure.yml
+```
+Note: This will take some time as a new POD with Nginx and Elasticsearch has to be created.
+check everything:
+```
+kubectl get all
+```
+curl from sleep to elasticsearch container:
+```
+kubectl exec [sleep-xxxx-pod-name] -it -- sh
+```
+curl:
+```
+curl  -- curl -k https://elasticsearch:9200 
+```
+Note: The -k version is necessary for self-signed TLS certificates. In a production environment, you'd want to use a trusted certificate.
