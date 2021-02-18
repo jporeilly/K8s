@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: podtest
+spec:
+  containers:
+    - name: c1
+      image: busybox
+      command: ['sleep', '5000']
+      volumeMounts:
+        - name: shared
+          mountPath: /shared
+    - name: c2
+      image: busybox
+      command: ['sleep', '5000']
+      volumeMounts:
+        - name: shared
+          mountPath: /shared
+  volumes:
+    - name: shared
+      emptyDir: {}
