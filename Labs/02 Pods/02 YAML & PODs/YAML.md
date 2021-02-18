@@ -57,7 +57,7 @@ kubectl delete -f 01_nginx-pod.yaml
 
 ---
 
-#### <font color='red'> 2.1.3 Deployment YAML & PODs </font>
+#### <font color='red'> 2.2.3 Deployment YAML & PODs </font>
 check whats running:
 ```
 kubectl get all
@@ -84,7 +84,7 @@ kubectl get pod nginx-xxxxxx -o yaml
 ```
 ---
 
-#### <font color='red'> 2.1.4 Delete Deployment YAML & PODs </font>
+#### <font color='red'> 2.2.4 Delete Deployment YAML & PODs </font>
 check whats running:
 ```
 kubectl get all
@@ -94,16 +94,16 @@ to delete the POD:
 ```
 kubectl delete pod nginx-xxxxx
 ```
-Notice: the 
+Notice: the POD is deleted but another is created.
+Note: the reason why you can delete the POD is that kind: POD is Deployment.
 
-can also use:
+to delete:
 ```
 kubectl delete -f 01_nginx.pod.yaml
 ``` 
 or 
-Note: the reason why you can delete the POD is that kind: POD not Deployment.
 ```
-kubectl delete deployment 
+kubectl delete deployment.apps/nginx-deployment 
 ```
 
 > YAML spec: https://yaml.org/spec/1.2/spec.html
