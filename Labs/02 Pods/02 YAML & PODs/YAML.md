@@ -14,13 +14,18 @@ kubectl get all
 ```
 test run and validate YAML:
 ```
-kubectl create -f 01_nginx.pod.yaml --dry-run='client' --validate='true'
+kubectl create -f 01_nginx-pod.yaml --dry-run='client' --validate='true'
 ```
 create nginx deployment:
 ```
-kubectl create -f 01_nginx.pod.yaml --save-config
+kubectl create -f 01_nginx-pod.yaml --save-config
 ```
 Notice: stores the configuration in annotations  
+
+repeat nginx deployment:
+```
+kubectl create -f 01_nginx-pod.yaml 
+```
 
 check the YAML:
 ```
@@ -30,11 +35,11 @@ Notice: annotations
 
 can use edit / patch for non-disruptive changes
 ```
-kubectl edit -f 01_nginx.pod.yaml -o yaml
+kubectl edit -f 01_nginx-pod.yaml -o yaml
 ```
 use apply command:
 ```
-kubectl apply -f 01_nginx.pod.yaml
+kubectl apply -f 01_nginx-pod.yaml
 ```
 
 ---
@@ -45,11 +50,9 @@ to delete the POD:
 ```
 kubectl delete pod nginx
 ```
-Note: the reason why you can delete the POD is that kind: POD not Deployment.
-
 can also use:
 ```
-kubectl delete -f 01_nginx.pod.yaml
+kubectl delete -f 01_nginx-pod.yaml
 ```  
 
 ---
@@ -61,20 +64,24 @@ kubectl get all
 ```
 create nginx deployment:
 ```
-kubectl create -f 02_nginx.deployment.yaml --save-config
+kubectl create -f 02_nginx-deployment.yaml
 ```
 then issue the command again:
 ```
-kubectl create –f 02_nginx.deployment.yaml
+kubectl create -f 02_nginx-deployment.yaml
 ```
 Notice: an error will occur as the POD already exisits.
 
 use apply command:
 ```
-kubectl apply -f 01_nginx.deployment.yaml
+kubectl apply -f 02_nginx-deployment.yaml
 ```
 Notice: Declarative as state is applied to resource.  If doesnt exist then created.
 
+check the YAML:
+```
+kubectl get pod nginx-xxxxxx -o yaml
+```
 ---
 
 #### <font color='red'> 2.1.4 Delete Deployment YAML & PODs </font>
@@ -94,7 +101,7 @@ can also use:
 kubectl delete -f 01_nginx.pod.yaml
 ``` 
 or 
-
+Note: the reason why you can delete the POD is that kind: POD not Deployment.
 ```
 kubectl delete deployment 
 ```
