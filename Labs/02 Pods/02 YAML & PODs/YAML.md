@@ -37,6 +37,10 @@ can use edit / patch for non-disruptive changes
 ```
 kubectl edit -f 01_nginx-pod.yaml -o yaml
 ```
+to quit:
+```
+:quit
+```
 use apply command:
 ```
 kubectl apply -f 01_nginx-pod.yaml
