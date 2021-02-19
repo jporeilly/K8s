@@ -53,7 +53,7 @@ network isolation c2:
 ```
 kubectl exec -it podtest -c c2 -- ip link
 ```
-Note: both containers ahve the device: eth0 and MAC addresses.  
+Note: both containers have the device: eth0 and MAC addresses.  
 
 connect to c1:
 ```
