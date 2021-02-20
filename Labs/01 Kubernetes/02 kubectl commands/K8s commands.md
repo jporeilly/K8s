@@ -16,7 +16,7 @@ kubectl cluster-info
 ```
 check nodes:
 ```
-kubectl get nodes
+kubectl get nodes -o wide
 ```
 check everything (PODs & Services):
 ```

@@ -22,6 +22,10 @@ kubectl create -f 01_nginx-pod.yaml --save-config
 ```
 Notice: stores the configuration in annotations  
 
+check PODs (across all the nodes):
+```
+kubectl get pods -o wide
+```
 repeat nginx deployment:
 ```
 kubectl create -f 01_nginx-pod.yaml 
@@ -39,7 +43,7 @@ kubectl edit -f 01_nginx-pod.yaml -o yaml
 ```
 to quit:
 ```
-:quit
+:q
 ```
 use apply command:
 ```
