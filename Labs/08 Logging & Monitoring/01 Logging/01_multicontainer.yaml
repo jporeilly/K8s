@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: logging-demo
+  labels:
+    app: logging-demo
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: logging-demo
+  template:
+    metadata:
+      labels:
+        app: logging-demo
+    spec:
+      containers:
+      - name: c1
+        image: busybox
+        args: [/bin/sh, -c, 'while true; do echo "$(date)": $(hostname): c1; sleep 1; done']
+      - name: c2
+        image: busybox
+        args: [/bin/sh, -c, 'while true; do echo "$(date)": $(hostname): c2; sleep 1; done']
