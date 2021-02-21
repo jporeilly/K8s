@@ -36,7 +36,7 @@ Note: from the describe the client endpoint: --listen-client-urls=https://127.0.
 
 define a variable for the endpoint to etcd
 ```
-ENDPOINThttps://192.168.49.2:2379
+ENDPOINT=https://192.168.49.2:2379
 ```
 connect to the correct cluster & validate;
 ```

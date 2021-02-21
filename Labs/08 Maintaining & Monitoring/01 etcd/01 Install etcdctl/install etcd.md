@@ -51,6 +51,14 @@ etcdctl --help | head
 ---
 
 #### <font color='red'> 8.1.2 Authenticate access to etcd </font>
+check the PODs:
+```
+kubectl get pods --all-namesapces
+```
+find out about etcd-minikube:
+```
+kubectl describe pod etcd-minikube -n kube-system
+```
 copy certificates from **kube-apiserver** container and inject them into **Etcd** container:
 ```
 kubectl cp --namespace kube-system kube-apiserver-minikube:var/lib/minikube/certs/apiserver-etcd-client.crt apiserver-etcd-client.crt  
@@ -64,7 +72,7 @@ kubectl cp --namespace kube-system apiserver-etcd-client.key etcd-minikube:var/l
 
 exec into etcd-minikube container:
 ```
-kubectl exec -it etcd-minikube -n kube-system -- sh
+kubectl exec -it etcd-minikube -n kube-system -- bin/sh
 ```
 set etcdctl v3 API version:
 ```
