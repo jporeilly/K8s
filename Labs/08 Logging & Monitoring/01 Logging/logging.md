@@ -78,7 +78,7 @@ kubectl logs --selector app=logging-demo --all-containers  > allpods.txt
 ```
 can also tail the logs:
 ```
-kubectl logs --selector app=loggingdemo --all-containers --tail 5
+kubectl logs --selector app=logging-demo --all-containers --tail 5
 ```
 
 ---
