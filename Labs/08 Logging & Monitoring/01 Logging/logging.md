@@ -37,7 +37,7 @@ multi-container
 
 deploy busybox multi-container:
 ```  
-kubectl create -f 01_multicontainer.yaml --save-config
+kubectl create -f 01_multi-container.yaml --save-config
 ``` 
 set the variable for the POD:
 ```

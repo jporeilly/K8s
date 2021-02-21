@@ -1,9 +1,10 @@
 ## <font color='red'> 8.1 Maintainance </font>
 In this lab we're going to run through some common maintainace proceedures:
 * Install etcdctl
-
+* Authenticate access to etcd
 
  #### ** Note: This Lab is just for reference. etcdctl has been installed.
+
 ---
 
 #### <font color='red'> 8.1.1 Install etcdctl </font>
@@ -48,3 +49,31 @@ etcdctl --help | head
 ```
 
 ---
+
+#### <font color='red'> 8.1.2 Authenticate access to etcd </font>
+copy certificates from **kube-apiserver** container and inject them into **Etcd** container:
+```
+kubectl cp --namespace kube-system kube-apiserver-minikube:var/lib/minikube/certs/apiserver-etcd-client.crt apiserver-etcd-client.crt  
+
+kubectl cp --namespace kube-system apiserver-etcd-client.crt etcd-minikube:var/lib/minikube/certs/  
+
+kubectl cp --namespace kube-system kube-apiserver-minikube:var/lib/minikube/certs/apiserver-etcd-client.key apiserver-etcd-client.key  
+
+kubectl cp --namespace kube-system apiserver-etcd-client.key etcd-minikube:var/lib/minikube/certs/  
+```
+
+exec into etcd-minikube container:
+```
+kubectl exec -it etcd-minikube -n kube-system -- sh
+```
+set etcdctl v3 API version:
+```
+export ETCDCTL_API=3
+```
+check keys:
+```
+etcdctl --cacert="etcd/ca.crt" --key=apiserver-etcd-client.key --cert=apiserver-etcd-client.crt get /registry/deployments --prefix --keys-only
+```
+Note: Looks weird but dont worry about it..!
+
+```
