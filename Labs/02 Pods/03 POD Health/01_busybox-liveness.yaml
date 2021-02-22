@@ -23,5 +23,3 @@ spec:
         - /tmp/healthy
       initialDelaySeconds: 5
       periodSeconds: 5
-
-# https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/
