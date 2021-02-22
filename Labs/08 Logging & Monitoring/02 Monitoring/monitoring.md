@@ -10,11 +10,8 @@ In this lab we're going to Monitor:
 ---
 
 #### <font color='red'> 8.2.1 Kubernetes Metrics Server </font>
-**The metrics server has already been installed**
-deploy latest release:
-```
-kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
-```
+**The metrics server has already been installed**  
+
 get kube-system PODs:
 ```
 kubectl get pods --namespace kube-system
@@ -71,47 +68,71 @@ kubectl delete deployment nginx
 
 ---
 
-#### <font color='red'> EFK Stack </font>
-to access Kibana:
-```
-kubectl get pods,svc -n kube-system
-```
-run the command:
-```
-minikube addons open efk
-```
-or 
-
-> in browser: http://192.168.49.2:30003/
-
-* select @timestamp
-* click on menu -> Discover
-
-
-#### <font color='red'> Prometheus </font>
-to access Kibana:
-```
-kubectl get pods,svc -n kube-system
-```
-run the command:
-```
-minikube addons open efk
-```
-or 
-
-> in browser: http://192.168.49.2:30003/
-
-* select @timestamp
-* click on menu -> Discover
-
-
----
-
-
 #### <font color='red'> Monitoring Tools </font>
-check out the following logging tools:
-* kubebox  - 
-* kubetail - aggregate logging from multiple PODs
-* kubewatch - publishes events to Slack
+check out the following monitoring tools:  
+
 * Prometheus
 * Grafana
+
+#### <font color='red'> Prometheus </font>
+create a namespace:
+```
+kubectl create namespace monitoring
+```
+add prometheus helm repo:
+```
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+```
+install prometheus using helm:
+```
+helm install prometheus prometheus-community/prometheus --namespace monitoring
+```
+to expose prometheus service:
+```
+kubectl expose service prometheus-server --type=NodePort --target-port=9090 --name=prometheus-server-np --namespace monitoring
+```
+access prometheus:
+```
+minikube service prometheus-server-np -n monitoring
+```
+or  
+
+> in browser: http://192.168.49.2:31820/
+
+* 
+* 
+
+
+#### <font color='red'> Grafana </font>
+create a namespace:
+```
+kubectl create namespace monitoring
+```
+add grafana helm repo:
+```
+helm repo add grafana https://grafana.github.io/helm-charts
+```
+install grafana using helm:
+```
+helm install grafana stable/grafana --namespace monitoring
+```
+to expose grafana service:
+```
+kubectl expose service grafana --type=NodePort --target-port=3000 --name=grafana-np --namespace monitoring
+```
+grab grafana password for admin:
+```
+kubectl get secret --namespace monitoring grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo
+```
+access grafana:
+```
+minikube service grafana-np -n monitoring
+```
+or  
+
+> in browser: http://192.168.49.2:32532/
+
+* create a prometheus datasource - http://prometheus-server:80
+* import grafana dashboard - 6417
+
+---

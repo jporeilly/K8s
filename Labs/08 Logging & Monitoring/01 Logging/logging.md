@@ -191,3 +191,26 @@ check out the following logging tools:
 * kubetail - aggregate logging from multiple PODs
 * kubewatch - publishes events to Slack
 * logviewer - streams POD logs from namespace
+
+
+#### <font color='red'> EFK Stack </font>
+to access Kibana:
+```
+kubectl get pods,svc -n kube-system
+```
+run the command:
+```
+minikube addons open efk
+```
+or 
+
+> in browser: http://192.168.49.2:30003/
+
+* select @timestamp
+* click on menu -> Discover
+
+#### <font color='red'> kubebox </font>
+
+#### <font color='red'> kubetail </font>
+
+#### <font color='red'> kubewatch </font>
