@@ -3,6 +3,7 @@
 In this lab we're going to Monitor:
 * Kubernetes Metrics Server
 * Prometheus
+* Grafana
 * Weave Scope
 * Searchlight
 * Dynatrace
@@ -102,6 +103,7 @@ or
 * 
 * 
 
+---
 
 #### <font color='red'> Grafana </font>
 create a namespace:
@@ -136,3 +138,34 @@ or
 * import grafana dashboard - 6417
 
 ---
+
+
+#### <font color='red'> Weave Scope </font>
+install Weave Scope:
+```
+git clone https://github.com/weaveworks/scope
+cd scope
+```
+to deploy to cluster:
+```
+kubectl apply -f examples/k8s -n monitoring
+```
+port forward requests to 4040:
+```
+kubectl port-forward svc/weave-scope-app -n weave 4040:80
+```
+
+---  
+
+#### <font color='red'> Searchlight </font>
+
+
+
+helm repo add appscode https://charts.appscode.com/stable/
+
+
+
+helm install appscode/searchlight --name searchlight-operator --namespace kube-system
+
+
+helm delete searchlight-operator
