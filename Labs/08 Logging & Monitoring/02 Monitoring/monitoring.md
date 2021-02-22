@@ -10,7 +10,7 @@ In this lab we're going to Monitor:
 ---
 
 #### <font color='red'> 8.2.1 Kubernetes Metrics Server </font>
-**The metrics server has already been installed
+**The metrics server has already been installed**
 deploy latest release:
 ```
 kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
@@ -71,8 +71,47 @@ kubectl delete deployment nginx
 
 ---
 
+#### <font color='red'> EFK Stack </font>
+to access Kibana:
+```
+kubectl get pods,svc -n kube-system
+```
+run the command:
+```
+minikube addons open efk
+```
+or 
+
+> in browser: http://192.168.49.2:30003/
+
+* select @timestamp
+* click on menu -> Discover
+
+
+#### <font color='red'> Prometheus </font>
+to access Kibana:
+```
+kubectl get pods,svc -n kube-system
+```
+run the command:
+```
+minikube addons open efk
+```
+or 
+
+> in browser: http://192.168.49.2:30003/
+
+* select @timestamp
+* click on menu -> Discover
+
+
+---
+
+
 #### <font color='red'> Monitoring Tools </font>
 check out the following logging tools:
 * kubebox  - 
 * kubetail - aggregate logging from multiple PODs
 * kubewatch - publishes events to Slack
+* Prometheus
+* Grafana
