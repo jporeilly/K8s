@@ -23,7 +23,7 @@ kubectl get pods -l run=nginx -o wide
 ```
 get the POD IPs:
 ```
-kubectl get pods -l run=my-nginx -o yaml | grep podIP
+kubectl get pods -l run=nginx -o yaml | grep podIP
 ```
 Note: the PODs are not using port 80 on the Node and there isn't any special NAT rules to route the traffic to the POD.  
 
@@ -51,13 +51,26 @@ check the endpoints:
 ```
 kubectl get ep nginx
 ```
-Notice: 2 endpoints with   
+Notice: 2 endpoints with mapped IPs to port 80  
+
+> check request: http://
+
+**Production Environment**  
 
 break this down to the network level:
 ```
 sudo netstat -pant | grep LISTEN
-```
+```  
+
+
 take a look at the IP tables to see the rules:
 ```
-sudo ip tables -t nat -L KUBE-SERVICES
+sudo iptables -t nat -L KUBE-SERVICES
+```
+then look at the rules:
+```
+sudo iptables -t nat -L KUBE-xxxx
+```
+Notice: chain requests
+
 ---
