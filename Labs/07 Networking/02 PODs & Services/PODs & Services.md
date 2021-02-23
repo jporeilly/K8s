@@ -15,7 +15,7 @@ kubectl get all
 ```
 deploy 2 PODs (replicaset):
 ```
-kubectl create -f 01_nginx-deployment.yaml
+kubectl create -f 01_nginx-deployment.yaml --save-config
 ```
 check PODs:
 ```
@@ -29,7 +29,7 @@ Note: the PODs are not using port 80 on the Node and there isn't any special NAT
 
 deploy a service:
 ```
-kubectl create -f 02_nginx-svc.yaml
+kubectl create -f 02_nginx-svc.yaml --save-config
 ```
 or you could use:
 ```
@@ -49,11 +49,17 @@ Notice: 1 Cluster IP thats servicing 2 POD endpoints.
 
 check the endpoints:
 ```
-kubectl get ep nginx
+kubectl get ep nginx-svc
 ```
 Notice: 2 endpoints with mapped IPs to port 80  
 
-> check request: http://
+> check request: http://[Cluster IP]
+
+cleanup:
+```
+kubectl delete -f 01_nginx-deployment.yaml
+kubectl delete -f 02_nginx-svc.yaml
+```
 
 **Production Environment**  
 
@@ -61,7 +67,6 @@ break this down to the network level:
 ```
 sudo netstat -pant | grep LISTEN
 ```  
-
 
 take a look at the IP tables to see the rules:
 ```
