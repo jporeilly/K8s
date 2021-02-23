@@ -1,9 +1,9 @@
 ## <font color='red'> 3.1 POD Helath </font>
 
-In this lab we're going to:
-* Deploy an application using YAML  create/apply
-* Run through some common kubectl commands
-* Delete POD
+In this lab we're going to implement the following Probes:
+* Liveness
+* Readiness
+* Startup
 
 ---
 
@@ -12,34 +12,33 @@ check whats running:
 ```
 kubectl get all
 ```
-test run and validate YAML:
+deploy busybox:
 ```
-kubectl create -f 01_nginx.pod.yaml --dry-run='client' --validate='true'
+kubectl create -f 01_busybox-liveness.yaml --save-config
 ```
-create nginx deployment:
+within 30s:
 ```
-kubectl create -f 01_nginx.pod.yaml --save-config
+kubectl describe pod liveness-exec
 ```
-Notice: stores the configuration in annotations  
+Notice: healthy POD as Probe returns 0  
 
-check the YAML:
+after 30s describe again:
 ```
-kubectl get pod nginx-deployment-xxxxx -o yaml
+kubectl describe pod liveness-exec
 ```
-Notice: annotations    
+Notice: POD fails and is restarted 
 
-use apply command:
+wait another 30s:
 ```
-kubectl apply -f 01_nginx.pod.yaml
+kubectl get pod liveness-exec
 ```
-Notice: Declarative as state is applied to resource.  If doesnt exist then created.
-
-can use edit / patch for non-disruptive changes
-```
-kubectl edit -f 01_nginx.pod.yaml -o yaml
-```
+Notice: Restarts incremented
 
 ---
 
 
-#### <font color='red'> 3.1.2 POD Readiness </font>
+#### <font color='red'> 3.1.2 POD Liveness - http requests</font>
+check whats running:
+```
+kubectl get all
+```
