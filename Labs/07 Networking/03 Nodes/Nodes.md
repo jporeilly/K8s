@@ -2,7 +2,6 @@
 
 In this lab we're going to examine the Kubernetes Network Model:
 * Loadbalancer / NodePort
-* 
 
 ---
 
