@@ -31,6 +31,10 @@ create some files:
 ```
 echo "foo" > tmp/foo  && echo "bar" > /shared/bar
 ```
+lets exit:
+```
+exit
+```
 connect to c2:
 ```
 kubectl exec -it podtest -c c2 -- sh
@@ -42,6 +46,10 @@ cat /tmp/foo
 ```
 Note: you can see file in /shared directory but not /tmp as filesystems are isolated from each other.  
 
+lets exit:
+```
+exit
+```
 network isolation c1:
 ```
 kubectl exec -it podtest -c c1 -- ip link
@@ -72,9 +80,16 @@ telnet localhost:5000
 ```
 Note: cant see nc process but can see date.  So containers have process isolation but not network.
 
+lets exit:
+```
+exit
+```
+
+---
+
 cleanup:
 ```
-kubectl delete pod nginx
+kubectl delete -f 01_pod-multiple-containers.yaml
 ```
 
 ---

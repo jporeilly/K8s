@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: podtest
+  name: pod-multiple-containers
 spec:
   containers:
     - name: c1
