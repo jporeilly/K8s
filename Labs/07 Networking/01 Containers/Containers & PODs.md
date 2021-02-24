@@ -15,7 +15,7 @@ kubectl get all
 ```
 deploy 2 containers in a POD:
 ```
-kubectl create -f 01_pod-multiple-containers.yaml
+kubectl create -f 01_pod-multiple-containers.yaml --save-config
 ```
 connect to c1:
 ```
