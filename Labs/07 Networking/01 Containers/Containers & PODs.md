@@ -1,7 +1,7 @@
 ## <font color='red'> 7.1 Networking - Containers </font>
 
 In this lab we're going to examine the Kubernetes Network Model:
-* 
+* Containers
 * Shared resources
 * Isolated resources
 * Process isolation
@@ -126,9 +126,6 @@ lets exit:
 ```
 exit
 ```
-
----
-
 cleanup:
 ```
 kubectl delete -f 02_pod-multiple-containers.yaml
