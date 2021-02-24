@@ -39,6 +39,12 @@ nsenter -t [Container-pid] -n ip addr
 Note: nsenter is more flexible than exec.
 The output show the networking route bewteen the Container -> POD. This pipe starts with veth0 -> eth0.
 
+cleanup:
+```
+kubectl delete -f 01_pod-single-container.yaml
+```
+
+---
 
 #### <font color='red'> 7.1.2 Containers </font>
 check whats running:
@@ -47,7 +53,7 @@ kubectl get all
 ```
 deploy 2 containers in a POD:
 ```
-kubectl create -f 01_pod-multiple-containers.yaml --save-config
+kubectl create -f 02_pod-multiple-containers.yaml --save-config
 ```
 connect to c1:
 ```
@@ -125,7 +131,7 @@ exit
 
 cleanup:
 ```
-kubectl delete -f 01_pod-multiple-containers.yaml
+kubectl delete -f 02_pod-multiple-containers.yaml
 ```
 
 ---
