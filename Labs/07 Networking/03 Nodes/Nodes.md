@@ -12,7 +12,7 @@ kubectl get all
 ```
 deploy 2 PODs (replicaset):
 ```
-kubectl create -f 01_load-balancer-deployment.yaml --save-config
+kubectl create -f 01_loadbalancer-deployment.yaml --save-config
 ```
 check PODs:
 ```
@@ -32,7 +32,7 @@ check the endpoints:
 ```
 kubectl get ep hello-world-service
 ```
-Notice: 2 endpoints with mapped IPs to port 80  
+Notice: 2 endpoints with mapped IPs to port 8080  
 
 get public IP address of cluster:
 ```
