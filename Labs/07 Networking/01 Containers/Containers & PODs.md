@@ -37,9 +37,9 @@ docker inspect --format '{{ .State.Pid }}' [Container ID or longer name]
 ```
 Note: select the busybox Container id
 
-issue command foprm inside busybox Container:
+issue command from inside busybox Container:
 ```
-docker exec -it [Container ID] sh
+docker container exec -it [Container ID] sh
 ```
 Note: you could use nsenter.  
 view route bewteen Container -> POD:
@@ -48,7 +48,12 @@ ip addr
 ```
 The output show the networking route bewteen the Container -> POD. This pipe starts with loopback -> eth0.
 This means this pod’s eth0 is linked to the node’s xxth interface.  
+ 
 
+list filesystem:
+```
+ls -l
+```
 
 cleanup:
 ```
@@ -128,10 +133,6 @@ telnet to c1:
 telnet localhost:5000
 ```
 Note: cant see nc process but can see date.  So containers have process isolation but not network.
-
-
-
-
 
 lets exit:
 ```
