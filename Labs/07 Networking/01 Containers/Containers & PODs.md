@@ -26,18 +26,29 @@ kubectl create -f 01_pod-single-container.yaml --save-config
 ```
 have look at the Containers:
 ```
-docker ps
+docker ps -adocker ps -a
+
 ```
+Note: as were using minikube you may need to expose env: eval $(minikube docker-env)  
+
 inspect the Container:
 ```
-docker inspect --format '{{ .State.Pid }}' [Container-id-or-name]
+docker inspect --format '{{ .State.Pid }}' [Container ID or longer name]
 ```
-can run a command in the Container:
+Note: select the busybox Container id
+
+issue command foprm inside busybox Container:
 ```
-nsenter -t [Container-pid] -n ip addr
+docker exec -it [Container ID] sh
 ```
-Note: nsenter is more flexible than exec.
-The output show the networking route bewteen the Container -> POD. This pipe starts with veth0 -> eth0.
+Note: you could use nsenter.  
+view route bewteen Container -> POD:
+```
+ip addr
+```
+The output show the networking route bewteen the Container -> POD. This pipe starts with loopback -> eth0.
+This means this pod’s eth0 is linked to the node’s xxth interface.  
+
 
 cleanup:
 ```
@@ -57,7 +68,7 @@ kubectl create -f 02_pod-multiple-containers.yaml --save-config
 ```
 connect to c1:
 ```
-kubectl exec -it podtest -c c1 -- sh
+kubectl exec -it podtest -c c1 -- bin/sh
 ```
 see the volume on c1:
 ```
@@ -75,7 +86,7 @@ exit
 ```
 connect to c2:
 ```
-kubectl exec -it podtest -c c2 -- sh
+kubectl exec -it podtest -c c2 -- bin/sh
 ```
 access files:
 ```
@@ -102,7 +113,7 @@ Note: both containers have the device: eth0 and MAC addresses.
 
 connect to c1:
 ```
-kubectl exec -it podtest -c c1 -- sh
+kubectl exec -it podtest -c c1 -- bin/sh
 ```
 start newtwork listener:
 ```
@@ -110,7 +121,7 @@ nc -lk -p 5000 127.0.0.1 -e 'date'
 ```
 in a new terminal:
 ```
-kubectl exec -it podtest -c c2 -- sh
+kubectl exec -it podtest -c c2 -- bin/sh
 ```
 telnet to c1:
 ```

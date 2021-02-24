@@ -69,21 +69,4 @@ kubectl delete -f 01_nginx-deployment.yaml
 kubectl delete -f 02_nginx-svc.yaml
 ```
 
-**Production Environment**  
-
-break this down to the network level:
-```
-sudo netstat -pant | grep LISTEN
-```  
-
-take a look at the IP tables to see the rules:
-```
-sudo iptables -t nat -L KUBE-SERVICES
-```
-then look at the rules:
-```
-sudo iptables -t nat -L KUBE-xxxx
-```
-Notice: chain requests
-
 ---
