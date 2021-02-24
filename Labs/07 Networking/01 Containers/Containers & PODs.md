@@ -1,6 +1,7 @@
 ## <font color='red'> 7.1 Networking - Containers </font>
 
 In this lab we're going to examine the Kubernetes Network Model:
+* 
 * Shared resources
 * Isolated resources
 * Process isolation
@@ -8,7 +9,18 @@ In this lab we're going to examine the Kubernetes Network Model:
 
 ---
 
-#### <font color='red'> 7.1.1 Containers </font>
+#### <font color='red'> 7.1.2 Container - Networking </font>
+check whats running:
+```
+kubectl get all
+```
+deploy 1 container in a POD:
+```
+kubectl create -f 01_pod-single-container.yaml --save-config
+```
+
+
+#### <font color='red'> 7.1.2 Containers </font>
 check whats running:
 ```
 kubectl get all
@@ -79,6 +91,10 @@ telnet to c1:
 telnet localhost:5000
 ```
 Note: cant see nc process but can see date.  So containers have process isolation but not network.
+
+
+
+
 
 lets exit:
 ```

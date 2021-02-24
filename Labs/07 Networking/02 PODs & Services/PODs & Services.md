@@ -17,11 +17,19 @@ deploy 2 PODs (replicaset):
 ```
 kubectl create -f 01_nginx-deployment.yaml --save-config
 ```
+so lets take a look at the Containers:
+```
+docker ps
+```
+
+
+
+
 check PODs:
 ```
 kubectl get pods -l run=nginx -o wide
 ```
-get the POD IPs:
+write out (YAML) POD IPs:
 ```
 kubectl get pods -l run=nginx -o yaml | grep podIP
 ```
