@@ -9,15 +9,35 @@ In this lab we're going to examine the Kubernetes Network Model:
 
 ---
 
-#### <font color='red'> 7.1.2 Container - Networking </font>
+#### <font color='red'> 7.1.1 Container - Networking </font>
+kubernetes version:
+```
+kubectl version
+```
+Note: Kubernetes version 1.20.2  
+
 check whats running:
 ```
 kubectl get all
 ```
-deploy 1 container in a POD:
+deploy 1 Container in a POD:
 ```
 kubectl create -f 01_pod-single-container.yaml --save-config
 ```
+have look at the Containers:
+```
+docker ps
+```
+inspect the Container:
+```
+docker inspect --format '{{ .State.Pid }}' [Container-id-or-name]
+```
+can run a command in the Container:
+```
+nsenter -t [Container-pid] -n ip addr
+```
+Note: nsenter is more flexible than exec.
+The output show the networking route bewteen the Container -> POD. This pipe starts with veth0 -> eth0.
 
 
 #### <font color='red'> 7.1.2 Containers </font>
