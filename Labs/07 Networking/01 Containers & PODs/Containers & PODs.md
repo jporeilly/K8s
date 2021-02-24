@@ -9,65 +9,14 @@ In this lab we're going to examine the Kubernetes Network Model:
 
 ---
 
-#### <font color='red'> 7.1.1 Container - Networking </font>
-kubernetes version:
-```
-kubectl version
-```
-Note: Kubernetes version 1.20.2  
-
-check whats running:
-```
-kubectl get all
-```
-deploy 1 Container in a POD:
-```
-kubectl create -f 01_pod-single-container.yaml --save-config
-```
-have look at the Containers:
-```
-docker ps -a
-```
-Note: with minikube expose env: eval $(minikube docker-env)  
-
-inspect the Container:
-```
-docker inspect --format '{{ .State.Pid }}' [Container ID or longer name]
-```
-Note: select the busybox Container id
-
-issue command from inside busybox Container:
-```
-kubectl exec it 
-```
-Note: you could use nsenter.  
-view route bewteen Container -> POD:
-```
-ip addr
-```
-The output show the networking route bewteen the Container -> POD. This pipe starts with loopback -> eth0.
-This means this pod’s eth0 is linked to the node’s xxth interface.  
-
-list filesystem:
-```
-ls -l
-```
-
-cleanup:
-```
-kubectl delete -f 01_pod-single-container.yaml
-```
-
----
-
-#### <font color='red'> 7.1.2 Containers </font>
+#### <font color='red'> 7.1.1 Containers </font>
 check whats running:
 ```
 kubectl get all
 ```
 deploy 2 containers in a POD:
 ```
-kubectl create -f 02_pod-multiple-containers.yaml --save-config
+kubectl create -f 01_pod-multiple-containers.yaml --save-config
 ```
 connect to c1:
 ```
@@ -138,7 +87,58 @@ exit
 ```
 cleanup:
 ```
-kubectl delete -f 02_pod-multiple-containers.yaml
+kubectl delete -f 01_pod-multiple-containers.yaml
+```
+
+---
+
+#### <font color='red'> 7.1.2 Container - Networking </font>
+kubernetes version:
+```
+kubectl version
+```
+Note: Kubernetes version 1.20.2  
+
+check whats running:
+```
+kubectl get all
+```
+deploy 1 Container in a POD:
+```
+kubectl create -f 02_pod-single-container.yaml --save-config
+```
+have look at the Containers:
+```
+docker ps -a
+```
+Note: with minikube expose env: eval $(minikube docker-env)  
+
+inspect the Container:
+```
+docker inspect --format '{{ .State.Pid }}' [Container ID or longer name]
+```
+Note: select the busybox Container id
+
+issue command from inside busybox Container:
+```
+kubectl exec it 
+```
+Note: you could use nsenter.  
+view route bewteen Container -> POD:
+```
+ip addr
+```
+The output show the networking route bewteen the Container -> POD. This pipe starts with loopback -> eth0.
+This means this pod’s eth0 is linked to the node’s xxth interface.  
+
+list filesystem:
+```
+ls -l
+```
+
+cleanup:
+```
+kubectl delete -f 02_pod-single-container.yaml
 ```
 
 ---
