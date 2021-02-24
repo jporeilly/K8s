@@ -26,10 +26,9 @@ kubectl create -f 01_pod-single-container.yaml --save-config
 ```
 have look at the Containers:
 ```
-docker ps -adocker ps -a
-
+docker ps -a
 ```
-Note: as were using minikube you may need to expose env: eval $(minikube docker-env)  
+Note: with minikube expose env: eval $(minikube docker-env)  
 
 inspect the Container:
 ```
@@ -39,7 +38,7 @@ Note: select the busybox Container id
 
 issue command from inside busybox Container:
 ```
-docker container exec -it [Container ID] sh
+kubectl exec it 
 ```
 Note: you could use nsenter.  
 view route bewteen Container -> POD:
@@ -48,7 +47,6 @@ ip addr
 ```
 The output show the networking route bewteen the Container -> POD. This pipe starts with loopback -> eth0.
 This means this pod’s eth0 is linked to the node’s xxth interface.  
- 
 
 list filesystem:
 ```
