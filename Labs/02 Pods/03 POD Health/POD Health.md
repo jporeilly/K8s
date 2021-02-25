@@ -13,6 +13,11 @@ with the 3 actions:
 ---
 
 #### <font color='red'> 3.1.1 POD Liveness </font>
+* initial 5s
+* probe every 5s
+* exec after 30s - fail  
+* POD restart  
+
 check whats running:
 ```
 kubectl get all
@@ -48,6 +53,11 @@ kubectl delete pod liveness-exec
 
 
 #### <font color='red'> 3.1.2 POD Liveness - http requests</font>
+* initial 5s
+* probe every 5s
+* after 10s http request - 500 status
+* POD restart  
+
 check whats running:
 ```
 kubectl get all
@@ -69,13 +79,14 @@ kubectl delete pod liveness-http
 
 ---
 
-
 #### <font color='red'> 3.1.3 POD Liveness - tcp</font>
+
+
 check whats running:
 ```
 kubectl get all
 ```
-deploy liveness-http:
+deploy liveness-tcp:
 ```
 kubectl create -f 03_liveness-tcp.yaml --save-config
 ```
