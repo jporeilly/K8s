@@ -86,10 +86,6 @@ kubectl apply -f 02_nginx-deployment.yaml
 ```
 Notice: Declarative as state is applied to resource.  If doesnt exist then created.
 
-check the YAML:
-```
-kubectl get pod nginx-xxxxxx -o yaml
-```
 ---
 
 #### <font color='red'> 2.2.4 Delete Deployment YAML & PODs </font>
@@ -97,7 +93,6 @@ check whats running:
 ```
 kubectl get all
 ```
-
 to delete the POD:
 ```
 kubectl delete pod nginx-xxxxx
