@@ -5,7 +5,7 @@ metadata:
   labels:
     app: goproxy
 spec:
-  containers:
+containers:
   - name: goproxy
     image: k8s.gcr.io/goproxy:0.1
 ports:

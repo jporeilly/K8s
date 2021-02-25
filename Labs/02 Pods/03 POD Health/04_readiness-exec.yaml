@@ -5,17 +5,17 @@ metadata:
     test: readiness
   name: readiness-exec
 spec:
-  containers:
+containers:
   - name: readiness
     image: k8s.gcr.io/busybox
     args:
-   - /bin/sh
+    - /bin/sh
     - -c
     - touch /tmp/healthy; sleep 30; rm -rf /tmp/healthy; sleep 600
     readinessProbe:
       exec:
         command:
-       - cat
+        - cat
         - /tmp/healthy
       initialDelaySeconds: 5
       periodSeconds: 5
