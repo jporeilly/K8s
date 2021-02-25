@@ -102,7 +102,7 @@ Note: the reason why you can delete the POD is that kind: POD is Deployment.
 
 to delete:
 ```
-kubectl delete -f 01_nginx.pod.yaml
+kubectl delete -f 02_nginx-deployment.yaml
 ``` 
 or 
 ```
