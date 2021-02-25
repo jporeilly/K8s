@@ -107,6 +107,10 @@ kubectl delete pod liveness-tcp
 
 
 #### <font color='red'> 3.1.3 POD Readiness - Start up</font>
+* initial 15s
+* probe every 20s
+* all good after 15s  
+
 check whats running:
 ```
 kubectl get all
