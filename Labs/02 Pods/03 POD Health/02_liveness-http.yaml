@@ -1,16 +1,15 @@
 apiVersion: v1
 kind: Pod
-metadata: liveness-http
-  labels:
-    test: http
+metadata:
+ labels:
   name: liveness-http
 spec:
-  containers:
-  - name: liveness-http
-    image: k8s.gcr.io/liveness
-    args:
-    - /server
-    livenessProbe:
+containers:
+   - name: liveness-http
+     image: k8s.gcr.io/liveness
+     args:
+     - /server
+livenessProbe:
       httpGet:
         path: /healthz
         port: 8080
