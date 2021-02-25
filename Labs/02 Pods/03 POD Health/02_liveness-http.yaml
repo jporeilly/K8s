@@ -1,12 +1,12 @@
 apiVersion: v1
 kind: Pod
-metadata:
+metadata: liveness-http
   labels:
-    test: liveness
+    test: http
   name: liveness-http
 spec:
   containers:
-  - name: liveness
+  - name: liveness-http
     image: k8s.gcr.io/liveness
     args:
     - /server

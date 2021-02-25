@@ -80,7 +80,9 @@ kubectl delete pod liveness-http
 ---
 
 #### <font color='red'> 3.1.3 POD Liveness - tcp</font>
-
+* initial 15s
+* probe every 20s
+* all good after 15s  
 
 check whats running:
 ```
@@ -90,15 +92,15 @@ deploy liveness-tcp:
 ```
 kubectl create -f 03_liveness-tcp.yaml --save-config
 ```
-after 10s check events again:
+after 15s describe:
 ```
-kubectl events pod liveness-http
+kubectl describe pod liveness-tcp
 ```
-Notice: after 10s POD fails and has restarted 
+Notice: POD is good to accept tcp after 15s
 
 clean up:
 ```
-kubectl delete pod liveness-http
+kubectl delete pod liveness-tcp
 ```
 
 ---
