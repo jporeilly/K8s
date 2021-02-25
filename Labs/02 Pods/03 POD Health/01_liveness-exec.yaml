@@ -9,13 +9,13 @@ spec:
   - name: liveness
     image: k8s.gcr.io/busybox
     args:
-   - /bin/sh
+    - /bin/sh
     - -c
     - touch /tmp/healthy; sleep 30; rm -rf /tmp/healthy; sleep 600
     livenessProbe:
       exec:
         command:
-       - cat
+        - cat
         - /tmp/healthy
       initialDelaySeconds: 5
       periodSeconds: 5

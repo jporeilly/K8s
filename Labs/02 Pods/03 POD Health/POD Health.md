@@ -21,9 +21,9 @@ deploy liveness-exec:
 ```
 kubectl create -f 01_liveness-exec.yaml --save-config
 ```
-within 30s:
+within 30s describe:
 ```
-kubectl events pod liveness-exec
+kubectl describe pod liveness-exec
 ```
 Notice: healthy POD as Probe returns 0  
 
@@ -56,9 +56,9 @@ deploy liveness-http:
 ```
 kubectl create -f 02_liveness-http.yaml --save-config
 ```
-after 10s check events again:
+after 10s describe:
 ```
-kubectl events pod liveness-http
+kubectl describe pod liveness-http
 ```
 Notice: after 10s POD fails and has restarted 
 
