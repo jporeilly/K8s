@@ -83,7 +83,14 @@ lo: logs -f
 ```
 resources:
 ```
-po=pod, dep=deployment, ing=ingress, svc=service, cm=configmap, sec=secret, ns=namespace, no=node
+po=pod
+dep=deployment
+ing=ingress
+svc=service
+cm=configmap
+sec=secret
+ns=namespace
+no=node
 ```
 flags:
 ```
