@@ -154,19 +154,19 @@ check whats running:
 ```
 kubectl get all
 ```
-deploy liveness-http:
+deploy readiness-http:
 ```
-kubectl create -f 02_liveness-http.yaml --save-config
+kubectl create -f 05_readiness-http.yaml --save-config
 ```
 after 10s describe:
 ```
-kubectl describe pod liveness-http
+kubectl describe pod readiness-http
 ```
 Notice: after 10s POD fails and has restarted 
 
 clean up (force delete):
 ```
-kubectl delete pods liveness-http --grace-period=0 --force
+kubectl delete pods readiness-http --grace-period=0 --force
 ```
 
 ---
