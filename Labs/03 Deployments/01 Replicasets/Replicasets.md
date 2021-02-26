@@ -93,6 +93,22 @@ kubectl autoscale rs web --max=5
 Note: Uses Horizontal Pod Autoscaler (HPA)
 
 ** remember to set back to 4**
+
+can also deploy a scaler:
+```
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: web-scaler
+spec:
+  scaleTargetRef:
+    kind: ReplicaSet
+    name: web
+  minReplicas: 2
+  maxReplicas: 5
+  targetCPUUtilizationPercentage: 50
+```
+
 ---
 
 #### <font color='red'> 3.1.4 Adopting PODs </font>
