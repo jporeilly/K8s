@@ -52,7 +52,6 @@ kubectl apply -f 01_nginx-pod.yaml
 
 ---
 
-
 #### <font color='red'> 2.2.2 Deleting PODs </font>
 to delete the POD:
 ```

@@ -5,6 +5,30 @@ In this lab we're going to:
 * Run through some common kubectl commands
 * Shell into the Container
 * Delete POD
+
+---
+
+#### <font color='red'>IMPORTANT:</font> 
+<strong>Please ensure you start with a clean environment. 
+If you have previously run minikube, you will need to delete the existing instance.</strong>
+
+to stop  minikube:
+```
+minikube stop
+```
+to delete  minikube:
+```
+minikube delete
+```
+start minikube:
+```
+minikube start
+```
+start tunnel:
+```
+minikube tunnel
+```
+
 ---
 
 #### <font color='red'> 2.1.1 Creating POD </font>
@@ -60,7 +84,6 @@ to exit:
 exit
 ```
 ---
-
 
 #### <font color='red'> 2.1.3 Deleting POD </font>
 delete [pod-name]:

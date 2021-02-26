@@ -22,7 +22,10 @@ start minikube:
 ```
 minikube start
 ```
-
+start tunnel:
+```
+minikube tunnel
+```
 check minikube status:
 ```
 minikube status
@@ -50,10 +53,7 @@ upgrade cluster:
 ```
 minikube start --kubernetes-version=latest
 ```
-stop your local cluster:
-```
-minikube stop
-```
+
 > Minikube commands: https://minikube.sigs.k8s.io/docs/commands/
 
 ---
