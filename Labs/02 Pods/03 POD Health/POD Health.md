@@ -71,9 +71,9 @@ kubectl describe pod liveness-http
 ```
 Notice: after 10s POD fails and has restarted 
 
-clean up:
+clean up (force delete):
 ```
-kubectl delete pod liveness-http
+kubectl delete pods liveness-http --grace-period=0 --force
 ```
 
 ---
