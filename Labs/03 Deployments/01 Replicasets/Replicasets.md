@@ -1,8 +1,11 @@
 ## <font color='red'> 3.1 Replicasets </font>
 A ReplicaSet is defined with fields, including a selector that specifies how to identify Pods it can acquire, a number of replicas indicating how many Pods it should be maintaining, and a pod template specifying the data of new Pods it should create to meet the number of replicas criteria. A ReplicaSet then fulfills its purpose by creating and deleting Pods as needed to reach the desired number. When a ReplicaSet needs to create new Pods, it uses its Pod template.
 
-In this lab we're going to examine:
-* Replicasets
+In this lab we're going to examine Replicasets:
+* Removing
+* Scaling
+* Adopting
+* Deleting
 
 ---
 
