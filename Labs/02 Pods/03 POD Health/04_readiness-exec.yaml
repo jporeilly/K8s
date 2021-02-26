@@ -5,7 +5,7 @@ metadata:
     test: readiness
   name: readiness-exec
 spec:
-containers:
+  containers:
   - name: readiness
     image: k8s.gcr.io/busybox
     args:
