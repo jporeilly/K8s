@@ -52,3 +52,51 @@ For kubectl commands: https://kubernetes.io/docs/reference/kubectl/cheatsheet/
 Document: <a href="./K8s Commands.pdf" target="_top">K8s Commands</a>
 
 ---
+
+**Tip:**
+Alias the commands:
+
+For example: alias ksysgdepwslowidel='kubectl --namespace=kube-system get deployment --watch --show-labels -o=wide -l'
+
+Try some of the common commands:
+```
+k='kubectl'
+kg='kubectl get'
+kgpo='kubectl get pod'
+```  
+
+Syntax explanation:
+```
+k=kubectl
+sys=--namespace kube-system
+```
+commands:
+```
+g=get
+d=describe
+rm=delete
+a:apply -f
+ak:apply -k
+k:kustomize
+ex: exec -i -t
+lo: logs -f
+```
+resources:
+```
+po=pod, dep=deployment, ing=ingress, svc=service, cm=configmap, sec=secret, ns=namespace, no=node
+```
+flags:
+```
+output format: oyaml, ojson, owide
+all: --all or --all-namespaces depending on the command
+sl: --show-labels
+w=-w/--watch
+value flags (should be at the end):
+n=-n/--namespace
+f=-f/--filename
+l=-l/--selector 
+```
+
+> further details: https://github.com/ahmetb/kubectl-aliases
+
+---
