@@ -32,9 +32,9 @@ kubectl describe pod liveness-exec
 ```
 Notice: healthy POD as Probe returns 0  
 
-after 30s check events again:
+after 30s check describe again:
 ```
-kubectl events pod liveness-exec
+kubectl describe pod liveness-exec
 ```
 Notice: POD fails and has restarted 
 
@@ -44,13 +44,12 @@ kubectl get pod liveness-exec
 ```
 Notice: Restarts incremented
 
-clean up:
+clean up (force delete):
 ```
-kubectl delete pod liveness-exec
+kubectl delete pods liveness-exec --grace-period=0 --force
 ```
 
 ---
-
 
 #### <font color='red'> 3.1.2 POD Liveness - http requests</font>
 * initial 5s
