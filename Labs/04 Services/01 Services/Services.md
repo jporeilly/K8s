@@ -29,36 +29,33 @@ minikube tunnel
 
 --- 
 
-
 #### <font color='red'> 4.1.1 Services </font>
 
 check whats running:
 ```
 kubectl get all
 ```
-install my-nginx:
+deploy nginx:
 ```
-kubectl run my-nginx --image=nginx:alpine
+kubectl create -f 01_nginx --save-config
 ```
 check whats running:
 ```
-kubectl get all
+kubectl get pods -l run=nginx -o wide
 ```
-> Notice Deployment & Replicaset  
+check POD IPs:
+```
+kubectl get pods -l run=nginx -o yaml | grep podIP
+```
+create a service:
+```
+kubectl expose deployment/nginx
+```
+or
 
-delete [pod-name]:
+YAML file:
 ```
-kubectl delete pod [pod-name]
-```
-check PODs:
-```
-kubectl get pods
-```
-> Notice new POD created
-
-for port-forward:
-```
-kubectl port-forward [pod-name] 8000:80
+kubectl create -f 02_nginx-service.yaml --save-config
 ```
 check PODs:
 ```
