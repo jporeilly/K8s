@@ -96,3 +96,11 @@ inspect DNS:
 ```
 kubectl get services kube-dns --namespace=kube-system
 ```
+
+---
+
+#### <font color='red'> 4.1.3 External Access to Services </font>
+For some parts of your applications you may want to expose a Service onto an external IP address.
+Kubernetes supports two ways of doing this: 
+* NodePorts
+* LoadBalancers
