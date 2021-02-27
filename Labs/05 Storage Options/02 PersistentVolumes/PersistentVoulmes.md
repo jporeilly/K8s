@@ -1,29 +1,21 @@
-## <font color='red'> 2.1 Creating & Accessing PODs </font>
+## <font color='red'> 5.2 Persistent Volumes </font>
 
-check whats running:
+open a shell to Node:
 ```
-kubectl get all
+minikube ssh
 ```
-install my-nginx:
+create a /mnt/data directory:
 ```
-kubectl run my-nginx --image=nginx:alpine
+sudo mkdir /mnt/data
 ```
-check whats running:
+create an index.html file:
 ```
-kubectl get all
+sudo sh -c "echo 'Hello from Kubernetes storage' > /mnt/data/index.html"
 ```
-> Notice Deployment & Replicaset  
-
-delete [pod-name]:
+test that the index.html file exists:
 ```
-kubectl delete pod [pod-name]
+cat /mnt/data/index.html
 ```
-check PODs:
-```
-kubectl get pods
-```
-> Notice new POD created
-
 for port-forward:
 ```
 kubectl port-forward [pod-name] 8000:80

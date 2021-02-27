@@ -10,7 +10,7 @@ K8s provides 4 types of Services:
 * Loadbalancer
 * ExternalName
 
-also have:
+External:
 * Ingress
 ---
 
