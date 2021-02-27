@@ -57,26 +57,27 @@ YAML file:
 ```
 kubectl create -f 02_nginx-service.yaml --save-config
 ```
-check PODs:
+check service:
 ```
-kubectl get pods
+kubectl get svc nginx
 ```
-check whats running:
+get details to check:
 ```
-kubectl get all
+kubectl describe svc nginx
 ```
-to delete a POD:
+view endpoints:
 ```
-kubectl delete deployment my-nginx
+kubectl get ep nginx
 ```
-check whats running:
-```
-kubectl get all
-```
-> Notice POD is Terminating  
 
-set a Watch:
-```
-kubectl get pods --watch
-```
 ---
+
+#### <font color='red'> 4.1.2 Accessing Services </font>
+Kubernetes supports 2 primary modes of finding a Service
+* environment variables
+* DNS
+
+inspect environment:
+```
+kubectl exec nginx-xxxx -- printenv | grep SERVICE
+```
