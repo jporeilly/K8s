@@ -110,6 +110,8 @@ check history of rollouts:
 ```
 kubectl rollout history deployment.v1.apps/nginx-deployment
 ```
+Note: You can set .spec.revisionHistoryLimit field in a Deployment to specify how many old ReplicaSets for this Deployment you want to retain. The rest will be garbage-collected in the background. By default, it is 10. Careful as you cant rollback. 
+
 details of each revision:
 ```
 kubectl rollout history deployment.v1.apps/nginx-deployment --revision=2
@@ -162,3 +164,45 @@ kubectl get rs
 ---
 
 #### <font color='red'> 3.2.3 Pause & Resume Deployments </font>
+get deployment details:
+```
+kubectl get deploy
+```
+rollout status:
+```
+kubectl get rs
+```
+pause deployment:
+```
+kubectl rollout pause deployment.v1.apps/nginx-deployment
+```
+update deployment image:
+```
+kubectl set image deployment.v1.apps/nginx-deployment nginx=nginx:1.16.1
+```
+no new rollout:
+```
+kubectl rollout history deployment.v1.apps/nginx-deployment
+```
+get rollout status:
+```
+kubectl get rs
+```
+make as many updates required:
+```
+kubectl set resources deployment.v1.apps/nginx-deployment -c=nginx --limits=cpu=200m,memory=512Mi
+```
+resume deployment:
+```
+kubectl rollout resume deployment.v1.apps/nginx-deployment
+```
+watch the status of the rollout:
+```
+kubectl get rs -w
+```
+check status:
+```
+kubectl get rs
+```
+
+---

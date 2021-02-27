@@ -105,7 +105,6 @@ kubectl delete pods liveness-tcp --grace-period=0 --force
 
 ---
 
-
 #### <font color='red'> 3.1.4 POD Readiness - exec</font>
 * initial 5s
 * probe every 5s
