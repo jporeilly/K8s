@@ -81,3 +81,18 @@ inspect environment:
 ```
 kubectl exec nginx-xxxx -- printenv | grep SERVICE
 ```
+Notice: no mention of service as replcas created before service.  
+
+change deployment:
+```
+kubectl scale deployment nginx --replicas=0; kubectl scale deployment nginx --replicas=2;
+```
+inspect environment:
+```
+kubectl exec nginx-xxxxx -- printenv | grep SERVICE
+```
+
+inspect DNS:
+```
+kubectl get services kube-dns --namespace=kube-system
+```
