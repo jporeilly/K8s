@@ -1,5 +1,11 @@
 ## <font color='red'> 5.2 Persistent Volumes </font>
 
+
+
+---
+
+#### <font color='red'> 5.2.1 Persistent Volumes Dir</font>
+
 open a shell to Node:
 ```
 minikube ssh
@@ -16,13 +22,18 @@ test that the index.html file exists:
 ```
 cat /mnt/data/index.html
 ```
-for port-forward:
+
+---
+
+#### <font color='red'> 5.2.1 Persistent Volumes </font>
+
+deploy:
 ```
-kubectl port-forward [pod-name] 8000:80
+kubectl apply -f 01_persistent-volume.yaml
 ```
-check PODs:
+view information about the PersistentVolume:
 ```
-kubectl get pods
+kubectl get pv task-pv-volume
 ```
 check whats running:
 ```
