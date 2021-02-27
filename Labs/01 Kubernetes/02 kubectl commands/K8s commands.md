@@ -1,6 +1,11 @@
 ## <font color='red'> 1.2 K8s Cluster Commands</font>
+By default, kubectl gets configured to access the kubernetes cluster control plane inside minikube when the minikube start command is executed.  
 
-By default, kubectl gets configured to access the kubernetes cluster control plane inside minikube when the minikube start command is executed.
+In this lab we're going to:
+* common kubectl commands
+* alias commands
+
+---
 
 kubectl version:
 ```

@@ -1,9 +1,15 @@
 ## <font color='red'> 3.2 Deployments </font>
+A Deployment provides declarative updates for Pods and ReplicaSets.  
 
+You describe a desired state in a Deployment, and the Deployment Controller changes the actual state to the desired state at a controlled rate. You can define Deployments to create new ReplicaSets, or to remove existing Deployments and adopt all their resources with new Deployments.
 
+In this lab we're going to cover:
 * Updating
-* 
+* Rollback
+* Scaling
+* Pause & Resume
 
+---
 
 #### <font color='red'> 3.2.1 Deployments </font>
 check whats running:

@@ -5,6 +5,7 @@ In this lab we're going to:
 * Start minikube
 * Tour of VS extensions
 
+---
 
 #### <font color='red'>IMPORTANT:</font> 
 <strong>Please ensure you start with a clean environment. 
