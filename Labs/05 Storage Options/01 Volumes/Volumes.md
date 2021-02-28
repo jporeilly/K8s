@@ -31,9 +31,7 @@ minikube tunnel
 ---
 
 #### <font color='red'> 5.1.1 Volumes - emptyDir {} </font>
-An emptyDir volume is an empty directory created in the pod. Containers
-can read and write files in this directory. The directory's contents are
-removed once the pod is deleted.
+An emptyDir volume is an empty directory created in the pod. Containers can read and write files in this directory. The directory's contents are removed once the pod is deleted.
 
 check whats running:
 ```
@@ -45,7 +43,7 @@ kubectl create -f 01_volume-emptyDir.yaml --save-config
 ```
 check whats running:
 ```
-kubectl get pod redis --watch
+kubectl get pod nginx-alpine-volume --watch
 ```
 in another terminal:
 ```

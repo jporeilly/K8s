@@ -1,4 +1,13 @@
-## <font color='red'> 2.1 Creating & Accessing PODs </font>
+## <font color='red'> 6.1 ConfigMaps </font>
+Kubernetes Secrets and ConfigMaps separate the configuration of individual container instances from the container image, reducing overhead and adding flexibility.  
+Kubernetes has two types of objects that can inject configuration data into a container when it starts up: 
+* Secrets
+* ConfigMaps. 
+Secrets and ConfigMaps behave similarly in Kubernetes, both in how they are created and because they can be exposed inside a container as mounted files or volumes or environment variables.
+
+In this lab were going to cover:
+
+
 
 check whats running:
 ```
