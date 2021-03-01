@@ -58,6 +58,8 @@ check a POD to see if managed by replicaset:
 kubectl get pods web-xxxx -o yaml | grep -A 5 owner
 ```
 
+---
+
 #### <font color='red'> 3.1.2 Remove a Replicaset </font>
 edit a POD:
 ```

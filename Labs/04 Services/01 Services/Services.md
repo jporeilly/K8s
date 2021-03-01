@@ -83,18 +83,19 @@ kubectl get ep nginx
 
 #### <font color='red'> 4.1.2 Access to Services </font>
 For some parts of your applications you may want to expose a Service onto an external IP address.
-Kubernetes supports two ways of doing this: 
+Kubernetes supports three ways of doing this: 
 * ClusterIP
 * NodePorts
 * LoadBalancers
 
-**ClusterIP**
+**ClusterIP**  
+
 deploy clusterIP:
 ```
 kubectl create deployment hello-world-clusterip  --image=gcr.io/google-samples/hello-app:1.0
 ```
 
-
+---
 
 
 #### <font color='red'> 4.1.2 Accessing Services </font>

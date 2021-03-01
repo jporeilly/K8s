@@ -1,4 +1,11 @@
 ## <font color='red'> 7.1 Networking - Containers </font>
+Networking is a central part of Kubernetes, but it can be challenging to understand exactly how it is expected to work. There are 4 distinct networking problems to address:
+
+* Highly-coupled container-to-container communications: this is solved by Pods and localhost communications.
+* Pod-to-Pod communications: this is the primary focus of this document.
+* Pod-to-Service communications: this is covered by services.
+* External-to-Service communications: this is covered by services.
+
 
 In this lab we're going to examine the Kubernetes Network Model:
 * Containers

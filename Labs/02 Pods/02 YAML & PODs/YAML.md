@@ -1,4 +1,5 @@
 ## <font color='red'> 2.2 YAML & PODs </font>
+YAML is a human-readable data serialization standard that can be used in conjunction with all programming languages and is often used to write configuration files.  
 
 In this lab we're going to:
 * Deploy an application using YAML  create/apply

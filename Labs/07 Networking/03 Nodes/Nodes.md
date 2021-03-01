@@ -1,11 +1,11 @@
-## <font color='red'> 7.2 Networking - External Access </font>
+## <font color='red'> 7.3 Networking - Nodes </font>
 
 In this lab we're going to examine the Kubernetes Network Model:
 * Loadbalancer / NodePort
 
 ---
 
-#### <font color='red'> 7.2.1 Loadbalancer / NodePort </font>
+#### <font color='red'> 7.3.1 Loadbalancer / NodePort </font>
 check whats running:
 ```
 kubectl get all
