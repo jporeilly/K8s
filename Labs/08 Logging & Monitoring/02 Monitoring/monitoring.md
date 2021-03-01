@@ -1,4 +1,7 @@
 ## <font color='red'> 8.2 Monitoring </font>
+o scale an application and provide a reliable service, you need to understand how the application behaves when it is deployed. You can examine application performance in a Kubernetes cluster by examining the containers, pods, services, and the characteristics of the overall cluster. Kubernetes provides detailed information about an application's resource usage at each of these levels. This information allows you to evaluate your application's performance and where bottlenecks can be removed to improve overall performance.  
+
+In Kubernetes, application monitoring does not depend on a single monitoring solution. On new clusters, you can use resource metrics or full metrics pipelines to collect monitoring statistics.  
 
 In this lab we're going to Monitor:
 * Kubernetes Metrics Server
@@ -138,7 +141,6 @@ or
 * import grafana dashboard - 6417
 
 ---
-
 
 #### <font color='red'> Weave Scope </font>
 install Weave Scope:

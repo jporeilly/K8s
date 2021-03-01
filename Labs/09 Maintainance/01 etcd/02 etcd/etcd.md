@@ -1,4 +1,6 @@
 ## <font color='red'> 8.2 Maintainance </font>
+
+
 In this lab we're going to run through some common maintainace proceedures:
 * Describe etcd
 * Test process with a secret

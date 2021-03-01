@@ -1,4 +1,4 @@
-## <font color='red'> 8.1 Maintainance </font>
+## <font color='red'> 9.1 Maintainance </font>
 In this lab we're going to run through some common maintainace proceedures:
 * Install etcdctl
 * Authenticate access to etcd
