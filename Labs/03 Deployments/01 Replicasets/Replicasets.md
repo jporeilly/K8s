@@ -61,7 +61,7 @@ kubectl get pods web-xxxx -o yaml | grep -A 5 owner
 ---
 
 #### <font color='red'> 3.1.2 Remove a Replicaset </font>
-edit a POD:
+select a Pod and edit a POD:
 ```
 kubectl edit pods web-xxx
 ```
@@ -73,7 +73,7 @@ check PODs:
 ```
 kubectl get pods
 ```
-Notice: now have 5 PODs. the replicaset has created a new POD for web and still have 'isolated'.
+Notice: now have 3 PODs. the replicaset has created a new POD for web and still have 1 'isolated'.
 
 ---
 
@@ -89,7 +89,7 @@ change # of replicas.
 
 set scale:
 ```
-kubectl scale --replicas=2 rs/web
+kubectl scale --replicas=4 rs/web
 ```
 can also use autoscalers accorsing to cpu load:
 ```
@@ -97,7 +97,7 @@ kubectl autoscale rs web --max=5
 ```
 Note: Uses Horizontal Pod Autoscaler (HPA)
 
-** remember to set back to 4**
+** remember to set back to 2**
 
 can also deploy a scaler:
 ```
@@ -114,14 +114,19 @@ spec:
   targetCPUUtilizationPercentage: 50
 ```
 
+to deploy scaler:
+```
+kubectl create -f 02_nginx-replicaset-scaler
+```
 ---
+
 
 #### <font color='red'> 3.1.4 Adopting PODs </font>
 * uses Apache
 
 deploy apache orphan:
 ```
-kubectl create -f 02_apache-orphan.yaml --save-config
+kubectl create -f 03_apache-orphan.yaml --save-config
 ```
 check PODs:
 ```
@@ -141,7 +146,8 @@ kubectl delete rs web
 or use yaml:
 ```
 kubectl delete -f 01_nginx-replicaset.yaml
-kubectl delete -f 02_apache-orphan.yaml
+kubectl delete -f 02_nginx-replicaset-scaler
+kubectl delete -f 03_apache-orphan.yaml
 ```
 to delete PODs but not replicaset:
 ```
