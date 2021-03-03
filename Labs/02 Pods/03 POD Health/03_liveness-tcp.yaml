@@ -1,17 +1,18 @@
-apiVersion: v1
-kind: Pod
-metadata:
-  name: liveness-tcp
-  labels:
-    app: goproxy
-spec:
-  containers:
-  - name: goproxy
-    image: k8s.gcr.io/goproxy:0.1
-    ports:
-    - containerPort: 8080
-    livenessProbe:
+apiVersion: v1 
+kind: Pod 
+metadata: 
+  name: liveness-tcpsocket
+spec: 
+  containers: 
+  - name: liveness 
+    image: nginx 
+    ports: 
+    - containerPort: 80 
+    livenessProbe: 
       tcpSocket:
-        port: 8080
-      initialDelaySeconds: 15
-      periodSeconds: 20
+        port: 8888 
+    initialDelaySeconds: 2 #Default 0 
+    periodSeconds: 2 #Default 10 
+    timeoutSeconds: 1 #Default 1 
+    successThreshold: 1 #Default 1 
+    failureThreshold: 3 #Default 3

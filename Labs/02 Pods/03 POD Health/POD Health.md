@@ -80,9 +80,11 @@ kubectl delete pods liveness-http --grace-period=0 --force
 ---
 
 #### <font color='red'> 3.1.3 POD Liveness - tcp</font>
-* initial 15s
-* probe every 20s
-* all good after 15s  
+* initial 2s
+* probe every 2s
+* successThreshold = 1
+* failureThreshold = 3
+* POD restart  
 
 check whats running:
 ```
@@ -92,15 +94,15 @@ deploy liveness-tcp:
 ```
 kubectl create -f 03_liveness-tcp.yaml --save-config
 ```
-after 15s describe:
+after 2s describe:
 ```
-kubectl describe pod liveness-tcp
+kubectl describe pod liveness-tcpsocket
 ```
-Notice: POD is good to accept tcp after 15s
+Notice: POD continually fails as monitoring closed port 8888. Restart POD after 3 failed probe attempts.
 
 clean up:
 ```
-kubectl delete pods liveness-tcp --grace-period=0 --force
+kubectl delete pods liveness-tcpsocket --grace-period=0 --force
 ```
 
 ---
