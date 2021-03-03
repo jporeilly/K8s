@@ -1,4 +1,4 @@
-## <font color='red'> 3.1 POD Helath </font>
+## <font color='red'> 3.1 POD Health </font>
 Health checks are a simple way to let the system know if an instance of your app is working or not working. If an instance of your app is not working, then other services should not access it or send a request to it. Instead, requests should be sent to another instance of the app that is ready, or retried at a later time. The system should also bring your app back to a healthy state.  
 
 In this lab we're going to implement the following Probes:
