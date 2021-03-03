@@ -11,8 +11,8 @@ spec:
     livenessProbe: 
       tcpSocket:
         port: 8888 
-    initialDelaySeconds: 2 #Default 0 
-    periodSeconds: 2 #Default 10 
-    timeoutSeconds: 1 #Default 1 
-    successThreshold: 1 #Default 1 
-    failureThreshold: 3 #Default 3
+      initialDelaySeconds: 2 #Default 0 
+      periodSeconds: 2 #Default 10 
+      timeoutSeconds: 1 #Default 1 
+      successThreshold: 1 #Default 1 
+      failureThreshold: 3 #Default 3
