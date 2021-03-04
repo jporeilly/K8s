@@ -212,7 +212,7 @@ deploy liveness-readiness-tcpp:
 ```
 kubectl create -f 07_liveness-readiness-tcp.yaml --save-config
 ```
-after 20s describe:
+after 15s describe:
 ```
 kubectl describe pod liveness-readiness-tcp
 ```
