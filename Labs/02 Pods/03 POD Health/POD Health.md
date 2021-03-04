@@ -173,8 +173,8 @@ kubectl delete pods readiness-http --grace-period=0 --force
 
 ---
 
-#### <font color='red'> 3.1.6 POD Liveness - Start up - http</font>
-* startup probe 30m
+#### <font color='red'> 3.1.6 POD Liveness - Startup - http</font>
+* startup probe 75s
 * probe every 10s
 * liveness probe 1 failure threshold
 * probe every 10s  
