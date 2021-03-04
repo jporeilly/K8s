@@ -17,6 +17,6 @@ spec:
       periodSeconds: 10
     livenessProbe:
       tcpSocket:
-        port: 8080
+        port: 8888
       initialDelaySeconds: 15
       periodSeconds: 20
