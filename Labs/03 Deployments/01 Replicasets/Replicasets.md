@@ -69,6 +69,12 @@ set scale:
 ```
 kubectl scale --replicas=4 rs/nginx
 ```
+check Pods:
+```
+kubectl get pods
+```
+Notice: now have 4 Pods..
+
 can also use autoscalers according to cpu load:
 ```
 kubectl autoscale rs nginx --max=5
@@ -77,11 +83,18 @@ Note: Uses Horizontal Pod Autoscaler (HPA)
 
 ** remember to set back to 2**
 
+delete exisiting HPA:
+```
+kubectl delete hpa nginx
+```
+then reset to 2:
 ```
 kubectl autoscale rs nginx --max=2
 ```
 Notice: Pods will start terminating as its scaled back..
-
+```
+kubectl get pods
+```
 
 can also deploy a scaler:
 ```
@@ -97,7 +110,7 @@ spec:
   maxReplicas: 5
   targetCPUUtilizationPercentage: 50
 ```
-
+optional..
 to deploy scaler:
 ```
 kubectl create -f 02_nginx-replicaset-scaler.yaml
@@ -132,7 +145,7 @@ or use yaml:
 ```
 kubectl delete -f 01_nginx-replicaset.yaml --grace-period=0 --force
 kubectl delete -f 02_nginx-replicaset-scaler.yaml --grace-period=0 --force    (if deployed)
-kubectl delete -f 03_nginx-replicaset-isolated.yaml --grace-period=0 --force
+kubectl delete -f 03_nginx-replicaset-adopted.yaml --grace-period=0 --force
 ```
 to delete PODs but not replicaset:
 ```
