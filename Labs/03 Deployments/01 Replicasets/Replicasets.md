@@ -56,43 +56,32 @@ kubectl get pods nginx-xxxx -o yaml | grep -A 5 owner
 
 ---
 
-#### <font color='red'> 3.1.2 Isolate a Replicaset </font>
-select a Pod and edit a POD:
-```
-kubectl edit pods nginx-xxx
-```
-change pod label:
-```
-tier=isolated
-```
-check PODs:
-```
-kubectl get pods
-```
-Notice: now have 3 PODs. the replicaset has created a new POD for web and still have 1 'isolated'.
-
----
-
-#### <font color='red'> 3.1.3 Scaling Replicaset </font>
+#### <font color='red'> 3.1.2 Scaling Replicaset </font>
 * edit controller replicaset
 * use kubectl
 
 edit controller config:
 ```
-kubectl edit rs web
+kubectl edit rs nginx
 ```
 change # of replicas to 4.  
 set scale:
 ```
-kubectl scale --replicas=4 rs/web
+kubectl scale --replicas=4 rs/nginx
 ```
 can also use autoscalers according to cpu load:
 ```
-kubectl autoscale rs web --max=5
+kubectl autoscale rs nginx --max=5
 ```
 Note: Uses Horizontal Pod Autoscaler (HPA)
 
 ** remember to set back to 2**
+
+```
+kubectl autoscale rs nginx --max=2
+```
+Notice: Pods will start terminating as its scaled back..
+
 
 can also deploy a scaler:
 ```
@@ -111,17 +100,18 @@ spec:
 
 to deploy scaler:
 ```
-kubectl create -f 02_nginx-replicaset-scaler
+kubectl create -f 02_nginx-replicaset-scaler.yaml
 ```
+
 ---
 
-
-#### <font color='red'> 3.1.4 Adopting PODs </font>
-* uses Apache
+#### <font color='red'> 3.1.3 Adopting PODs </font>
+* deploy 2 Pods - not adopted
+* matched on label, so Controller takes ownership
 
 deploy apache orphan:
 ```
-kubectl create -f 03_apache-orphan.yaml --save-config
+kubectl create -f 03_nginx-replicaset-adopted.yaml --save-config
 ```
 check PODs:
 ```
@@ -133,16 +123,16 @@ Note: if Orphan had been started first then a web POD would have been deleted.
 
 ---
 
-#### <font color='red'> 3.1.5 Deleting Replicasets </font>
+#### <font color='red'> 3.1.4 Deleting Replicasets </font>
 delete replicaset:
 ```
-kubectl delete rs web
+kubectl delete rs nginx
 ```
 or use yaml:
 ```
-kubectl delete -f 01_nginx-replicaset.yaml
-kubectl delete -f 02_nginx-replicaset-scaler.yaml
-kubectl delete -f 03_apache-orphan.yaml
+kubectl delete -f 01_nginx-replicaset.yaml --grace-period=0 --force
+kubectl delete -f 02_nginx-replicaset-scaler.yaml --grace-period=0 --force    (if deployed)
+kubectl delete -f 03_nginx-replicaset-isolated.yaml --grace-period=0 --force
 ```
 to delete PODs but not replicaset:
 ```
