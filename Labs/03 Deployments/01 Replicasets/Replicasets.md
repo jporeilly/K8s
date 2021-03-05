@@ -33,10 +33,6 @@ minikube tunnel
 --- 
 
 #### <font color='red'> 3.1.1 Replicaset </font>
-to access the kubectl commands:
-```
-kubectl
-```
 check whats running on Kubernetes:
 ```
 kubectl get all
@@ -49,25 +45,25 @@ check PODs:
 ```
 kubectl get pods
 ```
-and 
+check replicaset:
 ```
-kubectl get rs
+kubectl get rs/nginx
 ```
 check a POD to see if managed by replicaset:
 ```
-kubectl get pods web-xxxx -o yaml | grep -A 5 owner
+kubectl get pods nginx-xxxx -o yaml | grep -A 5 owner
 ```
 
 ---
 
-#### <font color='red'> 3.1.2 Remove a Replicaset </font>
+#### <font color='red'> 3.1.2 Isolate a Replicaset </font>
 select a Pod and edit a POD:
 ```
-kubectl edit pods web-xxx
+kubectl edit pods nginx-xxx
 ```
 change pod label:
 ```
-role=isolated
+tier=isolated
 ```
 check PODs:
 ```
@@ -85,13 +81,12 @@ edit controller config:
 ```
 kubectl edit rs web
 ```
-change # of replicas.  
-
+change # of replicas to 4.  
 set scale:
 ```
 kubectl scale --replicas=4 rs/web
 ```
-can also use autoscalers accorsing to cpu load:
+can also use autoscalers according to cpu load:
 ```
 kubectl autoscale rs web --max=5
 ```
@@ -146,7 +141,7 @@ kubectl delete rs web
 or use yaml:
 ```
 kubectl delete -f 01_nginx-replicaset.yaml
-kubectl delete -f 02_nginx-replicaset-scaler
+kubectl delete -f 02_nginx-replicaset-scaler.yaml
 kubectl delete -f 03_apache-orphan.yaml
 ```
 to delete PODs but not replicaset:
