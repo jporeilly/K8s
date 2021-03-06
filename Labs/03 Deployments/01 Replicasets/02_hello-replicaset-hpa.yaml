@@ -40,9 +40,9 @@ spec:
     kind: Deployment
     name: hello
   minReplicas: 2
-  maxReplicas: 10
+  maxReplicas: 15
   metrics:
   - type: Resource
     resource:
       name: cpu
-      targetAverageUtilization: 50
+      targetAverageUtilization: 80

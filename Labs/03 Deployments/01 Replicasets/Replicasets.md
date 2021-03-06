@@ -79,6 +79,10 @@ lets scale back down:
 ```
 kubectl scale --replicas=2 rs/nginx
 ```
+clean up:
+```
+kubectl delete -f 01_nginx-replicaset.yaml
+```
 
 ---
 
@@ -89,12 +93,6 @@ enable metrics-server:
 ```
 minikube addons enable metrics-server
 ```
-check metrics-server:
-```
-kubectl top nodes
-```
-Notice: resource usage of the pods and nodes in your cluster.
-
 deploy app + service + hpa
 ```
 kubectl apply -f 02_hello-replicaset-hpa.yaml
@@ -103,15 +101,24 @@ deploy load-generator:
 ```
 kubectl apply -f 03_load-generator.yaml
 ```
+check metrics-server:
+it will take a few minutes for the metrics-server to be deployed...
+```
+kubectl top nodes
+kubectl top pods
+```
+Notice: resource usage of the nodes / pods .
+
+
 check status of HPA:
 ```
 kubectl describe hpa hello
 ```
 check metrics-server:
 ```
-kubectl top nodes
+kubectl top pods
 ```
-you can apply some pressure to the Cluster by scaling up the load-generator:
+you can apply some pressure to the cluster by scaling up the load-generator:
 ```
 kubectl scale deployment/load-generator --replicas 2
 ```
@@ -119,13 +126,29 @@ and watch the Pods terminate as you decrease load-generator pressure:
 ```
 kubectl scale deployment/load-generator --replicas 1
 ```
-
+clean up:
+```
+kubectl delete -f 02_hello-replicaset-hpa.yaml
+kubectl apply -f 03_load-generator.yaml
+```
 ---
 
 #### <font color='red'> 3.1.3 Adopting PODs </font>
 * deploy 2 Pods - not adopted
 * matched on label, so Controller takes ownership
 
+check whats running on Kubernetes:
+```
+kubectl get all
+```
+deploy replicaset:
+```
+kubectl create -f 01_nginx-replicaset.yaml
+```
+check PODs:
+```
+kubectl get pods
+```
 deploy apache orphan:
 ```
 kubectl create -f 03_nginx-replicaset-adopted.yaml --save-config
@@ -138,17 +161,9 @@ Notice: Orphan POD terminates. Its adopted by controller as label (web) matches 
 
 Note: if Orphan had been started first then a web POD would have been deleted.
 
----
-
-#### <font color='red'> 3.1.4 Deleting Replicasets </font>
-delete replicaset:
-```
-kubectl delete rs nginx
-```
-or use yaml:
+clean up:
 ```
 kubectl delete -f 01_nginx-replicaset.yaml --grace-period=0 --force
-kubectl delete -f 02_nginx-replicaset-scaler.yaml --grace-period=0 --force    (if deployed)
 kubectl delete -f 03_nginx-replicaset-adopted.yaml --grace-period=0 --force
 ```
 to delete PODs but not replicaset:
