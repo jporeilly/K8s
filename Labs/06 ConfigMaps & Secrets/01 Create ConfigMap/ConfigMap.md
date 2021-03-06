@@ -6,57 +6,71 @@ Kubernetes has two types of objects that can inject configuration data into a co
 Secrets and ConfigMaps behave similarly in Kubernetes, both in how they are created and because they can be exposed inside a container as mounted files or volumes or environment variables.
 
 In this lab were going to cover:
+* Create and store Secrets
+* store non-confidential data ConfigMaps
 
+---
 
+#### <font color='red'>IMPORTANT:</font> 
+<strong>Please ensure you start with a clean environment. 
+If you have previously run minikube, you will need to delete the existing instance.</strong>
 
+to stop  minikube:
+```
+minikube stop
+```
+to delete  minikube:
+```
+minikube delete
+```
+start minikube:
+```
+minikube start
+```
+start tunnel:
+```
+minikube tunnel
+```
+
+---
+
+#### <font color='red'>6.1.1. </font> 
 check whats running:
 ```
 kubectl get all
 ```
-install my-nginx:
+deploy configMap:
 ```
-kubectl run my-nginx --image=nginx:alpine
+kubectl apply -f 01_configmap.yaml
 ```
-check whats running:
+check configmap:
 ```
-kubectl get all
+kubectl describe configmaps mongodb-configmap
 ```
-> Notice Deployment & Replicaset  
-
-delete [pod-name]:
+deploy app:
 ```
-kubectl delete pod [pod-name]
+kubectl apply -f 02_pod-env-var.yaml
 ```
-check PODs:
+check Pods:
 ```
 kubectl get pods
 ```
-> Notice new POD created
+access the env:
+```
+kubectl exec -it pod-env-var -- sh
+```
+check env:
+```
+env
+```
+exit :
+```
+exit
+```
+clean up:
+```
+kubectl delete -f 01_configmap.yaml
+kubectl delete -f 02_pod-env-var.yaml
+```
 
-for port-forward:
-```
-kubectl port-forward [pod-name] 8000:80
-```
-check PODs:
-```
-kubectl get pods
-```
-check whats running:
-```
-kubectl get all
-```
-to delete a POD:
-```
-kubectl delete deployment my-nginx
-```
-check whats running:
-```
-kubectl get all
-```
-> Notice POD is Terminating  
-
-set a Watch:
-```
-kubectl get pods --watch
-```
 ---
