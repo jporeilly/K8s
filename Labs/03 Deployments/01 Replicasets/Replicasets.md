@@ -75,45 +75,49 @@ kubectl get pods
 ```
 Notice: now have 4 Pods..
 
+lets scale back down:
+```
+kubectl scale --replicas=2 rs/nginx
+```
+
+---
+
+#### <font color='red'> 3.1.3 Scaling Replicaset - HPA </font>
 can also use autoscalers according to cpu load:
-```
-kubectl autoscale rs nginx --max=5
-```
-Note: Uses Horizontal Pod Autoscaler (HPA)
 
-** remember to set back to 2**
+enable metrics-server:
+```
+minikube addons enable metrics-server
+```
+check metrics-server:
+```
+kubectl top nodes
+```
+Notice: resource usage of the pods and nodes in your cluster.
 
-delete exisiting HPA:
+deploy app + service + hpa
 ```
-kubectl delete hpa nginx
+kubectl apply -f 02_hello-replicaset-hpa.yaml
 ```
-then reset to 2:
+deploy load-generator:
 ```
-kubectl autoscale rs nginx --max=2
+kubectl apply -f 03_load-generator.yaml
 ```
-Notice: Pods will start terminating as its scaled back..
+check status of HPA:
 ```
-kubectl get pods
+kubectl describe hpa hello
 ```
-
-can also deploy a scaler:
+check metrics-server:
 ```
-apiVersion: autoscaling/v1
-kind: HorizontalPodAutoscaler
-metadata:
-  name: web-scaler
-spec:
-  scaleTargetRef:
-    kind: ReplicaSet
-    name: web
-  minReplicas: 2
-  maxReplicas: 5
-  targetCPUUtilizationPercentage: 50
+kubectl top nodes
 ```
-optional..
-to deploy scaler:
+you can apply some pressure to the Cluster by scaling up the load-generator:
 ```
-kubectl create -f 02_nginx-replicaset-scaler.yaml
+kubectl scale deployment/load-generator --replicas 2
+```
+and watch the Pods terminate as you decrease load-generator pressure:
+```
+kubectl scale deployment/load-generator --replicas 1
 ```
 
 ---
