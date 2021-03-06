@@ -1,11 +1,11 @@
 apiVersion: v1 
 kind: Pod 
 metadata:
-  name: pod-env-var 
+  name: mongodb
 spec:
   containers:
-    - name: env-var-configmap
-      image: mongo
+    - name: mongodb
+      image: mongo:4.0.4
       envFrom:
         - configMapRef:
             name: mongodb-configmap
