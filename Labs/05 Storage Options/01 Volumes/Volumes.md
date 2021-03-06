@@ -56,9 +56,8 @@ echo Hello > test-file
 ```
 list the running processes:
 ```
-yum check-update
-yum update
-yum install procps-ng
+apt-get update
+apt-get install procps
 ps aux
 ```
 kill the Redis process:
@@ -75,7 +74,10 @@ In your shell, go to /data/redis, and verify that test-file is still there:
 ```
 cd /data/redis/
 ls -l
-test-file
+```
+exit the shell:
+```
+exit
 ```
 delete redis POD:
 ```
