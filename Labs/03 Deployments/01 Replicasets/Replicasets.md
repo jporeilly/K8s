@@ -151,7 +151,7 @@ kubectl get pods
 ```
 deploy apache orphan:
 ```
-kubectl create -f 03_nginx-replicaset-adopted.yaml --save-config
+kubectl create -f 04_nginx-replicaset-adopted.yaml --save-config
 ```
 check PODs:
 ```
@@ -164,7 +164,7 @@ Note: if Orphan had been started first then a web POD would have been deleted.
 clean up:
 ```
 kubectl delete -f 01_nginx-replicaset.yaml --grace-period=0 --force
-kubectl delete -f 03_nginx-replicaset-adopted.yaml --grace-period=0 --force
+kubectl delete -f 04_nginx-replicaset-adopted.yaml --grace-period=0 --force
 ```
 to delete PODs but not replicaset:
 ```

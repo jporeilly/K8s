@@ -18,7 +18,7 @@ kubectl get all
 ```
 deploy nginx:
 ```
-kubectl create -f 01-nginx-deployment -- save-config
+kubectl create -f 01_nginx-deployment.yaml --save-config
 ```
 check deployment:
 ```
@@ -203,6 +203,10 @@ kubectl get rs -w
 check status:
 ```
 kubectl get rs
+```
+clean up:
+```
+kubectl delete -f 01_nginx-deployment.yaml --grace-period=0 --force
 ```
 
 ---
