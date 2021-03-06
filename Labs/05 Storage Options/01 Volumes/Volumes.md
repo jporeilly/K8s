@@ -4,7 +4,6 @@ A Container's file system lives only as long as the Container does. So when a Co
 In this Lab were going to cover Volumes:
 * emptyDir {}
 
-
 ---
 
 #### <font color='red'>IMPORTANT:</font> 
