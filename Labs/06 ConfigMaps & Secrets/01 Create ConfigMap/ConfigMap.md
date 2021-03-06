@@ -6,8 +6,8 @@ Kubernetes has two types of objects that can inject configuration data into a co
 Secrets and ConfigMaps behave similarly in Kubernetes, both in how they are created and because they can be exposed inside a container as mounted files or volumes or environment variables.
 
 In this lab were going to cover:
-* Create and store Secrets
 * store non-confidential data ConfigMaps
+* Create and store Secrets
 
 ---
 
@@ -49,7 +49,7 @@ kubectl describe configmaps mongodb-configmap
 ```
 deploy app:
 ```
-kubectl apply -f 02_pod-env-var.yaml
+kubectl apply -f 02_pod-mongodb.yaml
 ```
 check Pods:
 ```
@@ -57,7 +57,7 @@ kubectl get pods
 ```
 access the env:
 ```
-kubectl exec -it pod-env-var --container env-var-config -- /bin/bash
+kubectl exec -it mongodb --container mongodb -- /bin/bash
 ```
 check env:
 ```
@@ -70,7 +70,7 @@ exit
 clean up:
 ```
 kubectl delete -f 01_configmap.yaml
-kubectl delete -f 02_pod-env-var.yaml
+kubectl delete -f 02_pod-mongodb.yaml
 ```
 
 ---
