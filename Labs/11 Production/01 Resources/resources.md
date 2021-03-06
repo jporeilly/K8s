@@ -82,10 +82,7 @@ Note: The second Pod does not get created.
 ---
 
 #### <font color='red'> 3.1.2 POD Liveness - http requests</font>
-* initial 3s
-* probe every 3s
-* after 10s http request - 500 status
-* POD restart  
+how to assign a memory request and a memory limit to a Container. A Container is guaranteed to have as much memory as it requests, but is not allowed to use more memory than its limit
 
 check whats running:
 ```
@@ -249,5 +246,9 @@ clean up (force delete):
 ```
 kubectl delete pods liveness-readiness-tcp --grace-period=0 --force
 ```
+
+kubectl delete namespace quota-mem-cpu-example
+
+
 
 ---
