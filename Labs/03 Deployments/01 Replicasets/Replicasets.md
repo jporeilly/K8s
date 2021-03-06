@@ -80,6 +80,8 @@ lets scale back down:
 kubectl scale --replicas=2 rs/nginx
 ```
 
+---
+
 #### <font color='red'> 3.1.3 Scaling Replicaset - HPA </font>
 can also use autoscalers according to cpu load:
 
