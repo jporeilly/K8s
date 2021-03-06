@@ -41,9 +41,9 @@ install emptyDir volume:
 ```
 kubectl create -f 01_volume-emptyDir.yaml --save-config
 ```
-check whats running:
+check whats running and watch for changes:
 ```
-kubectl get pod nginx-alpine-volume --watch
+kubectl get pod redis --watch
 ```
 in another terminal:
 ```
@@ -63,7 +63,7 @@ ps aux
 ```
 kill the Redis process:
 ```
-kill <pid>
+kill <pid> # where <pid> is the Redis process ID (PID).
 ```
 Notice: the Container has terminated and restarted. This is because the Redis Pod has a restartPolicy of Always
 
