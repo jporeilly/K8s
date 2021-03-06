@@ -57,7 +57,7 @@ kubectl get pods
 ```
 access the env:
 ```
-kubectl exec -it pod-env-var -- sh
+kubectl exec -it pod-env-var --container env-var-configmap -- /bin/bash
 ```
 check env:
 ```
