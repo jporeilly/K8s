@@ -32,7 +32,7 @@ kubectl get pods
 ```
 access the volume:
 ```
-kubectl exec -it pod-secrets-vol --container mongodb -- /bin/bash
+kubectl exec -it pod-secret-vol --container mongodb -- /bin/bash
 ```
 check volume:
 ```
