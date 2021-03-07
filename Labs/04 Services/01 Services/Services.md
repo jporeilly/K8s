@@ -66,12 +66,14 @@ or
 
 YAML file:
 ```
-kubectl create -f 02_nginx-service.yaml --save-config
+kubectl create -f 02_nginx-service-clusterip.yaml --save-config
 ```
 check service:
 ```
 kubectl get svc nginx-service
 ```
+Note: ClusterIP is default.
+
 get details to check:
 ```
 kubectl describe svc nginx-service
@@ -80,28 +82,33 @@ view endpoints:
 ```
 kubectl get ep nginx-service
 ```
-Note: You can try and access the Pod but no go as this is internal IPs. 
+Note: You can try and access the Pod but no go as these are internal IPs. 
 
 view nginx Pod IP:
 ```
 kubectl get pods -l run=nginx -o wide
 ```
-Note: ClusterIP is default.
+
 
 clean up:
 ```
-kubectl delete -f 02_nginx-service.yaml
+kubectl delete -f 01_nginx.yaml
+kubectl delete -f 02_nginx-service-clusterip.yaml
 ```
-Note: just delete nginx sevice.
 
 ---
 
-#### <font color='red'> 4.1.2 Services - NodeIP </font>
+#### <font color='red'> 4.1.2 Services - NodePort </font>
+A NodePort is an open port on every node of your cluster. Kubernetes transparently routes incoming traffic on the NodePort to your service, even if your application is running on a different node.
 
 
-lets scale up our nginx:
+check whats running:
 ```
-kubectl scale deployments/nginx --replicas=3
+kubectl get all
+```
+deploy nginx:
+```
+kubectl create -f 01_nginx.yaml --save-config
 ```
 check whats running:
 ```
@@ -111,11 +118,12 @@ check Pod IPs:
 ```
 kubectl get pods -l run=nginx -o yaml | grep podIP
 ```
-deploy clusterip service:
+create a service:
 ```
-kubectl apply -f 03_nginx-service-clusterip.yaml
+kubectl create -f 03_nginx-service-nodeport.yaml
 ```
-check service:
+
+
 ```
 kubectl get svc nginx-service-clusterip
 ```
@@ -135,7 +143,7 @@ clean up:
 ---
 
 
-#### <font color='red'> 4.1.2 Accessing Services </font>
+#### <font color='red'> 4.1. Accessing Services </font>
 Kubernetes supports 2 primary modes of finding a Service
 * environment variables
 * DNS
