@@ -82,6 +82,11 @@ kubectl logs --selector app=logging-demo --all-containers --tail 5
 ```
 Note: 5 records from c1 & c2
 
+clean up:
+```
+kubectl delete -f 01_multi-container.yaml
+```
+
 ---
 
 #### <font color='red'> 8.1.1 Logging Nodes </font>
