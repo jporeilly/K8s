@@ -14,11 +14,6 @@ External:
 * Ingress
 * Egress
 
-In this Lab were going to cover:
-* create a resource service
-* scale up and create a ClusterIP service
-* expose IP externally with NodeIP
-
 
 ---
 
@@ -45,7 +40,7 @@ minikube tunnel
 
 --- 
 
-#### <font color='red'> 4.1.1 Services </font>
+#### <font color='red'> 4.1.1 Services - ClusterIP </font>
 
 check whats running:
 ```
@@ -93,31 +88,47 @@ kubectl get pods -l run=nginx -o wide
 ```
 Note: ClusterIP is default.
 
+clean up:
+```
+kubectl delete -f 02_nginx-service.yaml
+```
+Note: just delete nginx sevice.
+
 ---
 
-#### <font color='red'> 4.1.2 Access to Services </font>
-For some parts of your applications you may want to expose a Service onto an external IP address.
-Kubernetes supports three ways of doing this: 
-* ClusterIP
-* NodePorts
-* LoadBalancers
+#### <font color='red'> 4.1.2 Services - NodeIP </font>
 
-**ClusterIP**  
 
 lets scale up our nginx:
 ```
 kubectl scale deployments/nginx --replicas=3
 ```
-check nginx Pods:
+check whats running:
 ```
-kubectl get pods
+kubectl get pods -l run=nginx -o wide
+```
+check Pod IPs:
+```
+kubectl get pods -l run=nginx -o yaml | grep podIP
 ```
 deploy clusterip service:
 ```
 kubectl apply -f 03_nginx-service-clusterip.yaml
 ```
+check service:
+```
+kubectl get svc nginx-service-clusterip
+```
+get details to check:
+```
+kubectl describe svc nginx-service-clusterip
+```
+view endpoints:
+```
+kubectl get ep nginx-service-clusterip -o yaml
+```
 
-kubectl get ep nginx-service -o yaml
+clean up:
 
 
 
