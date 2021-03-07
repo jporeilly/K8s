@@ -4,7 +4,8 @@ Kubernetes Secrets let you store and manage sensitive information, such as passw
 A Secret is an object that contains a small amount of sensitive data such as a password, a token, or a key. Such information might otherwise be put in a Pod specification or in an image. Users can create Secrets and the system also creates some Secrets.
 
 In this Lab we're going to cover:
-* 
+* create a key & token
+* create a secret
 
 ---
 
@@ -12,15 +13,16 @@ check whats running:
 ```
 kubectl get all
 ```
-install my-nginx:
+base64 encode our access key and API token:
 ```
-kubectl run my-nginx --image=nginx:alpine
+echo "OUR_API_ACCESS_KEY" | base64
+echo "SECRET_7t4836378erwdser34" | base64
 ```
-check whats running:
+deploy secrets:
 ```
-kubectl get all
+kubectl apply -f 01_secrets.yaml
 ```
-> Notice Deployment & Replicaset  
+
 
 delete [pod-name]:
 ```
