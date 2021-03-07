@@ -9,7 +9,7 @@ spec:
     name: mongodb-configmap  
  containers: 
  - name: mongodb 
-   image: mongo:4.0.4 
+   image: mongo:latest
    volumeMounts: 
     - name: configmap-volume 
       mountPath: /etc/config 
