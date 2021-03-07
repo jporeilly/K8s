@@ -60,7 +60,7 @@ kubectl get pods
 ```
 access the env:
 ```
-kubectl exec -it mongodb --container mongodb -- /bin/bash
+kubectl exec -it pod-configmap-env --container mongodb -- /bin/bash
 ```
 check env:
 ```
@@ -73,12 +73,32 @@ exit
 
 **Volume**
 
-
+deploy app:
+```
+kubectl apply -f 03_pod-mongodb-vol.yaml
+```
+check Pods:
+```
+kubectl get pods
+```
+access the volume:
+```
+kubectl exec -it pod-configmap-vol --container mongodb -- /bin/bash
+```
+check volume:
+```
+ls /etc/config/
+```
+view data in volume:
+```
+cat /etc/config/*
+```
 
 clean up:
 ```
 kubectl delete -f 01_configmap.yaml
-kubectl delete -f 02_pod-mongodb.yaml
+kubectl delete -f 02_pod-mongodb-env.yaml
+kubectl delete -f 03_pod-mongodb-vol.yaml
 ```
 
 ---
