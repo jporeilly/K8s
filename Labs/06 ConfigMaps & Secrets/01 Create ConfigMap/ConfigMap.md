@@ -47,9 +47,12 @@ check configmap:
 ```
 kubectl describe configmaps mongodb-configmap
 ```
+
+**Env variables**
+
 deploy app:
 ```
-kubectl apply -f 02_pod-mongodb.yaml
+kubectl apply -f 02_pod-mongodb-env.yaml
 ```
 check Pods:
 ```
@@ -67,6 +70,11 @@ exit :
 ```
 exit
 ```
+
+**Volume**
+
+
+
 clean up:
 ```
 kubectl delete -f 01_configmap.yaml
