@@ -22,42 +22,31 @@ deploy secrets:
 ```
 kubectl apply -f 01_secrets.yaml
 ```
-
-
-delete [pod-name]:
+deploy app:
 ```
-kubectl delete pod [pod-name]
+kubectl apply -f 02_pod-secrets-vol.yaml
 ```
-check PODs:
+check Pods:
 ```
 kubectl get pods
 ```
-> Notice new POD created
+access the volume:
+```
+kubectl exec -it pod-secrets-vol --container mongodb -- /bin/bash
+```
+check volume:
+```
+ls /etc/secret/
+```
+view data in volume:
+```
+cat /etc/secret/*
+```
 
-for port-forward:
+clean up:
 ```
-kubectl port-forward [pod-name] 8000:80
+kubectl delete -f 01_secrets.yaml
+kubectl delete -f 02_pod-secrets-vol.yaml
 ```
-check PODs:
-```
-kubectl get pods
-```
-check whats running:
-```
-kubectl get all
-```
-to delete a POD:
-```
-kubectl delete deployment my-nginx
-```
-check whats running:
-```
-kubectl get all
-```
-> Notice POD is Terminating  
 
-set a Watch:
-```
-kubectl get pods --watch
-```
 ---

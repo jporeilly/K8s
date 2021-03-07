@@ -7,7 +7,6 @@ Secrets and ConfigMaps behave similarly in Kubernetes, both in how they are crea
 
 In this lab were going to cover:
 * store non-confidential data ConfigMaps
-* Create and store Secrets
 
 ---
 
@@ -52,7 +51,7 @@ kubectl describe configmaps mongodb-configmap
 
 deploy app:
 ```
-kubectl apply -f 02_pod-mongodb-env.yaml
+kubectl apply -f 02_pod-configmaps-env.yaml
 ```
 check Pods:
 ```
@@ -75,7 +74,7 @@ exit
 
 deploy app:
 ```
-kubectl apply -f 03_pod-mongodb-vol.yaml
+kubectl apply -f 03_pod-configmap-vol.yaml
 ```
 check Pods:
 ```
@@ -97,8 +96,8 @@ cat /etc/config/*
 clean up:
 ```
 kubectl delete -f 01_configmap.yaml
-kubectl delete -f 02_pod-mongodb-env.yaml
-kubectl delete -f 03_pod-mongodb-vol.yaml
+kubectl delete -f 02_pod-configmap-env.yaml
+kubectl delete -f 03_pod-configmap-vol.yaml
 ```
 
 ---
