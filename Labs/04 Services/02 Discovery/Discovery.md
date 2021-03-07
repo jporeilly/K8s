@@ -1,4 +1,4 @@
-## <font color='red'> 2.1 Creating & Accessing PODs </font>
+## <font color='red'> 4.2 Discovery </font>
 
 check whats running:
 ```
@@ -12,7 +12,13 @@ check whats running:
 ```
 kubectl get all
 ```
-> Notice Deployment & Replicaset  
+POD_NAME=$(kubectl get pod \
+    --no-headers \
+    -o=custom-columns=NAME:.metadata.name \
+    -l type=api,service=go-demo-2 \
+    | tail -1)
+
+kubectl exec $POD_NAME env
 
 delete [pod-name]:
 ```

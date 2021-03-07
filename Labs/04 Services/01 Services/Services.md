@@ -5,8 +5,8 @@ Services are an abstract way to expose an application running on a set of Pods a
 With Kubernetes you don't need to modify your application to use an unfamiliar service discovery mechanism. Kubernetes gives Pods their own IP addresses and a single DNS name for a set of Pods, and can load-balance across them.
 
 K8s provides 4 types of Services:
-* ClusterIP
-* NodePort 
+* ClusterIP - exposes IPs internally in the Cluster
+* NodePort - exposes IPs externally
 * Loadbalancer
 * ExternalName
 
@@ -15,7 +15,9 @@ External:
 * Egress
 
 In this Lab were going to cover:
-* create a service
+* create a resource service
+* scale up and create a ClusterIP service
+* expose IP externally with NodeIP
 
 
 ---
@@ -73,22 +75,25 @@ kubectl create -f 02_nginx-service.yaml --save-config
 ```
 check service:
 ```
-kubectl get svc nginx
+kubectl get svc nginx-service
 ```
 get details to check:
 ```
-kubectl describe svc nginx
+kubectl describe svc nginx-service
 ```
 view endpoints:
 ```
-kubectl get ep nginx
+kubectl get ep nginx-service
 ```
-Note: 
+Note: You can try and access the Pod but no go as this is internal IPs. 
 
-
+view nginx Pod IP:
+```
+kubectl get pods -l run=nginx -o wide
+```
+Note: ClusterIP is default.
 
 ---
-
 
 #### <font color='red'> 4.1.2 Access to Services </font>
 For some parts of your applications you may want to expose a Service onto an external IP address.
@@ -101,7 +106,7 @@ Kubernetes supports three ways of doing this:
 
 lets scale up our nginx:
 ```
-kubectl scale --replicas=4 po/nginx
+kubectl scale deployments/nginx --replicas=3
 ```
 check nginx Pods:
 ```
@@ -112,7 +117,7 @@ deploy clusterip service:
 kubectl apply -f 03_nginx-service-clusterip.yaml
 ```
 
-
+kubectl get ep nginx-service -o yaml
 
 
 
