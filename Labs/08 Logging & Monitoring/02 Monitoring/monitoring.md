@@ -14,13 +14,19 @@ In this lab we're going to Monitor:
 ---
 
 #### <font color='red'> 8.2.1 Kubernetes Metrics Server </font>
-**The metrics server has already been installed**  
-
+to enable kubernetes metrics-server:
+```
+minikube addons enable metrics-server
+```
+rollout for kube-system:
+```
+kubectl -n kube-system rollout status deployment metrics-server
+```
 get kube-system PODs:
 ```
 kubectl get pods --namespace kube-system
 ```
-check node to seee if logs are being collected:
+check node to seee if metrics are being collected:
 ```
 kubectl top nodes
 ```
@@ -47,7 +53,7 @@ check node:
 ```
 kubectl top nodes
 ```
-check PODs perf:
+check Pods perf:
 ```
 kubectl top pods
 ```
