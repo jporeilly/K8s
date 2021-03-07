@@ -12,6 +12,12 @@ K8s provides 4 types of Services:
 
 External:
 * Ingress
+* Egress
+
+In this Lab were going to cover:
+* create a service
+
+
 ---
 
 #### <font color='red'>IMPORTANT:</font> 
@@ -45,13 +51,13 @@ kubectl get all
 ```
 deploy nginx:
 ```
-kubectl create -f 01_nginx --save-config
+kubectl create -f 01_nginx.yaml --save-config
 ```
 check whats running:
 ```
 kubectl get pods -l run=nginx -o wide
 ```
-check POD IPs:
+check Pod IPs:
 ```
 kubectl get pods -l run=nginx -o yaml | grep podIP
 ```
@@ -77,6 +83,9 @@ view endpoints:
 ```
 kubectl get ep nginx
 ```
+Note: 
+
+
 
 ---
 
@@ -90,10 +99,22 @@ Kubernetes supports three ways of doing this:
 
 **ClusterIP**  
 
-deploy clusterIP:
+lets scale up our nginx:
 ```
-kubectl create deployment hello-world-clusterip  --image=gcr.io/google-samples/hello-app:1.0
+kubectl scale --replicas=4 po/nginx
 ```
+check nginx Pods:
+```
+kubectl get pods
+```
+deploy clusterip service:
+```
+kubectl apply -f 03_nginx-service-clusterip.yaml
+```
+
+
+
+
 
 ---
 
@@ -132,8 +153,4 @@ Kubernetes supports two ways of doing this:
 * NodePorts
 * LoadBalancers
 
-**ClusterIP**
-deploy clusterIP:
-```
-kubectl create deployment hello-world-clusterip  --image=gcr.io/google-samples/hello-app:1.0
-```
+

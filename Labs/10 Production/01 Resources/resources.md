@@ -4,9 +4,9 @@ When you specify a Pod, you can optionally specify how much of each resource a C
 When you specify the resource request for Containers in a Pod, the scheduler uses this information to decide which node to place the Pod on. When you specify a resource limit for a Container, the kubelet enforces those limits so that the running container is not allowed to use more of that resource than the limit you set. The kubelet also reserves at least the request amount of that system resource specifically for that container to use 
 
 In this lab we're going to:
+* set resources for cluter
 * set resource quotas for namespaces
-* Readiness
-* Startup
+* VPA - Vertical Pod Allocation
 
 
 ---
@@ -25,7 +25,7 @@ minikube delete
 ```
 start minikube:
 ```
-minikube start
+minikube start --nodes 3 -p multinode-demo
 ```
 start tunnel:
 ```
@@ -33,6 +33,10 @@ minikube tunnel
 ```
 
 --- 
+
+#### <font color='red'> 11.1.1 Cluster Resources </font>
+
+
 
 #### <font color='red'> 11.1.1 Namespace Resources </font>
 Set quotas for the total amount memory and CPU that can be used by all Containers running in a namespace.
@@ -79,11 +83,14 @@ kubectl create -f 02_quota-mem-cpu-pod-2.yaml --namespace=quota-mem-cpu-example
 ```
 Note: The second Pod does not get created. 
 
+clean up
+
+kubectl delete namespace quota-mem-cpu-example
 ---
 
 
 
-kubectl delete namespace quota-mem-cpu-example
+
 
 
 
