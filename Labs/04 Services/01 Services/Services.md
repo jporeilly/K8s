@@ -65,7 +65,7 @@ kubectl get pods -l run=nginx -o yaml | grep podIP
 ```
 create a service:
 ```
-kubectl expose deployment/nginx
+kubectl expose deployment/nginx-service
 ```
 or
 
