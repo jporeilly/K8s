@@ -116,8 +116,18 @@ kubectl describe hpa hello
 ```
 check metrics-server:
 ```
+kubectl get pods --namespace kube-system | grep metrics-server
+```
+resource usage for Pods:
+```
 kubectl top pods
 ```
+at container level:
+```
+kubectl top pods --containers
+```
+
+
 you can apply some pressure to the cluster by scaling up the load-generator:
 ```
 kubectl scale deployment/load-generator --replicas 2
