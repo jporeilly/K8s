@@ -207,9 +207,12 @@ check status:
 ```
 kubectl get rs
 ```
+
+
 clean up:
 ```
 kubectl delete -f 01_nginx-deployment.yaml --grace-period=0 --force
+kubectl delete -f 02_nginx-deployment-rolling.yaml --grace-period=0 --force
 ```
 
 ---
