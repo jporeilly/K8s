@@ -60,10 +60,6 @@ get details of updated deployment:
 ```
 kubectl get deployments
 ```
-take a look at events:
-```
-kubectl describe deployments nginx-deployment
-```
 check replicaset:
 ```
 kubectl get rs
