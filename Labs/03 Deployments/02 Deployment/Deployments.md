@@ -16,15 +16,15 @@ check whats running:
 ```
 kubectl get all
 ```
-deploy nginx:
+deploy nginx 1.7.9:
 ```
 kubectl create -f 01_nginx-deployment.yaml --save-config
 ```
 check deployment:
 ```
-kubectl get deployments
+kubectl get deployment nginx-deployment
 ```
-check deployment status;
+check deployment status:
 ```
 kubectl rollout status deployment/nginx-deployment
 ```
@@ -40,16 +40,18 @@ Note: hash label is added by the controller.
 
 ---
 
-#### <font color='red'> 3.2.2 Updating Deployments </font>
-A Deployment's rollout is triggered if and only if the Deployment's Pod template (that is, .spec.template) is changed, 
+#### <font color='red'> 3.2.2 Rolling Update </font>
+A Deployment's rollout is triggered if and only if the Deployment's Pod template (that is: .spec.template) is changed, 
 for example if the labels or container images of the template are updated.  
 
-update image:
+look at the rollout history:
 ```
-kubectl set image deployment/nginx-deployment nginx=nginx:1.16.1 --record
+kubectl rollout history deployment
 ```
-Note: record flag is used to record the change
-
+lets rollout a new version 1.15.0:
+``` 
+kubectl apply -f 02_nginx-deployment-rolling.yaml
+``` 
 view rollout status:
 ```
 kubectl rollout status deployment/nginx-deployment
@@ -57,6 +59,10 @@ kubectl rollout status deployment/nginx-deployment
 get details of updated deployment:
 ```
 kubectl get deployments
+```
+take a look at events:
+```
+kubectl describe deployments nginx-deployment
 ```
 check replicaset:
 ```
@@ -67,22 +73,23 @@ check PODs:
 kubectl get pods
 ```
 Note: Deployment controller stops deployment and stops scaling up new replicasets.
-* Deployment ensures that 75% of the PODs are up and running.
-* Deployment ensures that onl;y a ceratin number of PODs are created above the desired number: default 125% - 25% max surge
+* Deployment ensures that 80% of the PODs are up and running.
+* Deployment ensures that only a certain number of PODs are created above the desired number: 40% max surge
 
-get details of the deployment:
+take a look at events:
 ```
-kubectl describe deployments
+kubectl describe deployments nginx-deployment
 ```
 
 ---
 
-#### <font color='red'> 3.2.3 Rollback Deployments </font>
+#### <font color='red'> 3.2.3 Rollback Deployment </font>
 *  typo while updating the Deployment
-update image:
-```
-kubectl set image deployment/nginx-deployment nginx=nginx:1.180 --record
-```
+
+lets rollout a new version 1.161 (typo):
+``` 
+kubectl apply -f 03_nginx-deployment-rolling-update.yaml
+``` 
 rollout gets stuck:
 ```
 kubectl rollout status deployment/nginx-deployment
