@@ -141,7 +141,7 @@ kubectl scale deployment/load-generator --replicas 1
 clean up:
 ```
 kubectl delete -f 02_hello-replicaset-hpa.yaml
-kubectl apply -f 03_load-generator.yaml
+kubectl delete -f 03_load-generator.yaml
 ```
 ---
 
