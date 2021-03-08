@@ -100,30 +100,20 @@ kubectl apply -f 02_hello-replicaset-hpa.yaml
 
 check metrics-server:
 it will take a few minutes for the metrics-server to be deployed...
+check metrics-server:
+```
+kubectl get pods --namespace kube-system | grep metrics-server
+```
+check status of HPA:
+```
+kubectl describe hpa hello
+```
+resource usage:
 ```
 kubectl top nodes
 kubectl top pods
 ```
 Notice: resource usage of the nodes / pods .
-
-
-check status of HPA:
-```
-kubectl describe hpa hello
-```
-check metrics-server:
-```
-kubectl get pods --namespace kube-system | grep metrics-server
-```
-resource usage for Pods:
-```
-kubectl top pods
-```
-at container level:
-```
-kubectl top pods --containers
-```
-
 
 deploy load-generator:
 ```
