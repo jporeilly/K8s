@@ -97,10 +97,7 @@ deploy app + service + hpa
 ```
 kubectl apply -f 02_hello-replicaset-hpa.yaml
 ```
-deploy load-generator:
-```
-kubectl apply -f 03_load-generator.yaml
-```
+
 check metrics-server:
 it will take a few minutes for the metrics-server to be deployed...
 ```
@@ -127,6 +124,11 @@ at container level:
 kubectl top pods --containers
 ```
 
+
+deploy load-generator:
+```
+kubectl apply -f 03_load-generator.yaml
+```
 
 you can apply some pressure to the cluster by scaling up the load-generator:
 ```
