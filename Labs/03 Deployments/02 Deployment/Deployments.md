@@ -135,11 +135,11 @@ kubectl describe deployment nginx-deployment
 ---
 
 #### <font color='red'> 3.2.3 Scaling Deployments </font>
-scale deployment:
+use scale deployment:
 ```
 kubectl scale deployment.v1.apps/nginx-deployment --replicas=10
 ```
-lets use HPA:
+HPA (optional - its tricky to remove, so be careful..):
 ```
 kubectl autoscale deployment.v1.apps/nginx-deployment --min=10 --max=15 --cpu-percent=80
 ```
@@ -147,6 +147,14 @@ check 10 replicas:
 ```
 kubectl get deploy
 ```
+check Pods:
+```
+kubectl get pods
+```
+
+---
+
+#### <font color='red'> 3.2.3 Pause & Resume Deployments </font>
 update with unresolvable tag:
 ```
 kubectl set image deployment.v1.apps/nginx-deployment nginx=nginx:sometag
@@ -159,21 +167,13 @@ check how replicas were deployed:
 ```
 kubectl get deploy
 ```
-confirm how replicas were added:
+check the Pods:
 ```
-kubectl get rs
+kubectl get pods
 ```
-
----
-
-#### <font color='red'> 3.2.3 Pause & Resume Deployments </font>
-get deployment details:
+check rollout history:
 ```
-kubectl get deploy
-```
-rollout status:
-```
-kubectl get rs
+kubectl rollout history deployment.v1.apps/nginx-deployment
 ```
 pause deployment:
 ```
@@ -183,15 +183,7 @@ update deployment image:
 ```
 kubectl set image deployment.v1.apps/nginx-deployment nginx=nginx:1.16.1
 ```
-no new rollout:
-```
-kubectl rollout history deployment.v1.apps/nginx-deployment
-```
-get rollout status:
-```
-kubectl get rs
-```
-make as many updates required:
+make as many updates required (optional):
 ```
 kubectl set resources deployment.v1.apps/nginx-deployment -c=nginx --limits=cpu=200m,memory=512Mi
 ```
@@ -207,6 +199,11 @@ check status:
 ```
 kubectl get rs
 ```
+new rollout:
+```
+kubectl rollout history deployment.v1.apps/nginx-deployment
+```
+
 clean up:
 ```
 kubectl delete -f 01_nginx-deployment.yaml --grace-period=0 --force
