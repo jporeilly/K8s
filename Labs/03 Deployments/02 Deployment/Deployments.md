@@ -167,8 +167,6 @@ kubectl get pods
 ---
 
 #### <font color='red'> 3.2.3 Pause & Resume Deployments </font>
-
-
 update deployment image:
 ```
 kubectl set image deployment.v1.apps/nginx-deployment nginx=nginx:whatever
