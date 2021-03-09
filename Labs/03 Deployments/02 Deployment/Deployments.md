@@ -159,18 +159,19 @@ check how replicas were deployed:
 ```
 kubectl get deploy
 ```
+check the Pods:
+```
+kubectl get pods
+```
 
 ---
 
 #### <font color='red'> 3.2.3 Pause & Resume Deployments </font>
 
-pause deployment:
-```
-kubectl rollout pause deployment.v1.apps/nginx-deployment
-```
+
 update deployment image:
 ```
-kubectl set image deployment.v1.apps/nginx-deployment nginx=nginx:1.16.1
+kubectl set image deployment.v1.apps/nginx-deployment nginx=nginx:whatever
 ```
 new rollout:
 ```
@@ -180,7 +181,15 @@ get rollout status:
 ```
 kubectl get rs
 ```
-make as many updates required:
+pause deployment:
+```
+kubectl rollout pause deployment.v1.apps/nginx-deployment
+```
+update deployment image:
+```
+kubectl set image deployment.v1.apps/nginx-deployment nginx=nginx:1.16.1
+```
+make as many updates required (optional):
 ```
 kubectl set resources deployment.v1.apps/nginx-deployment -c=nginx --limits=cpu=200m,memory=512Mi
 ```
