@@ -5,8 +5,8 @@ metadata:
 spec:
   targetRef:
     apiVersion: "apps/v1"
-    kind:       Deployment
-    name:       nginx
+    kind: Deployment
+    name: nginx
   updatePolicy:
     updateMode: "On"
   resourcePolicy:
