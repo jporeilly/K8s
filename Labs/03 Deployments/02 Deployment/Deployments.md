@@ -135,11 +135,11 @@ kubectl describe deployment nginx-deployment
 ---
 
 #### <font color='red'> 3.2.3 Scaling Deployments </font>
-scale deployment:
+use scale deployment:
 ```
 kubectl scale deployment.v1.apps/nginx-deployment --replicas=10
 ```
-lets use HPA:
+HPA (optional - its tricky to remove, so be careful..):
 ```
 kubectl autoscale deployment.v1.apps/nginx-deployment --min=10 --max=15 --cpu-percent=80
 ```
