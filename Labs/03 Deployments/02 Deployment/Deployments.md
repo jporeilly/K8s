@@ -172,7 +172,7 @@ update deployment image:
 ```
 kubectl set image deployment.v1.apps/nginx-deployment nginx=nginx:1.16.1
 ```
-no new rollout:
+new rollout:
 ```
 kubectl rollout history deployment.v1.apps/nginx-deployment
 ```
