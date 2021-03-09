@@ -147,6 +147,14 @@ check 10 replicas:
 ```
 kubectl get deploy
 ```
+check Pods:
+```
+kubectl get pods
+```
+
+---
+
+#### <font color='red'> 3.2.3 Pause & Resume Deployments </font>
 update with unresolvable tag:
 ```
 kubectl set image deployment.v1.apps/nginx-deployment nginx=nginx:sometag
@@ -163,17 +171,10 @@ check the Pods:
 ```
 kubectl get pods
 ```
-
----
-
-#### <font color='red'> 3.2.3 Pause & Resume Deployments </font>
-new rollout:
+check rollout history:
 ```
 kubectl rollout history deployment.v1.apps/nginx-deployment
 ```
-get rollout status:
-```
-kubectl get rs
 ```
 pause deployment:
 ```
