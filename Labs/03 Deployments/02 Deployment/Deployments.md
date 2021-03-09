@@ -159,22 +159,11 @@ check how replicas were deployed:
 ```
 kubectl get deploy
 ```
-confirm how replicas were added:
-```
-kubectl get rs
-```
 
 ---
 
 #### <font color='red'> 3.2.3 Pause & Resume Deployments </font>
-get deployment details:
-```
-kubectl get deploy
-```
-rollout status:
-```
-kubectl get rs
-```
+
 pause deployment:
 ```
 kubectl rollout pause deployment.v1.apps/nginx-deployment
