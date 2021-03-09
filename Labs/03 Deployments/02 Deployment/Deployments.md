@@ -175,7 +175,6 @@ check rollout history:
 ```
 kubectl rollout history deployment.v1.apps/nginx-deployment
 ```
-```
 pause deployment:
 ```
 kubectl rollout pause deployment.v1.apps/nginx-deployment
