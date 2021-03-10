@@ -152,6 +152,9 @@ or
 install Weave Scope:
 ```
 git clone https://github.com/weaveworks/scope
+```
+change to directory:
+```
 cd scope
 ```
 to deploy to cluster:
@@ -162,7 +165,9 @@ port forward requests to 4040:
 ```
 kubectl port-forward svc/weave-scope-app -n weave 4040:80
 ```
+ > browse to http://127.0.0.1:4040
 
+ 
 ---  
 
 #### <font color='red'> Searchlight </font>
