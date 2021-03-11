@@ -21,6 +21,7 @@ External:
 <strong>Please ensure you start with a clean environment. 
 If you have previously run minikube, you will need to delete the existing instance.</strong>
 
+
 to stop  minikube:
 ```
 minikube stop
