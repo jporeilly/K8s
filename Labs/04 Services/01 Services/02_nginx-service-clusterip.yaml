@@ -6,8 +6,7 @@ metadata:
     run: nginx
 spec:
   ports:
-  - port: 8080
-    targetport: 80
+  - port: 80
     protocol: TCP
   selector:
     run: nginx
