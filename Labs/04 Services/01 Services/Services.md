@@ -252,6 +252,8 @@ kubectl delete -f 03_nginx-service-nodeport.yaml
 ---
 
 #### <font color='red'> 4.1.4 Services - ExternalIP </font>
+Maps the Service to the contents of the externalName field (e.g. foo.bar.example.com), by returning a CNAME record with its value. No proxying of any kind is set up.
+
 
 update the definition to the current cluster's IP address:
 ```
@@ -282,6 +284,8 @@ kubectl delete -f 06_nginx-externalip.yaml
 ---
 
 #### <font color='red'> 4.1.5 External Access - Ingress </font>
+Ingress exposes HTTP and HTTPS routes from outside the cluster to services within the cluster. Traffic routing is controlled by rules defined on the Ingress resource.
+
 
 enable ingress addon:
 ```
