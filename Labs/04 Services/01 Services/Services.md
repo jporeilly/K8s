@@ -66,21 +66,21 @@ or
 
 create a service (use the YAML manifest):
 ```
-kubectl expose deployment/nginx-service
+kubectl expose deployment/nginx-clusterip
 ```
 check service:
 ```
-kubectl get svc nginx-service
+kubectl get svc nginx-clusterip
 ```
 Note: ClusterIP is default.
 
 describe service:
 ```
-kubectl describe svc nginx-service
+kubectl describe svc nginx-clusterip
 ```
 view endpoints:
 ```
-kubectl get ep nginx-service
+kubectl get ep nginx-clusterip
 ```
 Note: You can try and access the Pod in a browser but no go as these are internal IPs. 
 
@@ -153,7 +153,7 @@ kubectl create -f 03_nginx-service-nodeport.yaml
 
 check service:
 ```
-kubectl get svc nginx-service-nodeport
+kubectl get svc nginx-nodeport
 ```
 describe service:
 ```
@@ -161,7 +161,7 @@ kubectl describe svc nginx-service-nodeport
 ```
 view endpoints:
 ```
-kubectl get ep nginx-service-nodeport -o yaml
+kubectl get ep nginx-nodeport -o yaml
 ```
 to access the Service:
 
