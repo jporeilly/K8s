@@ -98,15 +98,15 @@ kubectl proxy --port 8080
 ```
 to access the Pods:
 
- > http://localhost:8080/api/v1/namespaces/default/pods
+ > http://127.0.0.1:8080/api/v1/namespaces/default/pods
 
 to access the Service:
 
- > http://localhost:8080/api/v1/namespaces/default/service/nginx-service/
+ > http://127.0.0.1:8080/api/v1/namespaces/default/service/nginx-service/
 
 Note: this just connects to the service and is useful for debugging
 
-also try mapping Service IP to localhost in /etc/hosts file..
+Note: Map Service IP to localhost in /etc/hosts file..
 
 
 clean up:
@@ -114,6 +114,15 @@ clean up:
 kubectl delete -f 01_nginx.yaml
 kubectl delete -f 02_nginx-service-clusterip.yaml
 ```
+to remove the proxy:
+```
+ps -ef | grep "kubectl proxy"
+```
+note the PID, then kill:
+```
+kill -9 [pid]
+```
+
 
 ---
 
