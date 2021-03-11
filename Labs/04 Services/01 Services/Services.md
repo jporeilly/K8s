@@ -140,7 +140,6 @@ note the PID, then kill:
 kill -9 [pid]
 ```
 
-
 ---
 
 #### <font color='red'> 4.1.2 Services - NodePort </font>
@@ -198,7 +197,7 @@ kubectl delete -f 03_nginx-service-nodeport.yaml
 
 ---
 
-#### <font color='red'> 4.1.2 Services - LoadBalancers </font>
+#### <font color='red'> 4.1.3 Services - LoadBalancers </font>
 When running in the cloud, such as EC2 or Azure, it's possible to configure and assign a Public IP address issued via the cloud provider. This will be issued via a Load Balancer such as ELB. This allows additional public IP addresses to be allocated to a Kubernetes cluster without interacting directly with the cloud provider.
 
 check whats running:
@@ -247,8 +246,7 @@ kubectl delete -f 03_nginx-service-nodeport.yaml
 
 ---
 
-
-#### <font color='red'> 4.1.3 External Access to Services </font>
+#### <font color='red'> 4.1.4 Services - ExternalIP </font>
 
 update the definition to the current cluster's IP address:
 ```
@@ -278,3 +276,4 @@ kubectl delete -f 06_nginx-externalip.yaml
 
 ---
 
+#### <font color='red'> 4.1.5 External Access - Ingress </font>
