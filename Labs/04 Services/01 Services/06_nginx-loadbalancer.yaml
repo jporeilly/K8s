@@ -1,29 +1,32 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: webapp1-loadbalancer-svc
+  name: ngingx-loadbalancer
   labels:
-    app: webapp1-loadbalancer
+    run: nginx
 spec:
   type: LoadBalancer
   ports:
   - port: 80
   selector:
-    app: webapp1-loadbalancer
+    run: nginx
 ---
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx-loadbalancer-deployment
+  name: nginx
 spec:
+  selector:
+    matchLabels:
+      run: nginx
   replicas: 3
   template:
     metadata:
       labels:
-        app: webapp1-loadbalancer
+        run: nginx
     spec:
       containers:
-      - name: webapp1-loadbalancer-pod
-        image: katacoda/docker-http-server:latest
+      - name: nginx
+        image: nginx
         ports:
         - containerPort: 80
