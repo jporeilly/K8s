@@ -180,9 +180,14 @@ view endpoints:
 ```
 kubectl get ep nginx-nodeport -o yaml
 ```
+check ports:
+```
+kubectl get all
+```
+Note: port 80 has been opened
 to access the Service:
 
- > http://[nodeport-ip]:31000
+ > http://[nodeport-ip]
 
 
 clean up:
@@ -215,7 +220,7 @@ kubectl get pods -l run=nginx -o yaml | grep podIP
 create a service:
 ```
 kubectl apply -f 05_nginx-service-loadbalancer.yaml
-
+```
 
 check service:
 ```
@@ -242,11 +247,34 @@ kubectl delete -f 03_nginx-service-nodeport.yaml
 
 ---
 
-#### <font color='red'> 4.1.3 External Access to Services </font>
-For some parts of your applications you may want to expose a Service onto an external IP address.
-Kubernetes supports two ways of doing this: 
-* ClusterIP
-* NodePorts
-* LoadBalancers
 
+#### <font color='red'> 4.1.3 External Access to Services </font>
+
+update the definition to the current cluster's IP address:
+```
+sed -i 's/HOSTIP/172.17.0.98/g' 06_nginx-externalip.yaml
+```
+deploy nginx + service:
+```
+kubectl apply -f 06_nginx-externalip.yaml
+```
+
+kubectl get svc
+
+
+kubectl describe svc/nginx-externalip
+
+
+kubectl get all
+
+
+> http://172.17.0.98
+
+
+clean up:
+```
+kubectl delete -f 06_nginx-externalip.yaml
+```
+
+---
 
