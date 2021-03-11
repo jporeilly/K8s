@@ -17,6 +17,6 @@ spec:
       - name: nginx
         image: "nginxdemos/hello"
         ports:
-        - containerPort: 80
+        - containerPort: 8080
         
         

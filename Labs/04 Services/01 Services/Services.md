@@ -88,7 +88,7 @@ view nginx Pod IP:
 ```
 kubectl get pods -l run=nginx -o wide
 ```
-Note: try and access the Service with a browser
+access the Service with a browser:
 
 > http://[service-ip]
 
