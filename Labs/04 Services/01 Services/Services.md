@@ -108,11 +108,27 @@ Note: this just connects to the service and is useful for debugging
 
 Note: Map Service IP to localhost in /etc/hosts file..
 
+** You can change the service:port using targetport**
+
+delete existing service:
+``` 
+kubectl delete -f 02_nginx-service-clusterip.yaml
+```
+new service with targetport:
+```
+kubectl apply -f 03_nginx-service-clusterip-targetport.yaml
+```
+access the Service with a browser:
+
+> http://[service-ip]:8080
+
+Note: The application itself is still configured to listen on port 80. Kubernetes Service manages the translation between the two.
 
 clean up:
 ```
 kubectl delete -f 01_nginx.yaml
 kubectl delete -f 02_nginx-service-clusterip.yaml
+kubectl delete -f 03_nginx-service-clusterip-targetport.yaml
 ```
 to remove the proxy:
 ```
