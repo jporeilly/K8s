@@ -125,6 +125,11 @@ access the Service with a browser:
 
 Note: The application itself is still configured to listen on port 80. Kubernetes Service manages the translation between the two.
 
+or
+```
+minikube service nginx-clusterip --url
+```
+
 clean up:
 ```
 kubectl delete -f 01_nginx.yaml
@@ -277,3 +282,45 @@ kubectl delete -f 06_nginx-externalip.yaml
 ---
 
 #### <font color='red'> 4.1.5 External Access - Ingress </font>
+
+enable ingress addon:
+```
+minikube addons enable ingress
+```
+check pods in kube-system:
+```
+kubectl get pods -n kube-system
+```
+deploy app:
+```
+kubectl create deployment web --image=gcr.io/google-samples/hello-app:1.0
+```
+expose the app:
+```
+kubectl expose deployment web --type=NodePort --port=8080
+```
+verify service is NodePort:
+```
+kubectl get service web
+```
+access service:
+
+minikube service web --url
+
+
+make a request:
+
+curl http://
+
+
+
+
+deploy ingress:
+```
+kubectl apply -f 08_ingress.yaml
+```
+verify IP:
+```
+kubectl get ingress
+```
+
