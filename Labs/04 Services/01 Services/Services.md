@@ -58,15 +58,15 @@ check Pod IPs:
 ```
 kubectl get pods -l run=nginx -o yaml | grep podIP
 ```
-create a service:
+create service - YAML:
 ```
-kubectl expose deployment/nginx-service
+kubectl create -f 02_nginx-service-clusterip.yaml --save-config
 ```
 or
 
-YAML file:
+create a service (use the YAML manifest):
 ```
-kubectl create -f 02_nginx-service-clusterip.yaml --save-config
+kubectl expose deployment/nginx-service
 ```
 check service:
 ```
@@ -102,7 +102,7 @@ to access the Pods:
 
 to access the Service:
 
- > http://localhost:8080/api/v1/namespaces/default/nginx-service/
+ > http://localhost:8080/api/v1/namespaces/default/service/nginx-service/
 
 Note: this just connects to the service and is useful for debugging
 
