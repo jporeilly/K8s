@@ -128,7 +128,7 @@ Note: The application itself is still configured to listen on port 80. Kubernete
 clean up:
 ```
 kubectl delete -f 01_nginx.yaml
-kubectl delete -f 02_nginx-service-clusterip.yaml
+kubectl delete -f 02_nginx-service-clusterip.yaml # not required if you used clusterip-targetport
 kubectl delete -f 03_nginx-service-clusterip-targetport.yaml
 ```
 to remove the proxy:
