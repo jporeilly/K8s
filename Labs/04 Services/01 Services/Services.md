@@ -165,7 +165,7 @@ kubectl get pods -l run=nginx -o yaml | grep podIP
 ```
 create a service:
 ```
-kubectl create -f 03_nginx-service-nodeport.yaml
+kubectl create -f 04_nginx-service-nodeport.yaml
 ```
 
 check service:
