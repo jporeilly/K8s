@@ -74,7 +74,7 @@ kubectl get svc nginx-service
 ```
 Note: ClusterIP is default.
 
-get details to check:
+describe service:
 ```
 kubectl describe svc nginx-service
 ```
@@ -82,12 +82,31 @@ view endpoints:
 ```
 kubectl get ep nginx-service
 ```
-Note: You can try and access the Pod but no go as these are internal IPs. 
+Note: You can try and access the Pod in a browser but no go as these are internal IPs. 
 
 view nginx Pod IP:
 ```
 kubectl get pods -l run=nginx -o wide
 ```
+Note: try and access the Service with a browser
+
+> http://[service-ip]
+
+proxy the request:
+```
+kubectl proxy --port 8080
+```
+to access the Pods:
+
+ > http://localhost:8080/api/v1/namespaces/default/pods
+
+to access the Service:
+
+ > http://localhost:8080/api/v1/namespaces/default/nginx-service/
+
+Note: this just connects to the service and is useful for debugging
+
+also try mapping Service IP to localhost in /etc/hosts file..
 
 
 clean up:
@@ -123,49 +142,76 @@ create a service:
 kubectl create -f 03_nginx-service-nodeport.yaml
 ```
 
-
+check service:
 ```
-kubectl get svc nginx-service-clusterip
+kubectl get svc nginx-service-nodeport
 ```
-get details to check:
+describe service:
 ```
-kubectl describe svc nginx-service-clusterip
+kubectl describe svc nginx-service-nodeport
 ```
 view endpoints:
 ```
-kubectl get ep nginx-service-clusterip -o yaml
+kubectl get ep nginx-service-nodeport -o yaml
 ```
+to access the Service:
+
+ > http://[nodeport-ip]:31000
+
 
 clean up:
-
-
+```
+kubectl delete -f 01_nginx.yaml
+kubectl delete -f 03_nginx-service-nodeport.yaml
+```
 
 ---
 
+#### <font color='red'> 4.1.2 Services - LoadBalancers </font>
+Loadbalancers c
 
-#### <font color='red'> 4.1. Accessing Services </font>
-Kubernetes supports 2 primary modes of finding a Service
-* environment variables
-* DNS
+check whats running:
+```
+kubectl get all
+```
+deploy nginx:
+```
+kubectl apply -f 04_nginx-loadbalancer.yaml
+```
+check whats running:
+```
+kubectl get pods -l run=nginx -o wide
+```
+check Pod IPs:
+```
+kubectl get pods -l run=nginx -o yaml | grep podIP
+```
+create a service:
+```
+kubectl apply -f 05_nginx-service-loadbalancer.yaml
 
-inspect environment:
-```
-kubectl exec nginx-xxxx -- printenv | grep SERVICE
-```
-Notice: no mention of service as replcas created before service.  
 
-change deployment:
+check service:
 ```
-kubectl scale deployment nginx --replicas=0; kubectl scale deployment nginx --replicas=2;
+kubectl get svc nginx-service-loadbalancer
 ```
-inspect environment:
+describe service:
 ```
-kubectl exec nginx-xxxxx -- printenv | grep SERVICE
+kubectl describe svc nginx-service-loadbalancer
 ```
+view endpoints:
+```
+kubectl get ep nginx-service-loadbalancer -o yaml
+```
+to access the Service:
 
-inspect DNS:
+ > http://[external-ip]
+
+
+clean up:
 ```
-kubectl get services kube-dns --namespace=kube-system
+kubectl delete -f 01_nginx.yaml
+kubectl delete -f 03_nginx-service-nodeport.yaml
 ```
 
 ---
