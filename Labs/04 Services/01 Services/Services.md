@@ -199,7 +199,7 @@ kubectl delete -f 03_nginx-service-nodeport.yaml
 ---
 
 #### <font color='red'> 4.1.2 Services - LoadBalancers </font>
-Loadbalancers c
+When running in the cloud, such as EC2 or Azure, it's possible to configure and assign a Public IP address issued via the cloud provider. This will be issued via a Load Balancer such as ELB. This allows additional public IP addresses to be allocated to a Kubernetes cluster without interacting directly with the cloud provider.
 
 check whats running:
 ```
