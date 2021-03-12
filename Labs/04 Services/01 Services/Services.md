@@ -294,9 +294,12 @@ kubectl describe cm config -n metallb-system
 ```
 deploy nginx service:
 ```
-kubectl apply -f 005_nginx.yaml
+kubectl apply -f 004_nginx-service-loadbalancer.yaml
 ```
-
+check service:
+```
+kubectl get svc nginx-loadbalncer
+```
 
 
 
