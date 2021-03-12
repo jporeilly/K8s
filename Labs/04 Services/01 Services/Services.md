@@ -119,6 +119,10 @@ new service with targetport:
 ```
 kubectl apply -f 03_nginx-service-clusterip-targetport.yaml
 ```
+check the service:
+```
+kubectl get svc nginx-clusterip-targetport
+```
 access the Service with a browser:
 
 > http://[service-ip]:8080
