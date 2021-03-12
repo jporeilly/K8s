@@ -209,58 +209,15 @@ kubectl delete -f 04_nginx-service-nodeport.yaml
 #### <font color='red'> 4.1.3 Services - LoadBalancers </font>
 When running in the cloud, such as EC2 or Azure, it's possible to configure and assign a Public IP address issued via the cloud provider. This will be issued via a Load Balancer such as ELB. This allows additional public IP addresses to be allocated to a Kubernetes cluster without interacting directly with the cloud provider.
 
+using metalLB in front of a NodePort
+
 check whats running:
 ```
 kubectl get all
 ```
-deploy nginx:
-```
-kubectl apply -f 04_nginx-loadbalancer.yaml
-```
-check whats running:
-```
-kubectl get pods -l run=nginx -o wide
-```
-check Pod IPs:
-```
-kubectl get pods -l run=nginx -o yaml | grep podIP
-```
-create a service:
-```
-kubectl apply -f 05_nginx-service-loadbalancer.yaml
-```
-
-check service:
-```
-kubectl get svc nginx-service-loadbalancer
-```
-describe service:
-```
-kubectl describe svc nginx-service-loadbalancer
-```
-view endpoints:
-```
-kubectl get ep nginx-service-loadbalancer -o yaml
-```
-to access the Service:
-
- > http://[external-ip]
-
-
-clean up:
-```
-kubectl delete -f 01_nginx.yaml
-kubectl delete -f 03_nginx-service-nodeport.yaml
-```
-
-test Loadbalancer
-
-using metalLB in front of a NodePort
-
-
 create a namespace for LB 
 ```
-kubectl apply -f 001_metalLB-namespace.yaml
+kubectl apply -f 05_metalLB-namespace.yaml
 ```
 check namespace:
 ```
@@ -268,7 +225,7 @@ kubectl get ns
 ```
 deploy metalLB:
 ```
-kubectl create -f 002_metalLB.yaml --save-config
+kubectl create -f 06_metalLB.yaml --save-config
 ```
 create a secret on first install:
 ```
@@ -284,7 +241,7 @@ minikube ip
 ```
 deploy configmap:
 ```
-kubectl create -f 003_configmap-addresses.yaml --save-config
+kubectl create -f 07_configmap-addresses.yaml --save-config
 ```
 Note: you may need to configure the configmap for a range of addresses.
 
@@ -294,7 +251,7 @@ kubectl describe cm config -n metallb-system
 ```
 deploy nginx service:
 ```
-kubectl create -f 004_nginx-service-loadbalancer.yaml --save-config
+kubectl create -f 08_nginx-service-loadbalancer.yaml --save-config
 ```
 check service:
 ```
@@ -302,9 +259,16 @@ kubectl get svc nginx-loadbalancer
 ```
 deploy nginx:
 ```
-kubectl create -f 005_nginx.yaml --save-config
+kubectl create -f 09_nginx.yaml --save-config
 ```
 
+
+
+clean up:
+```
+kubectl delete -f 01_nginx.yaml
+kubectl delete -f 03_nginx-service-nodeport.yaml
+```
 
 
 
