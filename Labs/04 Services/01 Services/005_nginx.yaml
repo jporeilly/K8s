@@ -5,7 +5,7 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app: nginx-loadbalancer
+      run: nginx
   template:
     metadata:
       labels:

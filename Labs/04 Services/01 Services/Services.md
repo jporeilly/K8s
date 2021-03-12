@@ -298,11 +298,11 @@ kubectl create -f 004_nginx-service-loadbalancer.yaml --save-config
 ```
 check service:
 ```
-kubectl get svc nginx-loadbalncer
+kubectl get svc nginx-loadbalancer
 ```
 deploy nginx:
 ```
-kubectl create -f 0005_nginx.yaml --save-config
+kubectl create -f 005_nginx.yaml --save-config
 ```
 
 
