@@ -262,19 +262,11 @@ deploy nginx:
 kubectl create -f 09_nginx.yaml --save-config
 ```
 
-
-
 clean up:
 ```
 kubectl delete -f 01_nginx.yaml
 kubectl delete -f 03_nginx-service-nodeport.yaml
 ```
-
-
-
-
-
-
 
 ---
 
