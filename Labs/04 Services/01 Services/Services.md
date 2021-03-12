@@ -209,7 +209,11 @@ kubectl delete -f 04_nginx-service-nodeport.yaml
 #### <font color='red'> 4.1.3 Services - LoadBalancers </font>
 When running in the cloud, such as EC2 or Azure, it's possible to configure and assign a Public IP address issued via the cloud provider. This will be issued via a Load Balancer such as ELB. This allows additional public IP addresses to be allocated to a Kubernetes cluster without interacting directly with the cloud provider.
 
-using metalLB in front of a NodePort
+
+This one is a little tricky as 2 loadbalancers are deployed..
+To service requests a loadbalancer (tunnel) is configured between the client (Lab IP 10.x.x.x) and minikube K8s on a NodePort 192.168.49.x. This gets you into the K8s cluster..  then a metalLB is deployed so that requests from the minikube loadbalancer are forwarded to the internal service clusterIP.. and so on..
+
+Using metalLB in front of a NodePort
 
 check whats running:
 ```
@@ -217,7 +221,7 @@ kubectl get all
 ```
 create a namespace for LB 
 ```
-kubectl apply -f 05_metalLB-namespace.yaml
+kubectl create -f 05_metalLB-namespace.yaml  --save-config
 ```
 check namespace:
 ```
@@ -264,8 +268,11 @@ kubectl create -f 09_nginx.yaml --save-config
 
 clean up:
 ```
-kubectl delete -f 01_nginx.yaml
-kubectl delete -f 03_nginx-service-nodeport.yaml
+kubectl delete -f 05_metalLB-namespace.yaml
+kubectl delete -f 06_metalLB.yaml
+kubectl delete -f 07_configmap-addresses.yaml
+kubectl delete -f 08_nginx-service-loadbalancer.yaml
+kubectl delete -f 09_nginx.yaml
 ```
 
 ---
@@ -305,45 +312,61 @@ kubectl delete -f 06_nginx-externalip.yaml
 #### <font color='red'> 4.1.5 External Access - Ingress </font>
 Ingress exposes HTTP and HTTPS routes from outside the cluster to services within the cluster. Traffic routing is controlled by rules defined on the Ingress resource.
 
-
+check whats running:
+```
+kubectl get all
+```
 enable ingress addon:
 ```
 minikube addons enable ingress
 ```
 check pods in kube-system:
 ```
-kubectl get pods -n kube-system
+kubectl get pods --all-namespaces | grep -i nginx-controller
 ```
-deploy app:
+deploy ingress-nginx controller:
 ```
-kubectl create deployment web --image=gcr.io/google-samples/hello-app:1.0
+kubectl create -f 50_ingress-nginx-resources.yaml --save-config
 ```
-expose the app:
+check ingress-nginx:
 ```
-kubectl expose deployment web --type=NodePort --port=8080
+kubectl get pods -n ingress-nginx -l app.kubernetes.io/name=ingress-nginx
 ```
-verify service is NodePort:
+deploy httpd app + service:
 ```
-kubectl get service web
+kubectl create -f 100_httpd-deployment.yaml --save-config
 ```
-access service:
-
-minikube service web --url
-
-
-make a request:
-
-curl http://
-
-
-
-
-deploy ingress:
+deploy nginx app + service:
 ```
-kubectl apply -f 08_ingress.yaml
+kubectl create -f 200_nginx-deployment.yaml --save-config
 ```
-verify IP:
+verify status:
 ```
-kubectl get ingress
+kubectl get deployments.apps httpd-deployment
+kubectl get deployments.apps nginx-deployment
 ```
-
+verify services:
+```
+kubectl get service nginx-service httpd-service
+```
+deploy ingress resource:
+```
+kubectl create -f 300_web-ingress.yaml --save-config
+```
+verify status:
+```
+kubectl get ingress name-based-virtualhost-ingress
+```
+check HOSTS:
+```
+kubectl describe ingress name-based-virtualhost-ingress
+```
+edit /etc/hosts:
+```
+sudo nano /etc/hosts
+```
+add the following:
+```
+add IP address of name-based-virtualhost-ingress
+add HOSTS: httpd.example.com, nginx.example.com
+```
