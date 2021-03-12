@@ -270,6 +270,10 @@ deploy metalLB:
 ```
 kubectl apply -f 002_metalLB.yaml
 ```
+create a secret on first install:
+```
+kubectl create secret generic -n metallb-system memberlist --from-literal=secretkey="$(openssl rand -base64 128)"
+```
 check inside namespace:
 ```
 kubectl get all -n metallb-system
@@ -295,10 +299,6 @@ kubectl apply -f 005_nginx.yaml
 
 
 
-create a secret on first install:
-```
-kubectl create secret generic -n metallb-system memberlist --from-literal=secretkey="$(openssl rand -base64 128)"
-```
 
 
 
