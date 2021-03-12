@@ -182,7 +182,7 @@ kubectl get svc nginx-nodeport
 ```
 describe service:
 ```
-kubectl describe svc nginx-service-nodeport
+kubectl describe svc nginx-nodeport
 ```
 view endpoints:
 ```
