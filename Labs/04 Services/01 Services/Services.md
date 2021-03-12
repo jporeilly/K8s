@@ -300,6 +300,10 @@ check service:
 ```
 kubectl get svc nginx-loadbalncer
 ```
+deploy nginx:
+```
+kubectl apply -f 0005_nginx.yaml
+```
 
 
 
