@@ -103,7 +103,7 @@ to access the Pods:
 
 to access the Service:
 
- > http://127.0.0.1:8080/api/v1/namespaces/default/services/nginx-service/
+ > http://127.0.0.1:8080/api/v1/namespaces/default/services/nginx-clusterip/
 
 Note: this just connects to the service and is useful for debugging
 
