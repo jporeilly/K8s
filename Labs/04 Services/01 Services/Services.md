@@ -201,7 +201,7 @@ to access the Service:
 clean up:
 ```
 kubectl delete -f 01_nginx.yaml
-kubectl delete -f 03_nginx-service-nodeport.yaml
+kubectl delete -f 04_nginx-service-nodeport.yaml
 ```
 
 ---
