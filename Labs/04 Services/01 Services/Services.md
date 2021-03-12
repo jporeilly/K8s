@@ -253,6 +253,58 @@ kubectl delete -f 01_nginx.yaml
 kubectl delete -f 03_nginx-service-nodeport.yaml
 ```
 
+test Loadbalancer
+
+using metalLB in front of a NodePort
+
+
+create a namespace for LB 
+```
+kubectl apply -f 001_metalLB-namespace.yaml
+```
+check namespace:
+```
+kubectl get ns
+```
+deploy metalLB:
+```
+kubectl apply -f 002_metalLB.yaml
+```
+check inside namespace:
+```
+kubectl get all -n metallb-system
+```
+get minikube ip:
+```
+minikube ip
+```
+deploy configmap:
+```
+kubectl create -f 003_configmap-addresses.yaml
+```
+Note: you may need to configure the configmap for a range of addresses.
+
+check configmap:
+```
+kubectl describe cm config -n metallb-system
+```
+deploy nginx service:
+```
+kubectl apply -f 005_nginx.yaml
+```
+
+
+
+create a secret on first install:
+```
+kubectl create secret generic -n metallb-system memberlist --from-literal=secretkey="$(openssl rand -base64 128)"
+```
+
+
+
+
+
+
 ---
 
 #### <font color='red'> 4.1.4 Services - ExternalIP </font>
