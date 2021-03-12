@@ -268,7 +268,7 @@ kubectl get ns
 ```
 deploy metalLB:
 ```
-kubectl apply -f 002_metalLB.yaml
+kubectl create -f 002_metalLB.yaml --save-config
 ```
 create a secret on first install:
 ```
@@ -284,7 +284,7 @@ minikube ip
 ```
 deploy configmap:
 ```
-kubectl create -f 003_configmap-addresses.yaml
+kubectl create -f 003_configmap-addresses.yaml --save-config
 ```
 Note: you may need to configure the configmap for a range of addresses.
 
@@ -294,7 +294,7 @@ kubectl describe cm config -n metallb-system
 ```
 deploy nginx service:
 ```
-kubectl apply -f 004_nginx-service-loadbalancer.yaml
+kubectl create -f 004_nginx-service-loadbalancer.yaml --save-config
 ```
 check service:
 ```
@@ -302,7 +302,7 @@ kubectl get svc nginx-loadbalncer
 ```
 deploy nginx:
 ```
-kubectl apply -f 0005_nginx.yaml
+kubectl create -f 0005_nginx.yaml --save-config
 ```
 
 
