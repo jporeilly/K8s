@@ -212,7 +212,7 @@ When running in the cloud, such as EC2 or Azure, it's possible to configure and 
 
 #### <font color='red'>IMPORTANT:</font> 
 <strong>Please ensure you start with a clean environment. 
-As we are replacing the defgault minikube loadbalancer, its recommended to start with a clean environment. 
+As we are replacing the default minikube loadbalancer, its recommended to start with a clean environment. 
 
 **Do not start the minikube tunnel.**</strong>
 
