@@ -279,7 +279,7 @@ kubectl create -f 08_metalLB-service-loadbalancer.yaml --save-config
 ```
 check service:
 ```
-kubectl get svc metalLB-loadbalancer
+kubectl get svc metal-loadbalancer
 ```
 deploy nginx:
 ```
