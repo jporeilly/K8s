@@ -210,8 +210,28 @@ kubectl delete -f 04_nginx-service-nodeport.yaml
 When running in the cloud, such as EC2 or Azure, it's possible to configure and assign a Public IP address issued via the cloud provider. This will be issued via a Load Balancer such as ELB. This allows additional public IP addresses to be allocated to a Kubernetes cluster without interacting directly with the cloud provider.
 
 
-This one is a little tricky as 2 loadbalancers are deployed..
-To service requests a loadbalancer (tunnel) is configured between the client (Lab IP 10.x.x.x) and minikube K8s on a NodePort 192.168.49.x. This gets you into the K8s cluster..  then a metalLB is deployed so that requests from the minikube loadbalancer are forwarded to the internal service clusterIP.. and so on..
+#### <font color='red'>IMPORTANT:</font> 
+<strong>Please ensure you start with a clean environment. 
+As we are replacing the defgault minikube loadbalancer, its recommended to start with a clean environment. 
+
+**Do not start the minikube tunnel.**</strong>
+
+
+to stop  minikube:
+```
+minikube stop
+```
+to delete  minikube:
+```
+minikube delete
+```
+start minikube:
+```
+minikube start
+```
+
+The lab configures a metalLB in front of minikube K8s to forward requests to an Niginx server, using ClusterIP.
+
 
 Using metalLB in front of a NodePort
 
@@ -255,23 +275,35 @@ kubectl describe cm config -n metallb-system
 ```
 deploy nginx service:
 ```
-kubectl create -f 08_nginx-service-loadbalancer.yaml --save-config
+kubectl create -f 08_metalLB-service-loadbalancer.yaml --save-config
 ```
 check service:
 ```
-kubectl get svc nginx-loadbalancer
+kubectl get svc metalLB-loadbalancer
 ```
 deploy nginx:
 ```
 kubectl create -f 09_nginx.yaml --save-config
 ```
+access nginx server:
+
+ > http://[clusterIP]
+
+ Note: no minikube loadbalancer between client request 10.x.x.x and the NodePort 
+
+start minikube tunnel:
+```
+minikube tunnel
+```
+Notice: picks up metalLB-loadbalancer service
+
 
 clean up:
 ```
 kubectl delete -f 05_metalLB-namespace.yaml
 kubectl delete -f 06_metalLB.yaml
 kubectl delete -f 07_configmap-addresses.yaml
-kubectl delete -f 08_nginx-service-loadbalancer.yaml
+kubectl delete -f 08_metalLB-service-loadbalancer.yaml
 kubectl delete -f 09_nginx.yaml
 ```
 
