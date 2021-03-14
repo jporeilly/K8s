@@ -34,7 +34,7 @@ minikube tunnel
 
 --- 
 
-#### <font color='red'> 11.1.1 Cluster Resources </font>
+#### <font color='red'> 11.1.1 Pod Resources </font>
 run a busybox and request 50m cpu and memory 50:
 ```
 kubectl run -i --tty --rm busybox \
@@ -149,9 +149,12 @@ Note: The second Pod does not get created.
 clean up
 
 kubectl delete namespace quota-mem-cpu-example
+
+
+
 ---
 
-
+#### <font color='red'> 11.1. VPA Vertical Pod Autoscaler </font>
 
 
 
