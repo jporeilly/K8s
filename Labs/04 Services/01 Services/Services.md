@@ -319,7 +319,7 @@ sed -i 's/HOSTIP/172.17.0.98/g' 06_nginx-externalip.yaml
 ```
 deploy nginx + service:
 ```
-kubectl apply -f 06_nginx-externalip.yaml
+kubectl apply -f 10_nginx-externalip.yaml
 ```
 
 kubectl get svc
@@ -336,7 +336,7 @@ kubectl get all
 
 clean up:
 ```
-kubectl delete -f 06_nginx-externalip.yaml
+kubectl delete -f 10_nginx-externalip.yaml
 ```
 
 ---
