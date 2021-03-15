@@ -11,13 +11,20 @@ spec:
     http:
       paths:
       - path: /
+        pathType: Prefix
         backend:
-          serviceName: httpd-service
-          servicePort: 80
+          service:
+            name: httpd-service
+            port:
+              number: 80
+
   - host: nginx.example.com
     http:
       paths:
       - path: /
+        pathType: Prefix
         backend:
-          serviceName: nginx-service
-          servicePort: 80
+          service:
+            name: nginx-service
+            port:
+              number: 80
