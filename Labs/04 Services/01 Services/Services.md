@@ -356,14 +356,6 @@ check pods in kube-system:
 ```
 kubectl get pods --all-namespaces | grep -i nginx-controller
 ```
-deploy ingress-nginx controller:
-```
-kubectl create -f 11_ingress-nginx-resources.yaml --save-config
-```
-check ingress-nginx:
-```
-kubectl get pods -n ingress-nginx -l app.kubernetes.io/name=ingress-nginx
-```
 deploy httpd app + service:
 ```
 kubectl create -f 12_httpd-deployment.yaml --save-config
