@@ -273,7 +273,7 @@ check configmap:
 ```
 kubectl describe cm config -n metallb-system
 ```
-deploy nginx service:
+deploy metalLB service:
 ```
 kubectl create -f 08_metalLB-service-loadbalancer.yaml --save-config
 ```
