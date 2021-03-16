@@ -273,7 +273,7 @@ check configmap:
 ```
 kubectl describe cm config -n metallb-system
 ```
-deploy nginx service:
+deploy metalLB service:
 ```
 kubectl create -f 08_metalLB-service-loadbalancer.yaml --save-config
 ```
@@ -356,21 +356,13 @@ check pods in kube-system:
 ```
 kubectl get pods --all-namespaces | grep -i nginx-controller
 ```
-deploy ingress-nginx controller:
-```
-kubectl create -f 50_ingress-nginx-resources.yaml --save-config
-```
-check ingress-nginx:
-```
-kubectl get pods -n ingress-nginx -l app.kubernetes.io/name=ingress-nginx
-```
 deploy httpd app + service:
 ```
-kubectl create -f 100_httpd-deployment.yaml --save-config
+kubectl create -f 11_httpd-deployment.yaml --save-config
 ```
 deploy nginx app + service:
 ```
-kubectl create -f 200_nginx-deployment.yaml --save-config
+kubectl create -f 12_nginx-deployment.yaml --save-config
 ```
 verify status:
 ```
@@ -383,15 +375,15 @@ kubectl get service nginx-service httpd-service
 ```
 deploy ingress resource:
 ```
-kubectl create -f 300_web-ingress.yaml --save-config
+kubectl create -f 13_web-ingress.yaml --save-config
 ```
 verify status:
 ```
-kubectl get ingress name-based-virtualhost-ingress
+kubectl get ingress virtualhost-ingress
 ```
 check HOSTS:
 ```
-kubectl describe ingress name-based-virtualhost-ingress
+kubectl describe ingress virtualhost-ingress
 ```
 edit /etc/hosts:
 ```

@@ -78,9 +78,9 @@ exit the shell:
 ```
 exit
 ```
-delete redis POD:
+clean up:
 ```
-kubectl delete pod redis
+kubectl delete -f 01_volume-emptyDir.yaml
 ```
 
 ---

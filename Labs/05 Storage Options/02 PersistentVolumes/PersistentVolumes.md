@@ -20,7 +20,7 @@ create a /mnt/data directory:
 ```
 sudo mkdir /mnt/data
 ```
-create an index.html file:
+create an index.html file on the Node:
 ```
 sudo sh -c "echo 'Hello from Kubernetes storage' > /mnt/data/index.html"
 ```
@@ -41,22 +41,50 @@ view information about the PersistentVolume:
 ```
 kubectl get pv task-pv-volume
 ```
-check whats running:
-```
-kubectl get all
-```
-to delete a POD:
-```
-kubectl delete deployment my-nginx
-```
-check whats running:
-```
-kubectl get all
-```
-> Notice POD is Terminating  
+Note: The output shows that the PersistentVolume has a STATUS of Available. This means it has not yet been bound to a PersistentVolumeClaim.
 
-set a Watch:
+create a PVC:
 ```
-kubectl get pods --watch
+kubectl apply -f 02_persistent-volume-claim.yaml
 ```
+check pv:
+```
+kubectl get pv task-pv-volume
+```
+Note: output shows the staus of the bind.
+
+deploy nginx:
+```
+kubectl apply -f 03_nginx.yaml
+```
+check Pod:
+```
+kubectl get pod task-pv-pod
+```
+shell into Container:
+```
+kubectl exec -it task-pv-pod -- /bin/bash
+```
+verify that nginx is serving the index.html file from the hostPath volume:
+```
+apt update
+apt install curl
+curl http://localhost/
+```
+exit container:
+```
+exit
+```
+clean up:
+```
+kubectl delete pod task-pv-pod
+kubectl delete pvc task-pv-claim
+kubectl delete pv task-pv-volume
+```
+delete directories on Host:
+```
+sudo rm /mnt/data/index.html
+sudo rmdir /mnt/data
+```
+
 ---
