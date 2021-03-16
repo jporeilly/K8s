@@ -51,7 +51,7 @@ check pv:
 ```
 kubectl get pv task-pv-volume
 ```
-Note: output shows the staus of the bound
+Note: output shows the staus of the bind.
 
 deploy nginx:
 ```
