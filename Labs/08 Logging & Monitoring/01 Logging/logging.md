@@ -33,6 +33,8 @@ clean up:
 kubectl delete deployment nginx
 ```  
 
+---
+
 **multi-container**  
 
 deploy busybox multi-container:
@@ -96,7 +98,7 @@ systemctl status kubelet.service
 ```
 a journal daemon is implemented for log collection:
 ```
-journalctl -u kubelet.service
+minikube journalctl -u kubelet.service
 ```
 use grep to search logs:
 ```
