@@ -3,11 +3,11 @@ Networking is a central part of Kubernetes, but it can be challenging to underst
 
 * Highly-coupled container-to-container communications: this is solved by Pods and localhost communications.
 * Pod-to-Pod communications: this is the primary focus of this document.
-* Pod-to-Service communications: this is covered by services.
-* External-to-Service communications: this is covered by services.
+* Pod-to-Service communications: this is covered in Services module.
+* External-to-Service communications: this is covered in Services module.
 
 
-In this lab we're going to examine the Kubernetes Network Model:
+In this lab we're going to examine the Container / Pods Kubernetes Network Model:
 * Containers
 * Shared resources
 * Isolated resources

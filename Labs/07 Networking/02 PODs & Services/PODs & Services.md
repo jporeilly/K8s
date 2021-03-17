@@ -1,8 +1,8 @@
 ## <font color='red'> 7.2 Networking - PODs & Services </font>
 
 In this lab we're going to examine the Kubernetes Network Model:
-* PODs & Services
-* Cluster IP
+* Containers
+* Pods
 * Node IP
 * Loadbalancing
 
