@@ -89,7 +89,7 @@ kubectl delete -f 01_multi-container.yaml
 
 ---
 
-#### <font color='red'> 8.1.1 Logging Nodes </font>
+#### <font color='red'> 8.1.2 Logging Nodes </font>
 kubelet status:
 ```
 systemctl status kubelet.service
@@ -112,7 +112,7 @@ Note: --no-pager for line wrapping
 
 ---
 
-#### <font color='red'> 8.1.2 Control Plane </font>
+#### <font color='red'> 8.1.3 Control Plane </font>
 get a list of control plane PODs:
 ```
 kubectl get pods --namespace kube-system --selector tier=control-plane
@@ -143,7 +143,7 @@ Note: Logs menu options in VSC.
 
 ---
 
-#### <font color='red'> 8.1.3 Events </font>
+#### <font color='red'> 8.1.4 Events </font>
 events for all objects in default namespace:
 ```
 kubectl get events 
