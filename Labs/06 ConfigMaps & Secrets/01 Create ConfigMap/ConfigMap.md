@@ -1,12 +1,16 @@
 ## <font color='red'> 6.1 ConfigMaps </font>
 Kubernetes Secrets and ConfigMaps separate the configuration of individual container instances from the container image, reducing overhead and adding flexibility.  
 Kubernetes has two types of objects that can inject configuration data into a container when it starts up: 
+* ConfigMaps 
 * Secrets
-* ConfigMaps. 
-Secrets and ConfigMaps behave similarly in Kubernetes, both in how they are created and because they can be exposed inside a container as mounted files or volumes or environment variables.
+
+
+ConfigMaps and Secrets behave similarly in Kubernetes, both in how they are created and because they can be exposed inside a container as mounted files or volumes or environment variables.
 
 In this lab were going to cover:
-* store non-confidential data ConfigMaps
+* ConfigMaps: store non-confidential data
+  - environmental variables
+  - volumes
 
 ---
 
