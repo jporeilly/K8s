@@ -47,9 +47,9 @@ create a PVC:
 ```
 kubectl apply -f 02_persistent-volume-claim.yaml
 ```
-check pv:
+check pvc:
 ```
-kubectl get pv task-pv-volume
+kubectl get pvc task-pv-claim
 ```
 Note: output shows the staus of the bind.
 
