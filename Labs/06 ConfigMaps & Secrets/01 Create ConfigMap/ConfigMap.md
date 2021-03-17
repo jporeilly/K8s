@@ -37,7 +37,7 @@ minikube tunnel
 
 ---
 
-#### <font color='red'>6.1.1. </font> 
+#### <font color='red'>6.1.1. configMaps</font> 
 check whats running:
 ```
 kubectl get all
