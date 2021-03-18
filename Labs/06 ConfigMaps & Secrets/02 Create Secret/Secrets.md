@@ -13,15 +13,21 @@ check whats running:
 ```
 kubectl get all
 ```
+deploy secrets:
+```
+kubectl apply -f 01_secrets.yaml
+```
+or 
 base64 encode our access key and API token:
 ```
 echo "OUR_API_ACCESS_KEY" | base64
 echo "SECRET_7t4836378erwdser34" | base64
 ```
-deploy secrets:
+check the secrets:
 ```
-kubectl apply -f 01_secrets.yaml
+kubectl get secret api-authentication-secret
 ```
+Note: The DATA column shows the number of data items stored in the Secret
 deploy app:
 ```
 kubectl apply -f 02_pod-secrets-vol.yaml
@@ -42,6 +48,9 @@ view data in volume:
 ```
 cat /etc/secret/*
 ```
+
+
+ > for further details: https://kubernetes.io/docs/concepts/configuration/secret/
 
 clean up:
 ```
