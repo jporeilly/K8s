@@ -55,7 +55,7 @@ kubectl describe configmaps mongodb-configmap
 
 deploy app:
 ```
-kubectl apply -f 02_pod-configmaps-env.yaml
+kubectl apply -f 02_pod-configmap-env.yaml
 ```
 check Pods:
 ```
