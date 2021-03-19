@@ -185,23 +185,6 @@ docker inspect  [pause Container ID]  --format='{{json .NetworkSettings}}'
 ```
 Notice: its the pause container thats handling the networking..
 
-issue command from inside busybox Container:
-```
-kubectl exec -it pod-single-container -- bin/sh
-```
-Note: you could use nsenter.  
-view route bewteen Container -> POD:
-```
-ip addr
-```
-The output show the networking route bewteen the Container -> POD. This pipe starts with loopback -> eth0.
-This means this pod’s eth0 is linked to the node’s xxth interface.  
-
-list filesystem:
-```
-ls -l
-```
-
 cleanup:
 ```
 kubectl delete -f 02_pod-single-container.yaml
