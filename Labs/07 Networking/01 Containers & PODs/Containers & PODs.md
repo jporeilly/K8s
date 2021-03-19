@@ -140,11 +140,14 @@ deploy 1 Container in a POD:
 ```
 kubectl create -f 02_pod-single-container.yaml --save-config
 ```
-have look at the Containers:
+lets take a look at the containers:
 ```
-docker ps -a
+eval $(minikube docker-env)
 ```
-Note: with minikube expose env: eval $(minikube docker-env)  
+list our Containers + pause:
+```
+docker container ls | grep 'busybox\|pause'
+```
 
 inspect the busybox Container networking:
 ```
