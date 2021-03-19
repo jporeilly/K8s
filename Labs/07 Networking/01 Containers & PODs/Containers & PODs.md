@@ -146,11 +146,18 @@ docker ps -a
 ```
 Note: with minikube expose env: eval $(minikube docker-env)  
 
-inspect the Container:
+inspect the busybox Container networking:
 ```
-docker inspect --format '{{ .State.Pid }}' [Container ID or longer name]
+docker inspect  [busybox Container ID]  --format='{{json .NetworkSettings}}'
 ```
-Note: select the busybox Container id
+Note: nothing..!
+
+
+inspect the busybox Container networking:
+```
+docker inspect  [pause Container ID]  --format='{{json .NetworkSettings}}'
+```
+Notice: its the pause container thats handling the networking..
 
 issue command from inside busybox Container:
 ```
