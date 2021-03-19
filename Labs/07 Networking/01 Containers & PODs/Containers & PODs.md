@@ -10,9 +10,10 @@ Networking is a central part of Kubernetes, but it can be challenging to underst
 In this lab we're going to examine the Container / Pods Kubernetes Network Model:
 * Containers
 * Shared resources
+* Networking
 * Isolated resources
 * Process isolation
-* Networking
+
 
 ---
 
@@ -101,9 +102,13 @@ connect to c1:
 ```
 kubectl exec -it pod-multiple-containers -c c1 -- bin/sh
 ```
-start newtwork listener:
+start network listener:
 ```
 nc -lk -p 5000 127.0.0.1 -e 'date'
+```
+check processes:
+```
+ps -a
 ```
 in a new terminal:
 ```
@@ -112,6 +117,10 @@ kubectl exec -it pod-multiple-containers -c c2 -- bin/sh
 telnet to c1:
 ```
 telnet localhost:5000
+```
+check processes:
+```
+ps -a
 ```
 Note: cant see nc process but can see date.  So containers have process isolation but not network.
 
@@ -127,16 +136,6 @@ kubectl delete -f 01_pod-multiple-containers.yaml
 ---
 
 #### <font color='red'> 7.1.2 Container / Pod - Networking </font>
-kubernetes version:
-```
-kubectl version
-```
-Note: Kubernetes version 1.20.2  
-
-check whats running:
-```
-kubectl get all
-```
 deploy 1 Container in a POD:
 ```
 kubectl create -f 02_pod-single-container.yaml --save-config
