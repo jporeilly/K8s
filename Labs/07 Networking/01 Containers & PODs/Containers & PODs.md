@@ -164,7 +164,7 @@ Notice: its the pause container thats handling the networking..
 
 issue command from inside busybox Container:
 ```
-kubectl exec -it 
+kubectl exec -it pod-single-container -- bin/sh
 ```
 Note: you could use nsenter.  
 view route bewteen Container -> POD:
