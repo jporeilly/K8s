@@ -16,7 +16,7 @@ In this lab we're going to examine the Container / Pods Kubernetes Network Model
 
 ---
 
-#### <font color='red'> 7.1.1 Containers </font>
+#### <font color='red'> 7.1.1 Networking - Containers </font>
 check whats running:
 ```
 kubectl get all
@@ -25,9 +25,17 @@ deploy 2 containers in a POD:
 ```
 kubectl create -f 01_pod-multiple-containers.yaml --save-config
 ```
+lets take a look at the containers:
+```
+eval $(minikube docker-env)
+```
+list our Containers + pause:
+```
+docker container ls | grep 'busybox\|pause'
+```
 connect to c1:
 ```
-kubectl exec -it podtest -c c1 -- bin/sh
+kubectl exec -it pod-multiple-containers -c c1 -- bin/sh
 ```
 see the volume on c1:
 ```
@@ -39,13 +47,31 @@ create some files:
 ```
 echo "foo" > tmp/foo  && echo "bar" > /shared/bar
 ```
+list our directories:
+```
+ls -l
+```
+change to tmp directory:
+```
+cd tmp
+ls -l
+```
+Notice: we can view foo..
+
+
+and lets take a look at the shared volume:
+```
+cat /shared/bar
+```
+Notice: we can view bar..
+
 lets exit:
 ```
 exit
 ```
 connect to c2:
 ```
-kubectl exec -it podtest -c c2 -- bin/sh
+kubectl exec -it pod-multiple-containers -c c2 -- bin/sh
 ```
 access files:
 ```
@@ -58,21 +84,22 @@ lets exit:
 ```
 exit
 ```
+
 network isolation c1:
 ```
-kubectl exec -it podtest -c c1 -- ip link
+kubectl exec -it pod-multiple-containers -c c1 -- ip link
 ```
 Note: MAC address  
 
 network isolation c2:
 ```
-kubectl exec -it podtest -c c2 -- ip link
+kubectl exec -it pod-multiple-containers -c c2 -- ip link
 ```
 Note: both containers have the device: eth0 and MAC addresses.  
 
 connect to c1:
 ```
-kubectl exec -it podtest -c c1 -- bin/sh
+kubectl exec -it pod-multiple-containers -c c1 -- bin/sh
 ```
 start newtwork listener:
 ```
@@ -80,7 +107,7 @@ nc -lk -p 5000 127.0.0.1 -e 'date'
 ```
 in a new terminal:
 ```
-kubectl exec -it podtest -c c2 -- bin/sh
+kubectl exec -it pod-multiple-containers -c c2 -- bin/sh
 ```
 telnet to c1:
 ```
@@ -99,7 +126,7 @@ kubectl delete -f 01_pod-multiple-containers.yaml
 
 ---
 
-#### <font color='red'> 7.1.2 Container - Networking </font>
+#### <font color='red'> 7.1.2 Container / Pod - Networking </font>
 kubernetes version:
 ```
 kubectl version
@@ -128,7 +155,7 @@ Note: select the busybox Container id
 
 issue command from inside busybox Container:
 ```
-kubectl exec it 
+kubectl exec -it 
 ```
 Note: you could use nsenter.  
 view route bewteen Container -> POD:
