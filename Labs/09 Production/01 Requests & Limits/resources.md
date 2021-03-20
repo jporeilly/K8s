@@ -63,7 +63,11 @@ hy is it not running at 100% CPU?
 en you define a CPU request in Kubernetes, that doesn't only describe the minimum amount of CPU but also establishes a share of CPU for that container.
 All containers share the same CPU, but they are nice to each other, and they split the times based on their shares.
 
-deteremine how many cores:
+enable docker environment:
+```
+eval $(minikube docker-env)
+```
+determine how many cores:
 ```
 docker info | grep CPUs
 ```
