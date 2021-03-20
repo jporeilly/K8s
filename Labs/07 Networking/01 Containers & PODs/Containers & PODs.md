@@ -185,6 +185,28 @@ docker inspect  [pause Container ID]  --format='{{json .NetworkSettings}}'
 ```
 Notice: its the pause container thats handling the networking..
 
+get the Pod info:
+```
+kubectl get pod -o wide
+```
+shell into container:
+```
+kubectl exec -it pod-single-container-xxxxx  --bin/sh
+```
+view the binding bwteen container on loopback and Pod eth0:
+```
+ip addr show
+```
+and exit:
+```
+exit
+```
+view the bridges:
+```
+brctl show virbr0
+```
+
+
 cleanup:
 ```
 kubectl delete -f 02_pod-single-container.yaml
