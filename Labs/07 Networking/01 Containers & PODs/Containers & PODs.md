@@ -191,7 +191,7 @@ kubectl get pod -o wide
 ```
 shell into container:
 ```
-kubectl exec -it pod-single-container-xxxxx  --bin/sh
+kubectl exec -it pod-single-container-xxxxx  -- bin/sh
 ```
 view the binding bwteen container on loopback and Pod eth0:
 ```
