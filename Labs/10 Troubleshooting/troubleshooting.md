@@ -8,6 +8,8 @@ Useful for users who are deploying code into Kubernetes and wondering why it is 
 Useful for cluster administrators and people whose Kubernetes cluster is unhappy.
 You should also check the known issues for the release you're using.  
 
+**There are no videos with this section its intended to just be a guide**
+
 ---
 
 #### <font color='red'> Troubleshooting Applications </font>
