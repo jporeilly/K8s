@@ -217,7 +217,6 @@ check out the following logging tools:
 * kubebox  - view POD logs from selected namespace
 * kubetail - aggregate logging from multiple PODs
 * kubewatch - publishes events to Slack
-* logviewer - streams POD logs from namespace
 
 
 #### <font color='red'> EFK Stack </font>
@@ -255,3 +254,5 @@ Link: https://github.com/johanhaleby/kubetailhttps://github.com/aks/kubetail
 Kubewatch is a Kubernetes watcher which can publish K8s events to the team communication app, Slack. Kubewatch runs as a pod inside Kubernetes clusters and monitors changes that occur in the system. You can specify the notifications you want to receive by editing the configuration file.
 
 Link: https://github.com/bitnami-labs/kubewatch
+
+
