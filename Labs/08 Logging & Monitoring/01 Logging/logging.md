@@ -240,7 +240,18 @@ or
 * click on menu -> Discover
 
 #### <font color='red'> kubebox </font>
+Kubebox is a terminal console for Kubernetes cluster which allows you to manage and monitor your cluster-live status with nice, old-school interface. Kubebox shows your pod resource usage, cluster monitoring, and container logs, etc. Additionally, you can easily navigate to the desired namespace and execute into the desired container for fast troubleshooting/recovery.
+
+Link: https://github.com/astefanutti/kubebox
+
 
 #### <font color='red'> kubetail </font>
+Kubetail is a small bash script which allows you to aggregate logs from multiple pods into one stream. The initial Kubetail version doesn’t have filtering or highlighting features, but there is an additional Kubetail fork on Github. This can form and perform logs coloring using multitail tools.
+
+Link: https://github.com/johanhaleby/kubetailhttps://github.com/aks/kubetail
+
 
 #### <font color='red'> kubewatch </font>
+Kubewatch is a Kubernetes watcher which can publish K8s events to the team communication app, Slack. Kubewatch runs as a pod inside Kubernetes clusters and monitors changes that occur in the system. You can specify the notifications you want to receive by editing the configuration file.
+
+Link: https://github.com/bitnami-labs/kubewatch
