@@ -92,13 +92,21 @@ kubectl delete -f 01_multi-container.yaml
 ---
 
 #### <font color='red'> 8.1.2 Logging Nodes </font>
+ssh into minikube:
+```
+minikube ssh
+```
 kubelet status:
 ```
 systemctl status kubelet.service
 ```
+exit minikube:
+```
+exit
+```
 a journal daemon is implemented for log collection:
 ```
-minikube journalctl -u kubelet.service
+journalctl -u kubelet.service
 ```
 use grep to search logs:
 ```
@@ -109,8 +117,6 @@ time bound the search:
 journalctl -u kubelet.service --since today --no-pager
 ```
 Note: --no-pager for line wrapping
-
-> checkout logviewr: http://192.168.49.2:32000/
 
 ---
 
@@ -123,23 +129,31 @@ retrieve logs:
 ```
 kubectl logs --namespace kube-system kube-apiserver-minikube
 ```
-**Note: these commands are for a bare metal K8s implementation**
-
+set docker environment:
+```
+eval $(minikube docker-env)
+```
 if control plane is down:
 ```
 sudo docker ps
 ```
 log for api-server:
 ```
-sudo docker ps  | grep k8s_kube-apiserver
-CONTAINER_ID=$(sudo docker ps | grep k8s_kube-apiserver | awk '{ print $1 }')
+docker ps  | grep k8s_kube-apiserver
+CONTAINER_ID=$(docker ps | grep k8s_kube-apiserver | awk '{ print $1 }')
 echo $CONTAINER_ID
-sudo docker logs $CONTAINER_ID
+docker logs $CONTAINER_ID
+```
+
+
+ssh into minikube:
+```
+minikube ssh
 ```
 and if Docker is down:
 ```
-sudo ls /var/log/containers
-sudo tail /var/log/containers/kube-apiserver-[master-container]*
+ls /var/log/containers
+tail /var/log/containers/kube-apiserver-[master-container]*
 ```
 Note: Logs menu options in VSC. 
 
