@@ -28,6 +28,11 @@ access busybox Pod logs:
 ```
 kubectl logs $PODNAME
 ```
+can see the logs in realtime:
+```
+kubectl logs busybox -f
+```
+
 clean up:
 ```
 kubectl delete deployment busybox
