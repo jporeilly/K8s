@@ -91,7 +91,8 @@ Note: 5 records from c1 & c2
 
 clean up:
 ```
-kubectl delete -f 01_multi-container.yaml
+kubectl delete -f 01_single-container.yaml
+kubectl delete -f 02_multi-container.yaml
 ```
 
 ---
@@ -204,7 +205,6 @@ kubectl describe pods nginx
 ```
 clean up:
 ```
-kubectl delete -f multicontainer.yaml
 kubectl delete deployment nginx
 ```
 Note: Watch menu options in VSC.
