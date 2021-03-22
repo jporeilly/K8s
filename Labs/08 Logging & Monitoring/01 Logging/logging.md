@@ -12,25 +12,25 @@ In this lab we're going to examine Logging:
 #### <font color='red'> 8.1.1 Logging Containers / PODs </font>
 **single container**  
 
-deploy a Nginx POD:
+deploy a busybox Pod:
 ```
-kubectl create deployment nginx --image=nginx
+kubectl create -f 01_single-container.yaml
 ```
-set the variable for the POD:
+set the variable for the Pod:
 ```
-PODNAME=$(kubectl get pods -l app=nginx -o jsonpath='{ .items[0].metadata.name }')
+PODNAME=$(kubectl get pods -l app=busybox -o jsonpath='{ .items[0].metadata.name }')
 ```
 check variable:
 ```
 echo $PODNAME
 ```
-access Nginx POD logs:
+access busybox Pod logs:
 ```
 kubectl logs $PODNAME
 ```
 clean up:
 ```
-kubectl delete deployment nginx
+kubectl delete deployment busybox
 ```  
 
 ---
@@ -216,13 +216,16 @@ check out the following logging tools:
 
 
 #### <font color='red'> EFK Stack </font>
+ELK stands for Elasticsearch, Logstash, and Kibana. ELK is one of the popular log management platform used worldwide for log analysis. In the ELK stack, Logstash extracts the logging data or other events from different input sources. It processes the events and later stores them in Elasticsearch.
+
+
+deploy EFK stack:
+```
+minikube addons open efk
+```
 to access Kibana:
 ```
 kubectl get pods,svc -n kube-system
-```
-run the command:
-```
-minikube addons open efk
 ```
 or 
 
