@@ -1,18 +1,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: logging-demo
+  name: multi-busybox
   labels:
-    app: logging-demo
+    app: busybox
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
-      app: logging-demo
+      app: busybox
   template:
     metadata:
       labels:
-        app: logging-demo
+        app: busybox
     spec:
       containers:
       - name: c1

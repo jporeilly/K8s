@@ -55,12 +55,12 @@ kubectl logs $PODNAME
 ```
 can see the logs in realtime:
 ```
-kubectl logs busybox -f
+kubectl logs single-busybox -f
 ```
 
 clean up:
 ```
-kubectl delete deployment busybox
+kubectl delete -f 01_single-container.yaml
 ```  
 
 ---
@@ -73,7 +73,7 @@ kubectl create -f 02_multi-container.yaml --save-config
 ``` 
 set the variable for the POD:
 ```
-PODNAME=$(kubectl get pods -l app=logging-demo -o jsonpath='{ .items[0].metadata.name }')
+PODNAME=$(kubectl get pods -l app=busybox -o jsonpath='{ .items[0].metadata.name }')
 ``` 
 check variable:
 ```
@@ -104,19 +104,18 @@ ctrl+c
 ```
 across all PODs:
 ```
-kubectl get pods --selector app=logging-demo
-kubectl logs --selector app=logging-demo --all-containers 
-kubectl logs --selector app=logging-demo --all-containers  > allpods.txt
+kubectl get pods --selector app=busybox
+kubectl logs --selector app=busybox --all-containers 
+kubectl logs --selector app=busybox --all-containers  > allpods.txt
 ```
 can also tail the logs:
 ```
-kubectl logs --selector app=logging-demo --all-containers --tail 5
+kubectl logs --selector app=busybox --all-containers --tail 5
 ```
 Note: 5 records from c1 & c2
 
 clean up:
 ```
-kubectl delete -f 01_single-container.yaml
 kubectl delete -f 02_multi-container.yaml
 ```
 
