@@ -55,7 +55,7 @@ kubectl logs $PODNAME
 ```
 can see the logs in realtime:
 ```
-kubectl logs single-busybox -f
+kubectl logs $PODNAME -f
 ```
 
 clean up:
