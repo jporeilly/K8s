@@ -130,9 +130,9 @@ kubelet status:
 ```
 systemctl status kubelet.service
 ```
-exit minikube:
+switch to root to avoid permissions:
 ```
-exit
+sudo -i
 ```
 a journal daemon is implemented for log collection:
 ```
@@ -147,6 +147,12 @@ time bound the search:
 journalctl -u kubelet.service --since today --no-pager
 ```
 Note: --no-pager for line wrapping
+
+
+exit minikube:
+```
+exit
+```
 
 ---
 
@@ -261,6 +267,9 @@ or
 
 * select @timestamp
 * click on menu -> Discover
+
+---
+
 
 #### <font color='red'> kubebox </font>
 Kubebox is a terminal console for Kubernetes cluster which allows you to manage and monitor your cluster-live status with nice, old-school interface. Kubebox shows your pod resource usage, cluster monitoring, and container logs, etc. Additionally, you can easily navigate to the desired namespace and execute into the desired container for fast troubleshooting/recovery.
