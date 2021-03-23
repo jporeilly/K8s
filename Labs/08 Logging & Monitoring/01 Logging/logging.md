@@ -9,6 +9,31 @@ In this lab we're going to examine Logging:
 
 ---
 
+
+#### <font color='red'>IMPORTANT:</font> 
+<strong>Please ensure you start with a clean environment. 
+If you have previously run minikube, you will need to delete the existing instance.</strong>
+
+to stop  minikube:
+```
+minikube stop
+```
+to delete  minikube:
+```
+minikube delete
+```
+start minikube:
+```
+minikube start
+```
+start tunnel:
+```
+minikube tunnel
+```
+
+---
+
+
 #### <font color='red'> 8.1.1 Logging Containers / PODs </font>
 **single container**  
 
