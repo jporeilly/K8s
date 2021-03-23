@@ -39,7 +39,7 @@ minikube tunnel
 
 deploy a busybox Pod:
 ```
-kubectl create -f 01_single-container.yaml
+kubectl create -f 01_single-container.yaml  --save-config
 ```
 set the variable for the Pod:
 ```

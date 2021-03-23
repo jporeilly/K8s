@@ -1,10 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
- name: busybox
+  name: single-busybox
+  labels:
+    app: busybox
 spec:
- containers:
- - name: count
-   image: busybox
-   args: [/bin/sh, -c,
+  replicas: 1
+  selector:
+    matchLabels:
+      app: busybox
+  template:
+    metadata:
+      labels:
+        app: busybox
+    spec:
+      containers:
+      - name: count
+        image: busybox
+        args: [/bin/sh, -c,
            'i=0; while true; do echo "$i: Hello"; i=$((i+1)); sleep 1; done']
