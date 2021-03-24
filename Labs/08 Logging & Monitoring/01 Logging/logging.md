@@ -256,12 +256,16 @@ check out the following logging tools:
 
 
 #### <font color='red'> EFK Stack </font>
-ELK stands for Elasticsearch, Logstash, and Kibana. ELK is one of the popular log management platform used worldwide for log analysis. In the ELK stack, Logstash extracts the logging data or other events from different input sources. It processes the events and later stores them in Elasticsearch.
+EFK stands for Elasticsearch, Fluentd, and Kibana. EFK is one of the popular log management platform used worldwide for log analysis. In the EFK stack, Logstash extracts the logging data or other events from different input sources. It processes the events and later stores them in Elasticsearch.
 
 
 deploy EFK stack:
 ```
 minikube addons enable efk
+```
+start efk:
+```
+minikube addons open efk
 ```
 to access Kibana:
 ```
