@@ -223,11 +223,10 @@ kubectl get events --field-selector type=Warning,reason=Failed
 monitor events with Watch:
 ```
 kubectl get events --watch &
-kubectl scale deployment loggingdemo --replicas=5
+kubectl scale deployment nginx --replicas=5
 ```
 break out of Watch:
 ```
-fg
 ctrl+c
 ```
 checkout kube-system namespace:
