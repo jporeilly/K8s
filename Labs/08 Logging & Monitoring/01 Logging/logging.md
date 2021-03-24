@@ -189,6 +189,13 @@ minikube ssh
 and if Docker is down:
 ```
 ls /var/log/containers
+```
+again were going to need permmision to read the logs:
+```
+sudo -i
+```
+then tail the logs:
+```
 tail /var/log/containers/kube-apiserver-[master-container]*
 ```
 Note: Logs menu options in VSC. 
