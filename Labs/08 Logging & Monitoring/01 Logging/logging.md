@@ -227,6 +227,7 @@ kubectl scale deployment nginx --replicas=5
 ```
 break out of Watch:
 ```
+gf
 ctrl+c
 ```
 checkout kube-system namespace:

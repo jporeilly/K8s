@@ -18,6 +18,6 @@ spec:
       - name: cpuburner
         image: busybox
         args: [/bin/sh, -c, 'dd if=/dev/zero of=/dev/null']
-      - name: container2
+      - name: busybox
         image: busybox
-        args: [/bin/sh, -c, 'while true; do echo "$(date)": $(hostname): container2; sleep 1; done']
+        args: [/bin/sh, -c, 'while true; do echo "$(date)": $(hostname): busybox; sleep 1; done']
