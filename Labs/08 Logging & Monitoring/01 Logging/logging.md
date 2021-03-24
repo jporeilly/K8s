@@ -261,7 +261,7 @@ ELK stands for Elasticsearch, Logstash, and Kibana. ELK is one of the popular lo
 
 deploy EFK stack:
 ```
-minikube addons open efk
+minikube addons enable efk
 ```
 to access Kibana:
 ```
