@@ -58,9 +58,9 @@ Note: From the output you can see that the memory utilised is 64Mi and the total
 Notice: The current values for CPU and memory are greater than the requests that you defined earlier (cpu=50m,memory=50Mi).
 
 However, why is the container consuming only 400 millicores?
-Since the Pod is running an infinite loop, you might expect it to consume 100% of the available CPU (or 1000 millicores).
-hy is it not running at 100% CPU?
-en you define a CPU request in Kubernetes, that doesn't only describe the minimum amount of CPU but also establishes a share of CPU for that container.
+Since the Pod is running an infinite loop, you might expect it to consume 100% of the available CPU (or 1000 millicores).  
+Why is it not running at 100% CPU?  
+When you define a CPU request in Kubernetes, that doesn't only describe the minimum amount of CPU but also establishes a share of CPU for that container.
 All containers share the same CPU, but they are nice to each other, and they split the times based on their shares.
 
 enable docker environment:
