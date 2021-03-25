@@ -281,6 +281,11 @@ or
 
 ---
 
+#### <font color='red'> kube-state-metrics </font>
+kube-state-metrics generates metrics from Kubernetes API objects without modification by listening to the Kubernetes API server. It doesn’t examine the health of individual Kubernetes components so much as it focuses on the health of the various objects inside, such as deployments, nodes and pods.
+
+Link: https://github.com/kubernetes/kube-state-metrics
+
 
 #### <font color='red'> kubebox </font>
 Kubebox is a terminal console for Kubernetes cluster which allows you to manage and monitor your cluster-live status with nice, old-school interface. Kubebox shows your pod resource usage, cluster monitoring, and container logs, etc. Additionally, you can easily navigate to the desired namespace and execute into the desired container for fast troubleshooting/recovery.

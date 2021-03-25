@@ -9,7 +9,7 @@ In this lab we're going to Monitor:
 * Grafana
 * Weave Scope
 * Searchlight
-* Dynatrace
+
 
 ---
 
@@ -109,8 +109,6 @@ or
 
 > in browser: http://192.168.49.2:31820/
 
-* 
-* 
 
 ---
 
@@ -171,14 +169,12 @@ kubectl port-forward svc/weave-scope-app -n weave 4040:80
 ---  
 
 #### <font color='red'> Searchlight </font>
+Searchlight by AppsCode is a Kubernetes operator for Icinga. Searchlight periodically runs various checks on Kubernetes clusters and alerts you via email, SMS or chat if something goes wrong. Searchlight includes a default suite of checks written specifically for Kubernetes. Also, it can enhance Prometheus monitoring with external black-box monitoring and serves as a fallback in case internal systems completely fail.
+
+Link: https://github.com/appscode/searchlight
 
 
+#### <font color='red'> cAdvisor </font>
+CAdvisor is installed by default on all cluster nodes to collect metrics for Kubernetes about running containers and nodes. CAdvisor Kubelet exposes these metrics through Kubelet APIs (with a default of one-minute resolution). The Metrics Server identifies all available nodes and calls Kubelet API to get containers and nodes resources usage before exposing the metrics through Kubernetes aggregation API.
 
-helm repo add appscode https://charts.appscode.com/stable/
-
-
-
-helm install appscode/searchlight --name searchlight-operator --namespace kube-system
-
-
-helm delete searchlight-operator
+Link: https://github.com/google/cadvisor
