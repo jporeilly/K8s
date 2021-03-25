@@ -216,7 +216,8 @@ or just use the service:
 
  > http://[grafana-clusterIP]
 
-default user: admin
+default user: admin  
+
 password: prom-operator 
 
 cleanup:
