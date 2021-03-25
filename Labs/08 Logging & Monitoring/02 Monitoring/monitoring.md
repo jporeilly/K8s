@@ -74,15 +74,18 @@ clean up:
 ```
 kubectl delete deployment cpuburner
 kubectl delete deployment nginx
+minikube addons disable metrics-server
 ```
 
 ---
 
 #### <font color='red'> Monitoring Tools </font>
 check out the following monitoring tools:  
-
 * Prometheus
 * Grafana
+* Prometheus Stack
+
+
 
 #### <font color='red'> Prometheus </font>
 create a namespace:
@@ -145,6 +148,78 @@ or
 * import grafana dashboard - 6417
 
 ---
+
+
+#### <font color='red'> Prometheus Stack </font>
+This stack is meant for cluster monitoring, so it is pre-configured to collect metrics from all Kubernetes components. In addition to that it delivers a default set of dashboards and alerting rules. Many of the useful dashboards and alerts come from the kubernetes-mixin project, similar to this project it provides composable jsonnet as a library for users to customize to their needs.  
+
+kube-prometheus-stack is a collection of Kubernetes manifests including the follow
+* Prometheus operator
+* Prometheus
+* Alertmanager
+* Prometheus node-exporter
+* Prometheus Adapter
+* kube-state-metrics
+* Grafana
+* pre-configured to collect metrics from all Kubernetes component
+* delivers a default set of dashboards and alerting rules
+
+Prerequiste
+* Kubernetes
+* Helm
+
+add prometheus helm repo:
+```
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+```
+start minikube with the following command:
+```
+minikube start  --bootstrapper=kubeadm --extra-config=kubelet.authentication-token-webhook=true --extra-config=kubelet.authorization-mode=Webhook --extra-config=scheduler.address=0.0.0.0 --extra-config=controller-manager.address=0.0.0.0
+```
+
+
+create a namespace:
+```
+kubectl create namespace monitoring
+```
+install prometheus using helm:
+```
+helm install prometheus prometheus-community/kube-prometheus-stack --namespace monitoring
+```
+check were up and running:
+```
+kubectl get all -n monitoring
+```
+access Prometheus Dashboard: 
+```
+kubectl port-forward -n monitoring prometheus-prom-kube-prometheus-stack-prometheus-0 9090
+```
+access Grafana Dashboard:
+```
+kubectl port-forward -n prom prom-grafana-xxxxxxx 3000
+```
+default user: admin
+password: prom-operator 
+
+cleanup:
+```
+helm uninstall prom -n monitoring
+```
+remove CRDs:
+```
+kubectl delete crd alertmanagerconfigs.monitoring.coreos.com
+kubectl delete crd alertmanagers.monitoring.coreos.com
+kubectl delete crd podmonitors.monitoring.coreos.com
+kubectl delete crd probes.monitoring.coreos.com
+kubectl delete crd prometheuses.monitoring.coreos.com
+kubectl delete crd prometheusrules.monitoring.coreos.com
+kubectl delete crd servicemonitors.monitoring.coreos.com
+kubectl delete crd thanosrulers.monitoring.coreos.com
+```
+
+
+
+
 
 #### <font color='red'> Weave Scope </font>
 install Weave Scope:
