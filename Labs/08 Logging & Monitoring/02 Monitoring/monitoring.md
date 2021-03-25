@@ -188,22 +188,29 @@ helm install prometheus prometheus-community/kube-prometheus-stack --namespace m
 ```
 check were up and running:
 ```
-kubectl get all -n monitoring
+kubectl get all --namespace monitoring
 ```
 access Prometheus Dashboard: 
 ```
-kubectl port-forward -n monitoring prometheus-prom-kube-prometheus-stack-prometheus-0 9090
+kubectl port-forward -n monitoring prometheus-prometheus-kube-prometheus-prometheus-0 9090
 ```
+
+ > check in browser: http://localhost:9090
+
 access Grafana Dashboard:
 ```
-kubectl port-forward -n prom prom-grafana-xxxxxxx 3000
+kubectl port-forward -n monitoring prometheus-grafana-xxxxxxx-xxxxx 3000
 ```
+or just use the service:
+
+ > http://[grafana-clusterIP]
+
 default user: admin
 password: prom-operator 
 
 cleanup:
 ```
-helm uninstall prom -n monitoring
+helm uninstall prometheus prometheus-community/kube-prometheus-stack --namespace monitoring
 ```
 remove CRDs:
 ```
