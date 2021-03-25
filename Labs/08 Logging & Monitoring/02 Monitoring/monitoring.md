@@ -197,6 +197,20 @@ kubectl port-forward -n monitoring prometheus-prometheus-kube-prometheus-prometh
 
  > check in browser: http://localhost:9090
 
+here's a few simple querries:
+return all time series with the metric http_requests_total:
+```
+http_requests_total
+```
+return all time series with the metric http_requests_total and the given job and handler labels:
+```
+http_requests_total{job="apiserver", handler="/api/comments"}
+```
+
+ > for further examples: https://prometheus.io/docs/prometheus/latest/querying/examples/
+
+
+
 access Grafana Dashboard:
 ```
 kubectl port-forward -n monitoring prometheus-grafana-xxxxxxx-xxxxx 3000
