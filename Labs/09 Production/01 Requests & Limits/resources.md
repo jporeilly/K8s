@@ -38,7 +38,7 @@ minikube tunnel
 
 --- 
 
-#### <font color='red'> 11.1.1 Pod Resources </font>
+#### <font color='red'> 11.1.1 Pod Resources - Namespace </font>
 
 create a quota-test namespace:
 ```
@@ -117,7 +117,7 @@ kubectl delete -f 04_Pod-C.yaml
 #### <font color='red'> 11.1.2 Set Resource Quotas</font>
 so a namespace can be assigned resource quota:
 
-
+deploy resource quota 
 
 
 #### <font color='red'> 11.1. VPA Vertical Pod Autoscaler </font>
