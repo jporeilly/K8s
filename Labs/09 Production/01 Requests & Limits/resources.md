@@ -126,10 +126,78 @@ All containers share the same CPU, but they are nice to each other, and split th
 
 so a namespace can be assigned resource quota:
 
+#### <font color='red'> 11.1.2 HPA Horizontal Pod Autoscaler </font>
+You can use the Kubernetes Horizontal Pod Autoscaler to automatically scale the number of pods in a deployment, replication controller, replica set, or stateful set, based on that resource's CPU or memory utilization, or on other metrics. The Horizontal Pod Autoscaler can help applications scale out to meet increased demand, or scale in when resources are no longer needed. You can set a target metric percentage for the Horizontal Pod Autoscaler to meet when scaling applications. 
 
 
+Pre-requisites:
+* confirm that the Kubernetes Metrics Server
 
 
+verify KMS:
+```
+kubectl -n kube-system get deployment/metrics-server
+```
+
+
+deploy apache app:
+```
+kubectl apply -f https://k8s.io/examples/application/php-apache.yaml
+```
+deploy HPA:
+```
+kubectl autoscale deployment php-apache --cpu-percent=50 --min=1 --max=10
+```
+Note replicaset min=1 max=10  cpu=50%
+
+verify HPA:
+```
+kubectl get hpa
+```
+run a container with a busybox image to create a load for the Apache web server:
+```
+kubectl run -it --rm load-generator --image=busybox /bin/sh --generator=run-pod/v1
+```
+generate a load for the Apache web server
+```
+while true; do wget -q -O- http://php-apache; done
+```
+in anew terminal, view HPA:
+```
+kubectl get hpa
+```
+after a few mins, view again:
+```
+kubectl get hpa
+```
+Note: Horizontal Pod Autoscaler has resized the deployment to 5 replicas, and the utilization target of 50% has been achieved.
+
+verify its been scaled out:
+```
+kubectl get deployment php-apache
+```
+terminate load:
+```
+Ctl + C
+```
+exit shell:
+```
+exit
+```
+in a few mins, check HPA has scaled back:
+```
+kubectl get hpa
+```
+verify the deployment has been scaled down:
+```
+kubectl get deployment php-apache
+```
+
+clean up:
+```
+kubectl delete horizontalpodautoscaler.autoscaling/php-apache
+kubectl delete deployment.apps/php-apache service/php-apache
+```
 
 ---
 
@@ -161,6 +229,8 @@ verify VPA:
 ```
 kubectl get pods -n kube-system
 ```
+
+
 deploy hamster app:
 ```
 kubectl apply -f examples/hamster.yaml
