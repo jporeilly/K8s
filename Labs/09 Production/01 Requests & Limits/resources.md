@@ -39,25 +39,70 @@ minikube tunnel
 --- 
 
 #### <font color='red'> 11.1.1 Pod Resources </font>
-run a busybox and request 50m cpu and memory 50:
+
+create a quota-test namespace:
 ```
-kubectl run -i --tty --rm busybox \
-  --image=busybox \
-  --restart=Never \
-  --requests='cpu=50m,memory=50Mi' -- sh
+kubectl create namespace quota-test
 ```
-fill the memory:
+deploy cpu-quota:
 ```
-dd if=/dev/zero of=/dev/shm/fill bs=1k count=1024k
+kubectl apply -f 01_cpu-quota.yaml
 ```
-increase cpu:
+Note: for cpu request=100m cpu with a limit=200m
+
+verify quota was applied:
 ```
-while true; do true; done
+kubectl describe resourcequota/test-cpu-quota --namespace quota-test
+```
+
+to test deploy 3 Pods:
+
+deploy Pod-A
+```
+kubectl create -f 02_Pod-A.yaml --save-config
+```
+Note: Pod-A cpu request=50m  limit=100m. So 50% cpu has been allocated to Pod-A.
+
+verify quota was applied:
+```
+kubectl describe resourcequota/test-cpu-quota --namespace quota-test
 ```
 in another terminal run:
 ```
 kubectl top pods
 ```
+
+deploy Pod-B
+```
+kubectl create -f 03_Pod-B.yaml --save-config
+```
+Note: Pod-A 50% cpu Pod-B 50%.
+
+verify quota was applied:
+```
+kubectl describe resourcequota/test-cpu-quota --namespace quota-test
+```
+in another terminal run:
+```
+kubectl top pods
+```
+
+deploy Pod-C
+```
+kubectl create -f 04_Pod-C.yaml --save-config
+```
+Note: Pod-A 50% cpu Pod-B 50% Pod-C
+
+verify quota was applied:
+```
+kubectl describe resourcequota/test-cpu-quota --namespace quota-test
+```
+in another terminal run:
+```
+kubectl top pods
+```
+
+
 Note: From the output you can see that the memory utilised is 64Mi and the total CPU used is 458m.
 Notice: The current values for CPU and memory are greater than the requests that you defined earlier (cpu=50m,memory=50Mi).
 
@@ -65,56 +110,9 @@ However, why is the container consuming only 458 millicores?
 Since the Pod is running an infinite loop, you might expect it to consume 100% of the available CPU (or 1000 millicores).  
 Why is it not running at 100% CPU?  
 When you define a CPU request in Kubernetes, that doesn't only describe the minimum amount of CPU but also establishes a share of CPU for that container.
-All containers share the same CPU, but they are nice to each other, and they split the times based on their shares.
+All containers share the same CPU, but they are nice to each other, and split the times based on their shares.
 
-enable docker environment:
-```
-eval $(minikube docker-env)
-```
-determine how many cores:
-```
-docker info | grep CPUs
-```
-run a container that consumes all available CPU and assign it a CPU share of 1024:
-```
-docker run -d --rm --name stresser-1024 \
-  --cpu-shares 1024 \
-  containerstack/cpustress --cpu 2
-```
-view resources consumed:
-```
-docker stats
-```
-Note: CPU percentage is the sum of the percentage per core
 
-stop the container:
-```
-docker container stop containerstack/cpustress
-```
-
-in a new terminal:
-```
-docker run -d --rm --name stresser-2048 \
-  --cpu-shares 2048 \
-  containerstack/cpustress --cpu 2
-```
-view resources consumed:
-```
-docker stats
-```
-Notice: When two containers are running in a 2 vCPU node, the stresser-2048 container gets twice the share of the available CPU.
-
-stop the container:
-```
-docker container stop containerstack/cpustress
-```
-in a new terminal:
-```
-docker run -d --name stresser-3072 \
-  --cpu-shares 3072 \
-  containerstack/cpustress --cpu 2
-```
-Notice: the split ratio...
 
 
 cleanup:
@@ -122,58 +120,6 @@ cleanup:
 docker rm containerstack/cpustress
 docker prune -a
 ```
-
----
-
-#### <font color='red'> 11.1.2 Namespace Resources </font>
-Set quotas for the total amount memory and CPU that can be used by all Containers running in a namespace.
-
-check whats running:
-```
-kubectl get all
-```
-create a namespace:
-```
-kubectl create namespace quota-mem-cpu-example
-```
-deploy quota:
-```
-kubectl create -f 01_quota-mem-cpu.yaml --namespace=quota-mem-cpu-example  --save-config
-```
-Notice: healthy POD as Probe returns 0  
-
-view info:
-```
-kubectl get resourcequota mem-cpu-demo --namespace=quota-mem-cpu-example --output=yaml
-```
-Notice: The ResourceQuota places these requirements on the quota-mem-cpu-example namespace:
-* Every Container must have a memory request, memory limit, cpu request, and cpu limit.
-* The memory request total for all Containers must not exceed 1 GiB.
-* The memory limit total for all Containers must not exceed 2 GiB.
-* The CPU request total for all Containers must not exceed 1 cpu.
-* The CPU limit total for all Containers must not exceed 2 cpu. 
-
-get Pod details:
-```
-kubectl get pod quota-mem-cpu-demo --namespace=quota-mem-cpu-example
-```
-view info:
-```
-kubectl get resourcequota mem-cpu-demo --namespace=quota-mem-cpu-example --output=yaml
-```
-Notice: The output shows the quota along with how much of the quota has been used.
-
-deploy a 2nd Pod:
-```
-kubectl create -f 02_quota-mem-cpu-pod-2.yaml --namespace=quota-mem-cpu-example
-```
-Note: The second Pod does not get created. 
-
-clean up
-
-kubectl delete namespace quota-mem-cpu-example
-
-
 
 ---
 
