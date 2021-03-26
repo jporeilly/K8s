@@ -46,7 +46,7 @@ kubectl create namespace quota-test
 ```
 deploy cpu-quota:
 ```
-kubectl apply -f 01_cpu-quota.yaml
+kubectl create -f 01_cpu-quota.yaml -n quota-test --save-config
 ```
 Note: for cpu request=100m cpu with a limit=200m
 
@@ -63,7 +63,7 @@ to test deploy 3 Pods:
 
 deploy Pod-A
 ```
-kubectl create -f 02_Pod-A.yaml --save-config
+kubectl create -f 02_Pod-A.yaml -n quota-test --save-config
 ```
 Note: Pod-A cpu request=50m  limit=100m. So 50% cpu has been allocated to Pod-A.
 
@@ -71,14 +71,13 @@ verify quota was applied:
 ```
 kubectl describe resourcequota/test-cpu-quota --namespace quota-test
 ```
-in another terminal run:
-```
-kubectl top pods
-```
+Note: cpu 50% utilized.
+
+
 
 deploy Pod-B
 ```
-kubectl create -f 03_Pod-B.yaml --save-config
+kubectl create -f 03_Pod-B.yaml -n quota-test --save-config
 ```
 Note: Pod-A 50% cpu Pod-B 50%.
 
@@ -86,25 +85,21 @@ verify quota was applied:
 ```
 kubectl describe resourcequota/test-cpu-quota --namespace quota-test
 ```
-in another terminal run:
-```
-kubectl top pods
-```
+Note: reached limit for namespace.
+
 
 deploy Pod-C
 ```
-kubectl create -f 04_Pod-C.yaml --save-config
+kubectl create -f 04_Pod-C.yaml -n quota-test --save-config
 ```
-Note: Pod-A 50% cpu Pod-B 50% Pod-C
+Note: Pod-A 50% cpu Pod-B 50% Pod-C 10%
 
 verify quota was applied:
 ```
 kubectl describe resourcequota/test-cpu-quota --namespace quota-test
 ```
-in another terminal run:
-```
-kubectl top pods
-```
+Note: forbidden as exceeded quota.
+
 
 cleanup:
 ```
