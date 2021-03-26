@@ -54,6 +54,10 @@ verify quota was applied:
 ```
 kubectl describe resourcequota/test-cpu-quota --namespace quota-test
 ```
+or 
+```
+kubectl get quota -n quota-test
+```
 
 to test deploy 3 Pods:
 
@@ -102,6 +106,22 @@ in another terminal run:
 kubectl top pods
 ```
 
+cleanup:
+```
+kubectl delete -f 01_cpu-quota.yaml
+kubectl delete -f 02_Pod-A.yaml
+kubectl delete -f 03_Pod-B.yaml
+kubectl delete -f 04_Pod-C.yaml
+```
+
+#### <font color='red'> 11.1.2 Set Resource Quotas</font>
+so a namespace can be assigned resource quota:
+
+
+
+
+#### <font color='red'> 11.1. VPA Vertical Pod Autoscaler </font>
+
 
 Note: From the output you can see that the memory utilised is 64Mi and the total CPU used is 458m.
 Notice: The current values for CPU and memory are greater than the requests that you defined earlier (cpu=50m,memory=50Mi).
@@ -112,14 +132,12 @@ Why is it not running at 100% CPU?
 When you define a CPU request in Kubernetes, that doesn't only describe the minimum amount of CPU but also establishes a share of CPU for that container.
 All containers share the same CPU, but they are nice to each other, and split the times based on their shares.
 
+so a namespace can be assigned resource quota:
 
 
 
-cleanup:
-```
-docker rm containerstack/cpustress
-docker prune -a
-```
+
+
 
 ---
 
