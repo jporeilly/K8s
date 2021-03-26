@@ -25,7 +25,11 @@ minikube delete
 ```
 start minikube:
 ```
-minikube start --nodes 3 -p multinode-demo
+minikube start
+```
+enable metrics-server:
+```
+minikube addons enable metrics-server
 ```
 start tunnel:
 ```
@@ -54,10 +58,10 @@ in another terminal run:
 ```
 kubectl top pods
 ```
-Note: From the output you can see that the memory utilised is 64Mi and the total CPU used is 462m.
+Note: From the output you can see that the memory utilised is 64Mi and the total CPU used is 458m.
 Notice: The current values for CPU and memory are greater than the requests that you defined earlier (cpu=50m,memory=50Mi).
 
-However, why is the container consuming only 400 millicores?
+However, why is the container consuming only 458 millicores?
 Since the Pod is running an infinite loop, you might expect it to consume 100% of the available CPU (or 1000 millicores).  
 Why is it not running at 100% CPU?  
 When you define a CPU request in Kubernetes, that doesn't only describe the minimum amount of CPU but also establishes a share of CPU for that container.
@@ -83,6 +87,11 @@ docker stats
 ```
 Note: CPU percentage is the sum of the percentage per core
 
+stop the container:
+```
+docker container stop containerstack/cpustress
+```
+
 in a new terminal:
 ```
 docker run -d --rm --name stresser-2048 \
@@ -95,6 +104,10 @@ docker stats
 ```
 Notice: When two containers are running in a 2 vCPU node, the stresser-2048 container gets twice the share of the available CPU.
 
+stop the container:
+```
+docker container stop containerstack/cpustress
+```
 in a new terminal:
 ```
 docker run -d --name stresser-3072 \
@@ -103,11 +116,17 @@ docker run -d --name stresser-3072 \
 ```
 Notice: the split ratio...
 
+
+cleanup:
+```
+docker rm containerstack/cpustress
+docker prune -a
+```
+
 ---
 
 #### <font color='red'> 11.1.2 Namespace Resources </font>
 Set quotas for the total amount memory and CPU that can be used by all Containers running in a namespace.
-
 
 check whats running:
 ```
@@ -132,7 +151,7 @@ Notice: The ResourceQuota places these requirements on the quota-mem-cpu-example
 * The memory request total for all Containers must not exceed 1 GiB.
 * The memory limit total for all Containers must not exceed 2 GiB.
 * The CPU request total for all Containers must not exceed 1 cpu.
-* The CPU limit total for all Containers must not exceed 2 cpu.d 
+* The CPU limit total for all Containers must not exceed 2 cpu. 
 
 get Pod details:
 ```
