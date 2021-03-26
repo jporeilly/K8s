@@ -4,10 +4,8 @@ When you specify a Pod, you can optionally specify how much of each resource a C
 When you specify the resource request for Containers in a Pod, the scheduler uses this information to decide which node to place the Pod on. When you specify a resource limit for a Container, the kubelet enforces those limits so that the running container is not allowed to use more of that resource than the limit you set. The kubelet also reserves at least the request amount of that system resource specifically for that container to use 
 
 In this lab we're going to:
-* set resources for cluter
-* set resource quotas for namespaces
-* VPA - Vertical Pod Allocation
-
+* set resource quota for namespace
+* deploy Pods and monitor cpu utilization
 
 ---
 
@@ -74,7 +72,6 @@ kubectl describe resourcequota/test-cpu-quota --namespace quota-test
 Note: cpu 50% utilized.
 
 
-
 deploy Pod-B
 ```
 kubectl create -f 03_Pod-B.yaml -n quota-test --save-config
@@ -136,10 +133,63 @@ so a namespace can be assigned resource quota:
 
 ---
 
-#### <font color='red'> 11.1. VPA Vertical Pod Autoscaler </font>
+#### <font color='red'> 11.1.3 VPA Vertical Pod Autoscaler </font>
+Vertical Pod autoscaling frees you from having to think about what values to specify for a container's CPU requests and limits and memory requests and limits. The autoscaler can recommend values for CPU and memory requests and limits, or it can automatically update the values.
 
 
+Pre-requisites:
+* confirm that the Kubernetes Metrics Server
+* download VPA
 
+verify KMS:
+```
+kubectl -n kube-system get deployment/metrics-server
+```
+download VPA:
+```
+sudo git clone -b vpa-release-0.8 https://github.com/kubernetes/autoscaler.git
+```
+change to VPA director:
+```
+cd autoscaler/vertical-pod-autoscaler
+```
+deploy VPA:
+```
+./hack/vpa-up.sh
+```
+verify VPA:
+```
+kubectl get pods -n kube-system
+```
+deploy hamster app:
+```
+kubectl apply -f examples/hamster.yaml
+```
+verify hamster app:
+```
+kubectl get pods -l app=hamster
+```
+check resource Pod quota:
+```
+kubectl describe pod hamster-xxxxxxxx-xxxxxx
+```
+watch the hamster Pod:
+```
+kubectl get --watch pods -l app=hamster
+```
+when you see new Pod created:
+```
+kubectl describe pod hamster-xxxxxxxx-xxxxx
+```
+view the recomendations:
+```
+kubectl describe vpa/hamster-vpa
+```
 
+clean up:
+```
+kubectl delete -f examples/hamster.yaml
+./hack/vpa-down.sh
+```
 
 ---
