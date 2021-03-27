@@ -158,6 +158,17 @@ verify deployment:
 ```
 Note: the URL is in the deployment output
 
+
+check the knative pods that scaled from zero:
+```
+kubectl get pod -l serving.knative.dev/service=hello
+```
+watch the pods:
+```
+kubectl get pod -l serving.knative.dev/service=hello -w
+```
+Note: see how they scale down to zero after http traffic stops to the url
+
 describe the service:
 ```
 kn service describe hello
@@ -182,6 +193,10 @@ curl  http://helloworld.default.[ClusterIP].nip.io
 ```
 
  > check in browser: http://helloworld.default.[ClusterIP].nip.io
+
+
+
+
 
 ---
 
