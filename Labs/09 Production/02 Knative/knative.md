@@ -174,7 +174,7 @@ kn route describe hello
 
 deploy "hello world" app
 ```
-kubectl create -f 01_my-app.yaml  --save-config
+kubectl create -f 02_my-app.yaml  --save-config
 ```
 curl into app:
 ```
