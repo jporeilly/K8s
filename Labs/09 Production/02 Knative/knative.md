@@ -98,7 +98,7 @@ kubectl apply --filename https://github.com/knative/serving/releases/download/v0
 ```
 verify deployment:
 ```
-kubectl get deployments -n knative-serving
+kubectl wait deployment --all --timeout=-1s --for=condition=Available -n knative-serving
 ```
 
 
@@ -142,7 +142,7 @@ kn
 ```
 deploy "hello-world" app:
 ```
-kn service create hello --image gcr.io/knative-samples/helloworld-go
+kn service create hello --image gcr.io/knative-samples/helloworld-go 
 ```
 you can deploy to another namespace:
 ```
