@@ -142,11 +142,15 @@ kn
 ```
 deploy "hello-world" app:
 ```
-kn service create hello --image gcr.io/knative-samples/helloworld-go 
+kn service create hello \
+--image gcr.io/knative-samples/helloworld-go \
+--port 8080 \
+--env TARGET=Knative
 ```
+or 
 you can deploy to another namespace:
 ```
-kn service create hello --image gcr.io/knative-samples/helloworld-go --namespace hello
+kubectl create -f 01_kn-service.yaml --save-config
 ```
 verify deployment:
 ```
