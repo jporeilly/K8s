@@ -123,29 +123,25 @@ kubectl -n kube-system get deployment/metrics-server
 ```
 
 
-deploy apache app:
+deploy hello app:
 ```
-kubectl apply -f https://k8s.io/examples/application/php-apache.yaml
+kubectl apply -f 06_hello-service.yaml
 ```
 deploy HPA:
 ```
-kubectl autoscale deployment php-apache --cpu-percent=50 --min=1 --max=10
+kubectl autoscale -f 07_hpa-autoscaler.yaml
 ```
-Note replicaset min=1 max=10  cpu=50%
+Note replicaset min=2 max=20  cpu=50%
 
 verify HPA:
 ```
 kubectl get hpa
 ```
-run a container with a busybox image to create a load for the Apache web server:
+run a container with a busybox image to create a load for the hello app:
 ```
-kubectl run -it --rm load-generator --image=busybox /bin/sh --generator=run-pod/v1
+kubectl apply -f 08_load-generator.yaml
 ```
-generate a load for the Apache web server
-```
-while true; do wget -q -O- http://php-apache; done
-```
-in anew terminal, view HPA:
+in a new terminal, view HPA:
 ```
 kubectl get hpa
 ```
@@ -157,7 +153,7 @@ Note: Horizontal Pod Autoscaler has resized the deployment to 5 replicas, and th
 
 verify its been scaled out:
 ```
-kubectl get deployment php-apache
+kubectl get deployment hello
 ```
 terminate load:
 ```
@@ -173,13 +169,13 @@ kubectl get hpa
 ```
 verify the deployment has been scaled down:
 ```
-kubectl get deployment php-apache
+kubectl get deployment hello
 ```
 
 clean up:
 ```
-kubectl delete horizontalpodautoscaler.autoscaling/php-apache
-kubectl delete deployment.apps/php-apache service/php-apache
+kubectl delete 
+kubectl delete 
 ```
 
 ---
