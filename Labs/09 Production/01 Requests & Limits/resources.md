@@ -37,6 +37,7 @@ minikube tunnel
 --- 
 
 #### <font color='red'> 11.1.1 Pod Resources - Namespace </font>
+cpu resource constraint on quota-test namespace.  
 
 create a quota-test namespace:
 ```
