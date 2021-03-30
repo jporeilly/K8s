@@ -1,4 +1,7 @@
 ## <font color='red'> 11.2 Knative </font>
+
+**This section is currently under development**
+
 Knative is an open source community project that adds components to Kubernetes for deploying, running, and managing serverless, cloud-native applications. It enables more productive development with less interaction with Kubernetes' infrastructure.
 
 In this lab we're going to:

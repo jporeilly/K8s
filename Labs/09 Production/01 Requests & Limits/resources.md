@@ -110,6 +110,9 @@ kubectl delete -f 04_Pod-C.yaml
 ---
 
 #### <font color='red'> 11.1.2 HPA Horizontal Pod Autoscaler </font>
+
+**This section is currently under development**
+
 You can use the Kubernetes Horizontal Pod Autoscaler to automatically scale the number of pods in a deployment, replication controller, replica set, or stateful set, based on that resource's CPU or memory utilization, or on other metrics. The Horizontal Pod Autoscaler can help applications scale out to meet increased demand, or scale in when resources are no longer needed. You can set a target metric percentage for the Horizontal Pod Autoscaler to meet when scaling applications. 
 
 
@@ -174,13 +177,17 @@ kubectl get deployment hello
 
 clean up:
 ```
-kubectl delete 
-kubectl delete 
+kubectl delete -f 06_hello-service.yaml
+kubectl delete -f 07_hpa-autoscaler.yaml
+kubectl apply -f 08_load-generator.yaml
 ```
 
 ---
 
 #### <font color='red'> 11.1.3 VPA Vertical Pod Autoscaler </font>
+
+**This section is currently under development**
+
 Vertical Pod autoscaling frees you from having to think about what values to specify for a container's CPU requests and limits and memory requests and limits. The autoscaler can recommend values for CPU and memory requests and limits, or it can automatically update the values.
 
 
